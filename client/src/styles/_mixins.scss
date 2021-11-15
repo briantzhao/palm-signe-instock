@@ -1,0 +1,21 @@
+@use "./variables" as *;
+
+//Style guide specs
+
+//different device specs
+@mixin mobile {
+	@media (max-width: $mobile--breakpoint) {
+		@content;
+	}
+}
+@mixin tablet {
+	@media (min-width: $tablet--breakpoint-min) and (max-width: $tablet--breakpoint-max) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: $desktop--breakpoint) {
+		@content;
+	}
+}
