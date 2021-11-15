@@ -18,8 +18,8 @@ const getWarehouseData = () => {
 };
 
 //function to update warehouses.json
-const postWarehouseData = (videos) => {
-  fs.writeFile("./data/warehouses.json", JSON.stringify(videos), (err) => {
+const postWarehouseData = (warehouses) => {
+  fs.writeFile("./data/warehouses.json", JSON.stringify(warehouses), (err) => {
     if (err) {
       console.log(err);
     }
@@ -31,6 +31,12 @@ router.post("/", (req, res) => {
   let warehouses = warehouseData;
   const { name, address, city, country, contact, position, phone, email } =
     req.body;
+  const phoneRGEX = new RegExp(
+    "/^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im"
+  );
+  const emailRGEX = new RegExp(
+    "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/"
+  );
   if (
     name &&
     address &&
@@ -39,7 +45,9 @@ router.post("/", (req, res) => {
     contact &&
     position &&
     phone &&
-    email
+    email &&
+    phoneRGEX.test(phone) &&
+    emailRGEX.test(email)
   ) {
     const newWarehouse = {
       id: uniqid(),
