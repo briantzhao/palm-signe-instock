@@ -1,5 +1,7 @@
 import "./App.scss";
-import NotFoundPage from "./pages/NotFoundPage";
+import WarehousePage from "./pages/WarehousePage/WarehousePage";
+import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFountPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -8,8 +10,8 @@ function App() {
       <Router>
         <header className="App-header"></header>
         <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/inventory/" component={Inventory} />
+          <Route path="/" exact component={WarehousePage} />
+          <Route path="/inventory/" component={InventoryPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>
