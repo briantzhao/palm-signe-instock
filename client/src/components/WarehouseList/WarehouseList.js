@@ -1,13 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
-import { Link } from "react-router-dom";
 
-export default function WarehouseList(props) {
-	console.log(props);
+export default function WarehouseList({ warehouseList }) {
+	console.log(warehouseList);
 	return (
 		<section className="warehouse">
-			<div>
+			<div className="warehouse__header">
 				<h2 className="warehouse__heading">Warehouses</h2>
 				<form className="warehouse__form">
 					<input
@@ -18,9 +18,8 @@ export default function WarehouseList(props) {
 					<button className="warehouse__button--add">Add New Warehouse</button>
 				</form>
 			</div>
-
 			<div className="warehouse__container">
-				{props.warehouse.map((res) => (
+				{warehouseList.warehouse.map((res) => (
 					<div key={res.id} className="warehouse__card">
 						<div className="warehouse--info">
 							<Link to={`/warehouse/${res.id}`}>
