@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const uniqid = require("uniqid");
 
+//array to hold data read from inventories.json
 let inventoryData = [];
 
 //function to populate InventoryData with data from inventories.json
@@ -30,7 +31,9 @@ const postInventoryData = (inventories) => {
 };
 getInventoryData();
 
+//post route that adds new inventory item to inventoryData, then writes to inventories.json
 router.post("/", (req, res) => {
+  let inventory = inventoryData;
   const {
     warehouseID,
     warehouseName,
@@ -49,7 +52,7 @@ router.post("/", (req, res) => {
     status &&
     quantity
   ) {
-    let inventory = inventoryData;
+    //create new inventory object
     const newItem = {
       id: uniqid(),
       warehouseID,
