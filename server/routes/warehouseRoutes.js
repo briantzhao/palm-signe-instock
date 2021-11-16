@@ -71,11 +71,7 @@ router.post("/", (req, res) => {
     postWarehouseData(warehouseData);
     res.status(201).json(newWarehouse);
   }
-  res
-    .status(500)
-    .send(
-      "Warehouse not created." + phoneRGEX.test(phone) + emailRGEX.test(email)
-    );
+  res.status(500).send("Warehouse not created.");
 });
 
 module.exports = router;
