@@ -80,17 +80,21 @@ export default class AddWarehouseForm extends Component {
         {/* Allows form to be used for add and edit pages */}
         <h1 className="add-warehouse-form__title">
           <Link to="/">
-            <img src={arrow} alt="Back arrow" />
+            <img
+              className="add-warehouse-form__arrow"
+              src={arrow}
+              alt="Back arrow"
+            />
           </Link>
-          Add Warehouse
+          Add New Warehouse
         </h1>
         <section className="add-warehouse-form__main">
-          <article className="add-warehouse-form__warehouse-details">
+          <article className="add-warehouse-form__details add-warehouse-form__details-1">
             <h2 className="add-warehouse-form__subtitle">Warehouse Details</h2>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Warehouse Name
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="text"
                 placeholder="Warehouse Name"
                 name="name"
@@ -98,10 +102,10 @@ export default class AddWarehouseForm extends Component {
                 value={this.state.name}
               ></input>
             </label>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Street Address
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="text"
                 placeholder="Street Address"
                 name="address"
@@ -109,10 +113,10 @@ export default class AddWarehouseForm extends Component {
                 value={this.state.address}
               ></input>
             </label>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               City
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="text"
                 placeholder="City"
                 name="city"
@@ -120,10 +124,10 @@ export default class AddWarehouseForm extends Component {
                 value={this.state.city}
               ></input>
             </label>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Country
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="text"
                 placeholder="Country"
                 name="country"
@@ -132,12 +136,12 @@ export default class AddWarehouseForm extends Component {
               ></input>
             </label>
           </article>
-          <article className="add-warehouse-form__warehouse-details">
+          <article className="add-warehouse-form__details">
             <h2 className="add-warehouse-form__subtitle">Contact Details</h2>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Contact Name
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="text"
                 placeholder="Contact Name"
                 name="contact"
@@ -145,10 +149,10 @@ export default class AddWarehouseForm extends Component {
                 value={this.state.contact}
               ></input>
             </label>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Position
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="text"
                 placeholder="Position"
                 name="position"
@@ -156,10 +160,10 @@ export default class AddWarehouseForm extends Component {
                 value={this.state.position}
               ></input>
             </label>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Phone Number
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="tel"
                 placeholder="Phone Number"
                 name="phone"
@@ -167,10 +171,10 @@ export default class AddWarehouseForm extends Component {
                 value={this.state.phone}
               ></input>
             </label>
-            <label className="add-warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__label">
               Email
               <input
-                className="add-warehouse-form__warehouse__field"
+                className="add-warehouse-form__field"
                 type="email"
                 placeholder="Email"
                 name="email"
