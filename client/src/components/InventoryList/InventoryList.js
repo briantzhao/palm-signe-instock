@@ -1,5 +1,7 @@
 import React from "react";
 import "./InventoryList.scss";
+import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
+import editIcon from "../../assets/icons/edit-24px.svg";
 
 export default function InventoryList(props) {
   return (
@@ -13,7 +15,10 @@ export default function InventoryList(props) {
           name="inventorySearch"
         />
         <button className="inventory-list__button">+ Add New Item</button>
-        <article className="inventory-list__items">
+      </form>
+
+      <article className="inventory-list__items">
+        <div className="inventory-list__items-top-container">
           <section className="inventory-list__items-left-wrap">
             <div className="inventory-list__items-item-wrap">
               <h3 className="inventory-list__items-subheading">
@@ -42,8 +47,22 @@ export default function InventoryList(props) {
               <p className="inventory-list__items-warehouse">Manhattan</p>
             </div>
           </section>
-        </article>
-      </form>
+        </div>
+        <div className="inventory-list__items-bottom-container">
+          <figure className="inventory-list-items__icons">
+            <img
+              src={deleteIcon}
+              alt="icon of delete action"
+              className="inventory-list__icons-delete"
+            />
+            <img
+              src={editIcon}
+              alt="icon of edit action"
+              className="inventory-list__icons-edit"
+            />
+          </figure>
+        </div>
+      </article>
     </section>
   );
 }
