@@ -52,6 +52,7 @@ router.post("/", (req, res) => {
     phoneRGEX.test(phone) &&
     emailRGEX.test(email)
   ) {
+    //create new warehouse object
     const newWarehouse = {
       id: uniqid(),
       name,
