@@ -6,7 +6,7 @@
   position: absolute;
   left: 4.27%;
   right: 4.27%;
-  top: 20%;
+  top: 23%;
   bottom: 4.13%;
   background: #ffffff;
   /* Card Shadow */
@@ -14,8 +14,7 @@
   border-radius: 3px;
 
   &__heading {
-    text-align: left;
-    padding: 1.5rem;
+    align-self: flex-start;
   }
 
   &__form {
@@ -90,7 +89,7 @@
 
   &__items-top-container {
     display: flex;
-    margin-left: 2rem;
+    padding-left: 2rem;
   }
 
   &__items-bottom-container {

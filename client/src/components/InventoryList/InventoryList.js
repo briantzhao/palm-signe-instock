@@ -6,8 +6,8 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 export default function InventoryList(props) {
   return (
     <section className="inventory-list">
-      <h1 className="inventory-list__heading">Inventory </h1>
       <form action="submit" className="inventory-list__form">
+        <h1 className="inventory-list__heading">Inventory </h1>
         <input
           type="text"
           placeholder="Search..."
