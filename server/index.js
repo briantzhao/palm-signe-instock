@@ -13,8 +13,8 @@ app.use(express.static("public"));
 app.use(express.json());
 
 //warehouse and inventory routes (may change based on structure)
-app.use("/warehouse", warehouseRoutes);
-app.use("/inventory", inventoryRoutes);
+app.use("/warehouses", warehouseRoutes);
+app.use("/inventories", inventoryRoutes);
 
 app.listen(port, function () {
   console.log(`Server is running on port ${port}`);
