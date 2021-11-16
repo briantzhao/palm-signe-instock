@@ -83,6 +83,7 @@ router.post("/", (req, res) => {
   }
   res.status(500).send("Inventory item not created");
 });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   const inventory = inventory.find((inventory) => {
@@ -93,6 +94,11 @@ router.get("/:id", (req, res) => {
   } else {
     res.status(404).send("Page not found.");
   }
+});
+
+//get all inventory items
+router.get("/", (_req, res) => {
+  res.json(inventoryData);
 });
 
 module.exports = router;
