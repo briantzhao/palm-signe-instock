@@ -123,4 +123,32 @@ router.patch("/:id", (req, res, next) => {
   }
 });
 
+//delete a warehouse:
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  let warehouses = warehouseData;
+
+  const individualWarehouse = warehouses.find((warehouse) => {
+    return warehouse.id === id;
+  });
+
+  if (individualWarehouse) {
+    warehouses.splice(warehouses.indexOf(individualWarehouse), 1);
+
+    fs.writeFile(
+      "./data/warehouses.json",
+      JSON.stringify(warehouses),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        res.status(200).json(warehouses);
+      }
+    );
+  } else {
+    res.status(404).send("Cannot find that warehouse");
+  }
+});
+
 module.exports = router;
