@@ -141,5 +141,18 @@
       "phone": "123-456-7890",
       "email": "brian@instock.com"
     }
+  },
+  {
+    "id": "pssf6jskw2n9lp7",
+    "name": "Brian",
+    "address": "123 Sesame",
+    "city": "New York",
+    "country": "USA",
+    "contact": {
+      "name": "Brian",
+      "position": "Manager",
+      "phone": "(123) 456-7890",
+      "email": "brian@instock.com"
+    }
   }
 ]

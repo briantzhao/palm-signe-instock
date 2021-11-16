@@ -9,21 +9,21 @@ const API_URL = "http://localhost:8080/";
 
 export default class AddWarehouseForm extends Component {
   state = {
-    name: null,
+    name: "",
     nameValid: true,
-    address: null,
+    address: "",
     addressValid: true,
-    city: null,
+    city: "",
     cityValid: true,
-    country: null,
+    country: "",
     countryValid: true,
-    contact: null,
+    contact: "",
     contactValid: true,
-    position: null,
+    position: "",
     positionValid: true,
-    phone: null,
+    phone: "",
     phoneValid: true,
-    email: null,
+    email: "",
     emailValid: true,
   };
 
