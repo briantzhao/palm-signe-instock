@@ -95,4 +95,37 @@ router.get("/:id", (req, res) => {
   }
 });
 
+// patch to make edits to single item
+router.patch("/:id", (req, res, next) => {
+  let inventories = inventoryData;
+
+  let individualInventory = inventories.find((inventory) => {
+    return inventory.id === req.params.id;
+  });
+
+  if (individualInventory) {
+    individualInventory = { ...individualInventory, ...req.body };
+
+    let index = inventories.findIndex(
+      (inventory) => inventory.id === individualInventory.id
+    );
+
+    inventories[index] = individualInventory;
+
+    fs.writeFile(
+      "./data/inventories.json",
+      JSON.stringify(inventories),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        console.log("File updated successfully");
+        res.status(201).json(individualInventory);
+      }
+    );
+  } else {
+    res.status(404).send("Sorry, couldn’t find that item.");
+  }
+});
+
 module.exports = router;
