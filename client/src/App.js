@@ -1,16 +1,20 @@
 import "./App.scss";
-import NotFoundPage from "./pages/NotFoundPage";
+import Header from "./components/Header/Header";
+import WarehousePage from "./pages/WarehousePage/WarehousePage";
+import InventoryPage from "./pages/InventoryPage/InventoryPage";
+// import NotFoundPage from "./pages/NotFoundPage/NotFountPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <header className="App-header"></header>
+        <Header />
         <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/inventory/" component={Inventory} />
-          <Route component={NotFoundPage} />
+          <Route path="/" exact component={WarehousePage} />
+          <Route path="/inventory/" component={InventoryPage} />
+          {/* <Route path="/notfound/" component={NotFoundPage} /> */}
         </Switch>
       </Router>
     </div>
