@@ -31,6 +31,19 @@ const postInventoryData = (inventories) => {
 };
 getInventoryData();
 
+//get route that grabs inventory items for a single warehouse
+router.get("/warehouses/:id", (req, res) => {
+  const { id } = req.params;
+  getInventoryData();
+  const warehouseInventory = inventoryData.filter((item) => {
+    item.warehouseID === id;
+  });
+  if (warehouseInventory.length === 0) {
+    res.status(404).send("Warehouse not found");
+  }
+  res.json(warehouseInventory);
+});
+
 //post route that adds new inventory item to inventoryData, then writes to inventories.json
 router.post("/", (req, res) => {
   let inventory = inventoryData;

@@ -27,8 +27,6 @@ const postWarehouseData = (warehouses) => {
 };
 getWarehouseData();
 
-router.get("/:id/inventory", (req, res) => {});
-
 //post route that adds new warehouse to warehouseData array, then writes to warehouses.json
 router.post("/", (req, res) => {
   let warehouses = warehouseData;
