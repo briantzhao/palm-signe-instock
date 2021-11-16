@@ -1,4 +1,7 @@
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//styles form as a card with box shadow
 .add-warehouse-form {
   margin: 0 1rem;
   border-radius: 0.1875rem;
@@ -7,33 +10,39 @@
   @include tablet {
     text-align: left;
   }
+  @include desktop {
+    text-align: left;
+  }
   &__arrow {
     margin-right: 0.75rem;
     max-width: 1rem;
     max-height: 1rem;
   }
   &__title {
-    font-size: 1.75rem;
-    line-height: 2.25rem;
-    font-weight: 600;
+    @include h1-page-header($instock-black, center);
     padding-bottom: 1.5rem;
     margin: 0 1rem;
-    color: #13182c;
     @include tablet {
-      font-size: 2rem;
-      line-height: 2.5rem;
+      text-align: left;
       margin: 0;
       padding-left: 2rem;
-      border-bottom: 1px solid #bdc5d5;
+      border-bottom: 1px solid $grey;
       padding-bottom: 1.3125rem;
     }
     @include desktop {
+      text-align: left;
       padding-left: 2.75rem;
+      border-bottom: 1px solid $grey;
+      padding-bottom: 1.3125rem;
     }
   }
   &__main {
     text-align: left;
     @include tablet {
+      display: flex;
+      padding: 1.5rem 0rem;
+    }
+    @include desktop {
       display: flex;
       padding: 1.5rem 0rem;
     }
@@ -52,6 +61,9 @@
       padding: 0 2rem;
     }
     @include desktop {
+      flex-grow: 1;
+      border-top: 0;
+      gap: 1.5rem;
       padding: 0 2.5rem;
     }
     &-1 {
@@ -59,28 +71,20 @@
     }
   }
   &__subtitle {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-    color: #13182c;
+    @include h2-subheader($instock-black, left);
     @include tablet {
       margin: 0;
       padding-bottom: 0.5rem;
-      font-size: 1.5rem;
-      line-height: 2rem;
+    }
+    @include desktop {
+      margin: 0;
+      padding-bottom: 0.5rem;
     }
   }
   &__label {
-    font-size: 0.8125rem;
-    line-height: 1.25rem;
-    font-weight: 600;
+    @include h3-labels-links-buttons($instock-black, left);
     display: flex;
     flex-direction: column;
-    color: #13182c;
-    @include tablet {
-      font-size: 0.875rem;
-      line-height: 1.375rem;
-    }
   }
   &__field {
     height: 2.25rem;
@@ -91,26 +95,22 @@
     @include tablet {
       height: 2.375rem;
     }
+    @include desktop {
+      height: 2.375rem;
+    }
     &::placeholder {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
-      color: #5c667e;
-      @include tablet {
-        font-size: 0.875rem;
-        line-height: 1.375rem;
-      }
+      @include h3-labels-links-buttons($slate, left);
     }
     &--error {
-      border-color: #c94515;
+      border-color: $red;
     }
   }
   &__error {
     display: flex;
     gap: 0.333rem;
-    color: red;
-    font-size: 0.75rem;
-    line-height: 1.125rem;
-    font-weight: 400;
+    @include p3-body-small($red, left);
     margin-top: 0.25rem;
     margin-bottom: 0;
   }
@@ -125,6 +125,8 @@
       padding: 1rem 2rem;
     }
     @include desktop {
+      justify-content: flex-end;
+      gap: 1rem;
       padding: 1rem 2.5rem;
     }
   }
@@ -134,22 +136,23 @@
     width: 8.75rem;
     padding: 0.5rem 0.5rem;
     border-radius: 1.25rem;
-    font-size: 0.8125rem;
-    line-height: 1.25rem;
-    font-weight: 600;
+    @include h3-labels-links-buttons($slate, center);
     border: 1px solid #bdc5d5;
     background-color: white;
-    color: #5c667e;
     @include tablet {
       width: 4.5rem;
-      font-size: 0.875rem;
-      line-height: 1.375rem;
+    }
+    @include desktop {
+      width: 4.5rem;
     }
   }
   &__submit {
-    color: #ffffff;
-    background-color: #2e66e5;
+    color: $white;
+    background-color: $instock-indigo;
     @include tablet {
+      width: 8.625rem;
+    }
+    @include desktop {
       width: 8.625rem;
     }
   }
