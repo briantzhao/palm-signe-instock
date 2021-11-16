@@ -1,13 +1,15 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import "./WarehouseForm.scss";
+import "./AddWarehouseForm.scss";
+import arrow from "../../assets/icons/arrow_back-24px.svg";
+import axios from "axios";
 
 const API_URL = "http://localhost:8080/";
 
-export default class WarehouseForm extends Component {
+export default class AddWarehouseForm extends Component {
   state = {
     name: null,
-    street: null,
+    address: null,
     city: null,
     country: null,
     contact: null,
@@ -22,12 +24,12 @@ export default class WarehouseForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, street, city, country, contact, position, phone, email } =
+    const { name, address, city, country, contact, position, phone, email } =
       this.state;
     if (
       !(
         name &&
-        street &&
+        address &&
         city &&
         country &&
         contact &&
@@ -42,14 +44,14 @@ export default class WarehouseForm extends Component {
     const phoneRGEX = new RegExp(
       /^[\+]?[1]?[ ]?[(]?[0-9]{3}[)]?[ ]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
     );
-    if (phoneRGEX.test(phone)) {
+    if (!phoneRGEX.test(phone)) {
       alert("Please enter a valid phone number");
       return;
     }
     const emailRGEX = new RegExp(
       /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
     );
-    if (emailRGEX.test(email)) {
+    if (!emailRGEX.test(email)) {
       alert("Please enter a valid email address");
       return;
     }
@@ -74,16 +76,21 @@ export default class WarehouseForm extends Component {
 
   render() {
     return (
-      <form className="warehouse-form" onSubmit={this.handleSubmit}>
+      <form className="add-warehouse-form" onSubmit={this.handleSubmit}>
         {/* Allows form to be used for add and edit pages */}
-        <h1 className="warehouse-form__title">{this.props.title}</h1>
-        <section className="warehouse-form__main">
-          <article className="warehouse-form__warehouse-details">
-            <h2 className="warehouse-form__subtitle">Warehouse Details</h2>
-            <label className="warehouse-form__warehouse__label">
+        <h1 className="add-warehouse-form__title">
+          <Link to="/">
+            <img src={arrow} alt="Back arrow" />
+          </Link>
+          Add Warehouse
+        </h1>
+        <section className="add-warehouse-form__main">
+          <article className="add-warehouse-form__warehouse-details">
+            <h2 className="add-warehouse-form__subtitle">Warehouse Details</h2>
+            <label className="add-warehouse-form__warehouse__label">
               Warehouse Name
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="text"
                 placeholder="Warehouse Name"
                 name="name"
@@ -91,10 +98,10 @@ export default class WarehouseForm extends Component {
                 value={this.state.name}
               ></input>
             </label>
-            <label className="warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__warehouse__label">
               Street Address
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="text"
                 placeholder="Street Address"
                 name="address"
@@ -102,10 +109,10 @@ export default class WarehouseForm extends Component {
                 value={this.state.address}
               ></input>
             </label>
-            <label className="warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__warehouse__label">
               City
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="text"
                 placeholder="City"
                 name="city"
@@ -113,10 +120,10 @@ export default class WarehouseForm extends Component {
                 value={this.state.city}
               ></input>
             </label>
-            <label className="warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__warehouse__label">
               Country
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="text"
                 placeholder="Country"
                 name="country"
@@ -125,12 +132,12 @@ export default class WarehouseForm extends Component {
               ></input>
             </label>
           </article>
-          <article className="warehouse-form__warehouse-details">
-            <h2 className="warehouse-form__subtitle">Contact Details</h2>
-            <label className="warehouse-form__warehouse__label">
+          <article className="add-warehouse-form__warehouse-details">
+            <h2 className="add-warehouse-form__subtitle">Contact Details</h2>
+            <label className="add-warehouse-form__warehouse__label">
               Contact Name
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="text"
                 placeholder="Contact Name"
                 name="contact"
@@ -138,10 +145,10 @@ export default class WarehouseForm extends Component {
                 value={this.state.contact}
               ></input>
             </label>
-            <label className="warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__warehouse__label">
               Position
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="text"
                 placeholder="Position"
                 name="position"
@@ -149,10 +156,10 @@ export default class WarehouseForm extends Component {
                 value={this.state.position}
               ></input>
             </label>
-            <label className="warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__warehouse__label">
               Phone Number
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="tel"
                 placeholder="Phone Number"
                 name="phone"
@@ -160,10 +167,10 @@ export default class WarehouseForm extends Component {
                 value={this.state.phone}
               ></input>
             </label>
-            <label className="warehouse-form__warehouse__label">
+            <label className="add-warehouse-form__warehouse__label">
               Email
               <input
-                className="warehouse-form__warehouse__field"
+                className="add-warehouse-form__warehouse__field"
                 type="email"
                 placeholder="Email"
                 name="email"
@@ -173,11 +180,13 @@ export default class WarehouseForm extends Component {
             </label>
           </article>
         </section>
-        <section className="warehouse-form__buttons">
+        <section className="add-warehouse-form__buttons">
           <Link to="/">
-            <button className="warehouse-form__cancel">Cancel</button>
+            <button className="add-warehouse-form__cancel">Cancel</button>
           </Link>
-          <button className="warehouse-form__submit">+ Add Warehouse</button>
+          <button className="add-warehouse-form__submit">
+            + Add Warehouse
+          </button>
         </section>
       </form>
     );
