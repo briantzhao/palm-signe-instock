@@ -74,4 +74,20 @@ router.post("/", (req, res) => {
   res.status(500).send("Warehouse not created.");
 });
 
+router.get("/", (_req, res) => {
+  res.json(warehouseData);
+});
+
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const warehouse = warehouseData.find((warehouse) => {
+    return warehouse.id === id;
+  });
+  if (warehouse) {
+    res.json(warehouse);
+  } else {
+    res.status(404).send("Page not found.");
+  }
+});
+
 module.exports = router;
