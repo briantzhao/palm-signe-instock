@@ -25,17 +25,20 @@ const postWarehouseData = (warehouses) => {
     }
   });
 };
+getWarehouseData();
 
 //post route that adds new warehouse to warehouseData array, then writes to warehouses.json
 router.post("/", (req, res) => {
   let warehouses = warehouseData;
   const { name, address, city, country, contact, position, phone, email } =
     req.body;
+  //validate phone number
   const phoneRGEX = new RegExp(
-    "/^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im"
+    /^[\+]?[1]?[ ]?[(]?[0-9]{3}[)]?[ ]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
   );
+  //validate email
   const emailRGEX = new RegExp(
-    "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/"
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
   );
   if (
     name &&
@@ -67,7 +70,11 @@ router.post("/", (req, res) => {
     postWarehouseData(warehouseData);
     res.status(201).json(newWarehouse);
   }
-  res.status(500).send("Warehouse not created.");
+  res
+    .status(500)
+    .send(
+      "Warehouse not created." + phoneRGEX.test(phone) + emailRGEX.test(email)
+    );
 });
 
 module.exports = router;
