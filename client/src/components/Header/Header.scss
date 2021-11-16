@@ -1,6 +1,8 @@
 .header {
-  background-color: navy;
+  background-color: #232940;
   padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__section-container {
@@ -8,11 +10,15 @@
   justify-content: space-between;
 }
 
+.header__section-logo {
+  // background-color: lightblue;
+}
+
 .header__link {
   color: white;
   text-decoration: none;
   margin: 1rem;
   padding: 0.5rem 2rem;
-  background-color: blue;
+  background-color: #13182c;
   border-radius: 20px;
 }

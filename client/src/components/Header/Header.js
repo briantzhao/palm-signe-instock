@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <>
       <main className="header">
-        <div>
+        <div className="header__section-logo">
           <Link to="/">
             <img className="header__logo" src={Logo} alt="instock logo" />
           </Link>

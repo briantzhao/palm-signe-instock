@@ -1,5 +1,6 @@
 import "./App.scss";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 // import NotFoundPage from "./pages/NotFoundPage/NotFountPage";
@@ -16,6 +17,7 @@ function App() {
           <Route path="/inventory/" component={InventoryPage} />
           {/* <Route path="/notfound/" component={NotFoundPage} /> */}
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
