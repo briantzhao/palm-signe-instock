@@ -118,7 +118,8 @@ export default function InventoryList({ inventoryItems }) {
                       className="inventory-list__item-link"
                       key={id}
                     >
-                      {itemName}
+                      <span>{itemName}</span>
+                      <img src={chevron} alt="" />
                     </Link>
                   </td>
                   <td className="inventory-list__table-data inventory-list__table-data-category">
@@ -152,7 +153,14 @@ export default function InventoryList({ inventoryItems }) {
               <tbody className="inventory-list__table-body--mobile">
                 <tr className="inventory-list__table-row--mobile">
                   <td className="inventory-list__table-data--mobile inventory-list__table-item--mobile">
-                    {itemName}
+                    <Link
+                      to={`/inventories/${id}`}
+                      className="inventory-list__item-link"
+                      key={id}
+                    >
+                      <span>{itemName}</span>
+                      <img src={chevron} alt="right icon link" />
+                    </Link>
                   </td>
                   <td className="inventory-list__table-data--mobile inventory-list__table-status--mobile">
                     {status}

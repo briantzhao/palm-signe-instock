@@ -69,7 +69,7 @@
 		line-height: 1.375rem;
 	}
 	@include mobile {
-		font-size: 0.6875rem;
+		font-size: 0.8125rem;
 		line-height: 1.25rem;
 	}
 }
@@ -109,7 +109,7 @@
 		line-height: 1.625rem;
 	}
 }
-@mixin p1-body-medium($font-color, $text-align) {
+@mixin p2-body-medium($font-color, $text-align) {
 	color: $font-color;
 	text-align: $text-align;
 	font-family: "Titillium Web";
@@ -142,6 +142,6 @@
 	}
 	@include mobile {
 		font-size: 0.6875rem;
-		line-height: 1.625rem;
+		line-height: 1rem;
 	}
 }

@@ -96,9 +96,69 @@ router.get("/:id", (req, res) => {
   }
 });
 
+// patch to make edits to single item
+router.patch("/:id", (req, res, next) => {
+  let inventories = inventoryData;
+
+  let individualInventory = inventories.find((inventory) => {
+    return inventory.id === req.params.id;
+  });
+
+  if (individualInventory) {
+    individualInventory = { ...individualInventory, ...req.body };
+
+    let index = inventories.findIndex(
+      (inventory) => inventory.id === individualInventory.id
+    );
+
+    inventories[index] = individualInventory;
+
+    fs.writeFile(
+      "./data/inventories.json",
+      JSON.stringify(inventories),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        console.log("File updated successfully");
+        res.status(201).json(individualInventory);
+      }
+    );
+  } else {
+    res.status(404).send("Sorry, couldn’t find that item.");
+  }
+});
+
 //get all inventory items
 router.get("/", (_req, res) => {
   res.json(inventoryData);
+});
+
+// delete an inventory item:
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  let inventory = inventoryData;
+
+  const inventoryItem = inventory.find((item) => {
+    return item.id === id;
+  });
+
+  if (inventoryItem) {
+    inventory.splice(inventory.indexOf(inventoryItem), 1);
+
+    fs.writeFile(
+      "./data/inventories.json",
+      JSON.stringify(inventory),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        res.status(200).json(inventory);
+      }
+    );
+  } else {
+    res.status(404).send("Cannot find that item");
+  }
 });
 
 module.exports = router;
