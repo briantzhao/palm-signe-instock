@@ -1,5 +1,6 @@
 import "./App.scss";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import AddWarehouseForm from "./components/AddWarehouseForm/AddWarehouseForm";
@@ -12,12 +13,23 @@ function App() {
     <div className="App">
       <Router>
         <Header />
+<<<<<<< HEAD
         <Switch>
           <Route path="/" exact component={WarehousePage} />
           <Route path="/inventory/" component={InventoryPage} />
           <Route path="/add" component={AddWarehouseForm} />
           {/* <Route path="/notfound/" component={NotFoundPage} /> */}
         </Switch>
+=======
+        <main className="App__main">
+          <Switch>
+            <Route path="/" exact component={WarehousePage} />
+            <Route path="/inventory/" component={InventoryPage} />
+            {/* <Route path="/notfound/" component={NotFoundPage} /> */}
+          </Switch>
+        </main>
+        <Footer />
+>>>>>>> main
       </Router>
     </div>
   );
