@@ -13,23 +13,15 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-<<<<<<< HEAD
-        <Switch>
-          <Route path="/" exact component={WarehousePage} />
-          <Route path="/inventory/" component={InventoryPage} />
-          <Route path="/add" component={AddWarehouseForm} />
-          {/* <Route path="/notfound/" component={NotFoundPage} /> */}
-        </Switch>
-=======
         <main className="App__main">
           <Switch>
             <Route path="/" exact component={WarehousePage} />
             <Route path="/inventory/" component={InventoryPage} />
+            <Route path="/add" component={AddWarehouseForm} />
             {/* <Route path="/notfound/" component={NotFoundPage} /> */}
           </Switch>
         </main>
         <Footer />
->>>>>>> main
       </Router>
     </div>
   );
