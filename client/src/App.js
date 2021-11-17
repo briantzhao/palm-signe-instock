@@ -17,6 +17,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={WarehousePage} />
             <Route path="/inventory/" component={InventoryPage} />
+            <Route path="/add" component={AddWarehouseForm} />
             {/* <Route path="/notfound/" component={NotFoundPage} /> */}
           </Switch>
         </main>
