@@ -10,9 +10,8 @@ $mobile--breakpoint: 767px;
 
 //fonts
 @font-face {
-	font-family: "Titillium Web";
-	src: url("../assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf") format
-		("truetype");
+  font-family: "Titillium Web";
+  src: url("../assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
 }
 
 //colors
@@ -26,3 +25,7 @@ $light-grey: #f7f8f9;
 $red: #c94515;
 $grey: #bdc5d5;
 $green: #158463;
+
+* {
+  font-family: "Titillium Web";
+}
