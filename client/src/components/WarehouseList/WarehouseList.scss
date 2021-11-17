@@ -1,28 +1,131 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 .warehouse {
+	display: flex;
+	flex-direction: column;
+	// position: absolute;
+	// left: 4.27%;
+	// right: 4.27%;
+	// top: 7.53%;
+	// bottom: 5.31%;
+	background: #ffffff;
+	box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+	border-radius: 3px;
 	&__header {
+		display: flex;
+		flex-direction: column;
+		padding: 32px 24px;
 	}
 	&__heading {
+		// @include h1-page-header($instock-black, left);
+		font-style: normal;
+		display: flex;
+		align-items: center;
+	}
+	&__subheading {
+		@include h4-header($slate, left);
+		margin: 0;
+	}
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		margin-bottom: 1rem;
+		& p {
+			margin: 0;
+		}
+		& a {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+		}
 	}
 	&__form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	&__input--search {
+		display: flex;
+		justify-content: left;
+		height: 36px;
+		background: #ffffff;
+		border: 1px solid #bdc5d5;
+		box-sizing: border-box;
+		border-radius: 20px;
+		padding: 1rem;
+		margin: 1rem;
+		width: 100%;
+		background-image: url("../../assets/icons/search-24px.svg");
+		background-position: right;
+		background-repeat: no-repeat;
+		&:focus {
+			outline: $instock-indigo;
+			color: $instock-black;
+		}
 	}
 	&__button--add {
+		@include h3-labels-links-buttons($white, center);
+		border: none;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 8px 84px;
+		height: 36px;
+		background: #2e66e6;
+		border-radius: 20px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1rem;
+		background-repeat: no-repeat;
+		background-position: left center;
+		background-position-x: 1rem;
 	}
 	&__container {
+		&--left {
+			display: flex;
+			flex-direction: column;
+			width: 35%;
+		}
+		&--right {
+			display: flex;
+			flex-direction: column;
+			width: 30%;
+		}
 		&--icons {
+			justify-content: space-between;
+			display: flex;
 		}
 	}
 	&__card {
+		display: flex;
+		justify-content: space-around;
+		border-top: $cloud solid 1px;
+		padding: 1rem;
 	}
 	&--info {
+		@include p2-body-medium($instock-black, left);
 	}
 	&--name {
+		text-decoration: none;
+		@include p2-body-medium($instock-indigo, left);
 	}
 	&--address {
+		@include p2-body-medium($instock-black, left);
 	}
 	&--contact-name {
+		@include p2-body-medium($instock-black, left);
 	}
 	&--contact-info {
+		@include p2-body-medium($instock-black, left);
+	}
+	&--contact-phone {
+		@include p2-body-medium($instock-black, left);
+	}
+	&--contact-email {
+		@include p2-body-medium($instock-black, left);
 	}
 }
