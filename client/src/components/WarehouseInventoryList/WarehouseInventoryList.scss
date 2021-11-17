@@ -1,0 +1,139 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+a {
+  height: auto;
+}
+.warehouse-inventory-list {
+  margin: 0 1rem;
+  border-radius: 0.1875rem;
+  box-shadow: 0 0.125rem 0.3125rem 0 rgba(19, 24, 44, 0.1);
+  &__header {
+    display: flex;
+    padding: 1.5rem;
+    padding-top: 2rem;
+    align-items: center;
+  }
+  &__return {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+  }
+  &__title {
+    @include h1-page-header($instock-black, left);
+    margin: 0;
+    margin-left: 0.75rem;
+  }
+  &__edit-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background-color: $instock-indigo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__edit-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    &__path {
+      fill: $white;
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+  &__details {
+    border-top: 1px solid $cloud;
+    display: flex;
+    &__first,
+    &__second {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 1.5rem;
+    }
+    &__second {
+      justify-content: flex-end;
+    }
+    &__field {
+      @include h4-header($slate, left);
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    &__data {
+      @include p1-body-medium($instock-black, left);
+      margin: 0.25rem 0;
+    }
+  }
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  &__head {
+    display: none;
+  }
+  &__single {
+    border-top: 1px solid $cloud;
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      display: table-row;
+    }
+  }
+  &__non-buttons {
+    display: flex;
+  }
+  &__column {
+    width: 50%;
+    @include tablet {
+      display: flex;
+      width: auto;
+    }
+  }
+  &__item,
+  &__category,
+  &__status,
+  &__quantity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin: 1.25rem 1.5rem;
+    &:before {
+      @include h4-header($slate, left);
+      @include tablet {
+        display: none;
+      }
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+  &__item:before {
+    content: "INVENTORY ITEM";
+  }
+  &__category:before {
+    content: "CATEGORY";
+  }
+  &__status:before {
+    content: "STATUS";
+  }
+  &__quantity:before {
+    content: "QTY";
+  }
+  &__action {
+    margin: 0 1.5rem;
+    margin-bottom: 1.6875rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item {
+    color: $instock-indigo;
+  }
+  &__item__cell {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+}
