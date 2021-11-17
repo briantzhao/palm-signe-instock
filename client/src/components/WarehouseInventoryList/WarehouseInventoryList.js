@@ -52,26 +52,27 @@ export default class WarehouseInventoryList extends Component {
                 d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04V7.04Z"
               />
             </svg>
+            <p className="warehouse-inventory-list__edit-text">Edit</p>
           </Link>
         </section>
         <section className="warehouse-inventory-list__details">
           <article className="warehouse-inventory-list__details__first">
-            <h2 className="warehouse-inventory-list__details__field">
+            <h2 className="warehouse-inventory-list__details__field warehouse-inventory-list__details__data--address">
               WAREHOUSE ADDRESS:
             </h2>
-            <p className="warehouse-inventory-list__details__data">
+            <p className="warehouse-inventory-list__details__data warehouse-inventory-list__details__data--address">
               {this.state.warehouse.address},
             </p>
-            <p className="warehouse-inventory-list__details__data">
+            <p className="warehouse-inventory-list__details__data warehouse-inventory-list__details__data--address">
               {this.state.warehouse.city}, {this.state.warehouse.country}
             </p>
-            <h2 className="warehouse-inventory-list__details__field">
+            <h2 className="warehouse-inventory-list__details__field warehouse-inventory-list__details__data--contact">
               CONTACT NAME:
             </h2>
-            <p className="warehouse-inventory-list__details__data">
+            <p className="warehouse-inventory-list__details__data warehouse-inventory-list__details__data--contact">
               {this.state.warehouse.contact.name}
             </p>
-            <p className="warehouse-inventory-list__details__data">
+            <p className="warehouse-inventory-list__details__data warehouse-inventory-list__details__data--contact">
               {this.state.warehouse.contact.position}
             </p>
           </article>
@@ -88,58 +89,102 @@ export default class WarehouseInventoryList extends Component {
           </article>
         </section>
         <table className="warehouse-inventory-list__table">
-          <thead className="warehouse-inventory-list__head">
-            <tr className="warehouse-inventory-list__headers">
-              <th className="warehouse-inventory-list__label">
-                INVENTORY ITEM
-              </th>
-              <th className="warehouse-inventory-list__label">CATEGORY</th>
-              <th className="warehouse-inventory-list__label">STATUS</th>
-              <th className="warehouse-inventory-list__label">QUANTITY</th>
-              <th className="warehouse-inventory-list__label">ACTION</th>
-            </tr>
-          </thead>
-          <tbody className="warehouse-inventory-list__body">
-            {this.state.inventory.map(
-              ({ itemName, category, status, quantity }) => {
-                return (
+          <tr className="warehouse-inventory-list__headers">
+            <th className="warehouse-inventory-list__label warehouse-inventory-list__label--item">
+              INVENTORY ITEM
+            </th>
+            <th className="warehouse-inventory-list__label warehouse-inventory-list__label--category">
+              CATEGORY
+            </th>
+            <th className="warehouse-inventory-list__label warehouse-inventory-list__label--status">
+              STATUS
+            </th>
+            <th className="warehouse-inventory-list__label warehouse-inventory-list__label--quantity">
+              QUANTITY
+            </th>
+            <th className="warehouse-inventory-list__label warehouse-inventory-list__label--action">
+              ACTION
+            </th>
+          </tr>
+          {this.state.inventory.map(
+            ({ itemName, category, status, quantity }) => {
+              return (
+                <>
                   <tr className="warehouse-inventory-list__single">
-                    <div className="warehouse-inventory-list__non-buttons">
-                      <div className="warehouse-inventory-list__column">
-                        <td className="warehouse-inventory-list__item">
-                          <span className="warehouse-inventory-list__item__cell">
-                            {itemName}{" "}
-                            <Link to="">
-                              <img src={chevron} alt="Item details button" />
-                            </Link>
-                          </span>
-                        </td>
-                        <td className="warehouse-inventory-list__category">
-                          {category}
-                        </td>
+                    <td className="warehouse-inventory-list__item">
+                      <span className="warehouse-inventory-list__item__cell">
+                        {itemName}{" "}
+                        <Link
+                          className="warehouse-inventory-list__chevron__link"
+                          to=""
+                        >
+                          <img
+                            className="warehouse-inventory-list__chevron"
+                            src={chevron}
+                            alt="Item details button"
+                          />
+                        </Link>
+                      </span>
+                    </td>
+                    <td className="warehouse-inventory-list__category">
+                      {category}
+                    </td>
+                    <td className="warehouse-inventory-list__status">
+                      <div
+                        className={
+                          status === "In Stock"
+                            ? "warehouse-inventory-list__status--green"
+                            : "warehouse-inventory-list__status--red"
+                        }
+                      >
+                        {status}
                       </div>
-                      <div className="warehouse-inventory-list__column">
-                        <td className="warehouse-inventory-list__status">
-                          {status}
-                        </td>
-                        <td className="warehouse-inventory-list__quantity">
-                          {quantity}
-                        </td>
-                      </div>
-                    </div>
-                    <td className="warehouse-inventory-list__action">
+                    </td>
+                    <td className="warehouse-inventory-list__quantity">
+                      {quantity}
+                    </td>
+                    <td className="warehouse-inventory-list__action--tablet">
                       <Link to="">
-                        <img src={deleteIcon} alt="Delete item button" />
+                        <img
+                          src={deleteIcon}
+                          alt="Delete item button"
+                          className="warehouse-inventory-list__action__btn"
+                        />
                       </Link>
-                      <Link to="">
-                        <img src={edit} alt="Edit item button" />
+                      <Link
+                        className="warehouse-inventory-list__action__edit-link"
+                        to=""
+                      >
+                        <img
+                          src={edit}
+                          alt="Edit item button"
+                          className="warehouse-inventory-list__action__btn"
+                        />
                       </Link>
                     </td>
                   </tr>
-                );
-              }
-            )}
-          </tbody>
+                  <div>
+                    <td className="warehouse-inventory-list__action">
+                      <Link to="">
+                        <img
+                          src={deleteIcon}
+                          alt="Delete item button"
+                          className="warehouse-inventory-list__action__btn"
+                        />
+                      </Link>
+                      <Link to="">
+                        <img
+                          src={edit}
+                          alt="Edit item button"
+                          className="warehouse-inventory-list__action__btn"
+                        />
+                      </Link>
+                    </td>
+                  </div>
+                </>
+              );
+            }
+          )}
         </table>
       </div>
     );
