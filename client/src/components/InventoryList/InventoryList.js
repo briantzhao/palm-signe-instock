@@ -96,7 +96,7 @@ export default function InventoryList({ inventoryItems }) {
             i
           ) => (
             <>
-              <thead className="inventory-list__table--large">
+              <tbody className="inventory-list__table--large">
                 {i === 0 ? (
                   <tr className="inventory-list__table-row--mobile">
                     <th className="inventory-list__table-heading">
@@ -111,8 +111,6 @@ export default function InventoryList({ inventoryItems }) {
                 ) : (
                   false
                 )}
-              </thead>
-              <tbody className="inventory-list__table--large">
                 <tr className="inventory-list__table-row">
                   <td className="inventory-list__table-data inventory-list__table-data-item">
                     <Link
