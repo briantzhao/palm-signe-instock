@@ -83,6 +83,7 @@ router.post("/", (req, res) => {
   }
   res.status(500).send("Inventory item not created");
 });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   const inventory = inventory.find((inventory) => {
@@ -125,6 +126,38 @@ router.patch("/:id", (req, res, next) => {
     );
   } else {
     res.status(404).send("Sorry, couldn’t find that item.");
+  }
+});
+
+//get all inventory items
+router.get("/", (_req, res) => {
+  res.json(inventoryData);
+});
+
+// delete an inventory item:
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  let inventory = inventoryData;
+
+  const inventoryItem = inventory.find((item) => {
+    return item.id === id;
+  });
+
+  if (inventoryItem) {
+    inventory.splice(inventory.indexOf(inventoryItem), 1);
+
+    fs.writeFile(
+      "./data/inventories.json",
+      JSON.stringify(inventory),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        res.status(200).json(inventory);
+      }
+    );
+  } else {
+    res.status(404).send("Cannot find that item");
   }
 });
 
