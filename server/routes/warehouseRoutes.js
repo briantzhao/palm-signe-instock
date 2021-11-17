@@ -74,4 +74,53 @@ router.post("/", (req, res) => {
   res.status(500).send("Warehouse not created.");
 });
 
+router.get("/", (_req, res) => {
+  res.json(warehouseData);
+});
+
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const warehouse = warehouseData.find((warehouse) => {
+    return warehouse.id === id;
+  });
+  if (warehouse) {
+    res.json(warehouse);
+  } else {
+    res.status(404).send("Page not found.");
+  }
+});
+
+// patch to make edits to single warehouse
+router.patch("/:id", (req, res, next) => {
+  let warehouses = warehouseData;
+
+  let individualWarehouse = warehouses.find((warehouse) => {
+    return warehouse.id === req.params.id;
+  });
+
+  if (individualWarehouse) {
+    individualWarehouse = { ...individualWarehouse, ...req.body };
+
+    let index = warehouses.findIndex(
+      (warehouse) => warehouse.id === individualWarehouse.id
+    );
+
+    warehouses[index] = individualWarehouse;
+
+    fs.writeFile(
+      "./data/warehouses.json",
+      JSON.stringify(warehouses),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        console.log("File updated successfully");
+        res.status(201).json(individualWarehouse);
+      }
+    );
+  } else {
+    res.status(404).send("Sorry, couldn't find that warehouse.");
+  }
+});
+
 module.exports = router;

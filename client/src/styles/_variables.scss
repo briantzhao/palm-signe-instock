@@ -1,0 +1,31 @@
+//min-width: 1280px
+$desktop--breakpoint: 1280px;
+
+//min-wdth: 768px & max-width: 1279px
+$tablet--breakpoint-min: 768px;
+$tablet--breakpoint-max: 1279px;
+
+//max-width: 767px
+$mobile--breakpoint: 767px;
+
+//fonts
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
+}
+
+//colors
+$instock-black: #13182c;
+$instock-indigo: #2e66e5;
+$white: #ffffff;
+$slate: #5c667e;
+$cloud: #bdc5d5;
+$graphite: #232940;
+$light-grey: #f7f8f9;
+$red: #c94515;
+$grey: #bdc5d5;
+$green: #158463;
+
+* {
+  font-family: "Titillium Web";
+}
