@@ -1,3 +1,6 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
 .inventory-list {
   display: flex;
   flex-direction: column;
@@ -8,6 +11,7 @@
   right: 4.27%;
   top: 23%;
   bottom: 4.13%;
+  height: 100%;
   background: #ffffff;
   /* Card Shadow */
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
@@ -52,85 +56,198 @@
     color: #ffffff;
   }
 
-  &__items {
-    display: flex;
-    flex-direction: column;
-    // justify-content: center;
-    align-items: flex-start;
-    margin: 2rem;
+  // &__items {
+  //   display: flex;
+  //   flex-direction: column;
+  //   // justify-content: center;
+  //   align-items: flex-start;
+  //   margin: 2rem;
+  //   height: auto;
+  //   width: 100%;
+  //   border-top: 1px solid #bdc5d5;
+  //   border-bottom: 1px solid #bdc5d5;
+  // }
+
+  // &__items-card {
+  //   padding: 1rem;
+  // }
+
+  // &__items-subheading {
+  //   font-weight: 600;
+  //   font-size: 11px;
+  //   color: #5c667e;
+  // }
+
+  // &__items-item {
+  //   color: #2e66e6;
+  // }
+
+  // &__items-item,
+  // &__items-category,
+  // &__items-status,
+  // &__items-qty,
+  // &__items-warehouse {
+  //   font-size: 13px;
+  //   line-height: 20px;
+  // }
+
+  // &__items-top-container {
+  //   display: flex;
+  //   padding-left: 2rem;
+  // }
+
+  // &__items-bottom-container {
+  //   display: flex;
+  //   width: 100%;
+  // }
+
+  // &__items-right-wrap,
+  // &__items-left-wrap {
+  //   display: flex;
+  //   flex-direction: column;
+  //   text-align: left;
+  //   margin: 1rem 2rem 1rem 0rem;
+  // }
+
+  // &-items__icons {
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
+
+  // &-list__icons-delete,
+  // &-list__icons-edit {
+  // }
+
+  // &__items-status {
+  //   position: relative;
+  //   text-align: center;
+  //   color: #158463;
+  //   font-weight: 600;
+  //   size: 0.6875rem;
+  //   &::before {
+  //     padding: 4px 8px;
+  //     background: rgba(21, 132, 99, 0.07);
+  //     border-radius: 20px;
+  //     position: absolute;
+  //     top: 0px;
+  //     left: 0px;
+  //     right: 0px;
+  //     bottom: 0px;
+  //     content: "";
+  //   }
+  // }
+
+  &__item-link {
+    text-decoration: none;
+  }
+
+  &__table {
     height: auto;
-    width: 100%;
-    border-top: 1px solid #bdc5d5;
-    border-bottom: 1px solid #bdc5d5;
   }
 
-  &__items-card {
-    padding: 1rem;
-  }
-
-  &__items-subheading {
+  &__table-heading {
     font-weight: 600;
     font-size: 11px;
     color: #5c667e;
-  }
-
-  &__items-item {
-    color: #2e66e6;
-  }
-
-  &__items-item,
-  &__items-category,
-  &__items-status,
-  &__items-qty,
-  &__items-warehouse {
-    font-size: 13px;
-    line-height: 20px;
-  }
-
-  &__items-top-container {
-    display: flex;
-    padding-left: 2rem;
-  }
-
-  &__items-bottom-container {
-    display: flex;
-    width: 100%;
-  }
-
-  &__items-right-wrap,
-  &__items-left-wrap {
-    display: flex;
-    flex-direction: column;
     text-align: left;
-    margin: 1rem 2rem 1rem 0rem;
+    @include mobile {
+      display: none;
+    }
   }
 
-  &-items__icons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &-list__icons-delete,
-  &-list__icons-edit {
-  }
-
-  &__items-status {
-    position: relative;
-    text-align: center;
-    color: #158463;
+  &__table-data {
+    font-family: "Titillium Web";
+    font-style: normal;
     font-weight: 600;
-    size: 0.6875rem;
-    &::before {
-      padding: 4px 8px;
-      background: rgba(21, 132, 99, 0.07);
-      border-radius: 20px;
+    color: #13182c;
+    text-align: left;
+  }
+
+  &__table-data-item {
+    // display: flex;
+    // flex-direction: column;
+    color: #2e66e5;
+    position: relative;
+    padding-right: 1rem;
+    &:after {
       position: absolute;
-      top: 0px;
-      left: 0px;
-      right: 0px;
-      bottom: 0px;
-      content: "";
+      left: 80%;
+      right: 0%;
+      top: -5%;
+      bottom: 0%;
+      content: url("../../assets/icons/chevron_right-24px.svg");
+    }
+  }
+
+  &__table-data-category {
+    // display: flex;
+    // flex-direction: column;
+  }
+
+  // &__table-row {
+  //   display: flex;
+  //   flex-direction: column;
+  //   text-align: left;
+  //   @include tablet {
+  //     flex-direction: row;
+  //   }
+  // }
+
+  &__table-body--mobile {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__table-data--mobile {
+    @extend .inventory-list__table-data;
+    // @extend .inventory-list__items-item;
+  }
+
+  &__table-item--mobile {
+    &:before {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      content: "INVENTORY ITEM";
+    }
+  }
+
+  &____table-row--mobile-icons {
+    
+  }
+
+  &__table-status--mobile {
+    &:before {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      content: "STATUS";
+    }
+  }
+  &__table-category--mobile {
+    &:before {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      content: "CATEGORY";
+    }
+  }
+  &__table-quantity--mobile {
+    &:before {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      content: "QTY";
+    }
+  }
+  &__table-warehouse--mobile {
+    &:before {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      content: "WAREHOUSE";
     }
   }
 }

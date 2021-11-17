@@ -1,9 +1,11 @@
 import React from "react";
 import "./InventoryList.scss";
+import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+import chevron from "../../assets/icons/chevron_right-24px.svg";
 
-export default function InventoryList(props) {
+export default function InventoryList({ inventoryItems }) {
   return (
     <section className="inventory-list">
       <form action="submit" className="inventory-list__form">
@@ -16,53 +18,159 @@ export default function InventoryList(props) {
         />
         <button className="inventory-list__button">+ Add New Item</button>
       </form>
+      {/* {inventoryItems.map(
+        ({
+          id,
+          itemName,
+          category,
+          status,
+          quantity,
+          warehouseID,
+          warehouseName,
+        }) => (
+          <article key={id} className="inventory-list__items">
+            <div className="inventory-list__items-top-container">
+              <section className="inventory-list__items-left-wrap">
+                <div className="inventory-list__items-item-wrap">
+                  <h3 className="inventory-list__items-subheading">
+                    INVENTORY ITEM
+                  </h3>
+                  <p className="inventory-list__items-item">{itemName}</p>
+                </div>
+                <div className="inventory-list__items-item-wrap">
+                  <h3 className="inventory-list__items-subheading">CATEGORY</h3>
+                  <p className="inventory-list__items-category">{category}</p>
+                </div>
+              </section>
 
-      <article className="inventory-list__items">
-        <div className="inventory-list__items-top-container">
-          <section className="inventory-list__items-left-wrap">
-            <div className="inventory-list__items-item-wrap">
-              <h3 className="inventory-list__items-subheading">
-                INVENTORY ITEM
-              </h3>
-              <p className="inventory-list__items-item">Television</p>
-            </div>
-            <div className="inventory-list__items-item-wrap">
-              <h3 className="inventory-list__items-subheading">CATEGORY</h3>
-              <p className="inventory-list__items-category">Electronics</p>
-            </div>
-          </section>
+              <section className="inventory-list__items-right-wrap">
+                <div className="inventory-list__items-item-wrap">
+                  <h3 className="inventory-list__items-subheading">STATUS</h3>
+                  <p className="inventory-list__items-status">{status}</p>
+                </div>
 
-          <section className="inventory-list__items-right-wrap">
-            <div className="inventory-list__items-item-wrap">
-              <h3 className="inventory-list__items-subheading">STATUS</h3>
-              <p className="inventory-list__items-status">IN STOCK</p>
+                <div className="inventory-list__items-item-wrap">
+                  <h3 className="inventory-list__items-subheading">QTY</h3>
+                  <p className="inventory-list__items-qty">{quantity}</p>
+                </div>
+                <div className="inventory-list__items-item-wrap">
+                  <h3 className="inventory-list__items-subheading">
+                    WAREHOUSE
+                  </h3>
+                  <p className="inventory-list__items-warehouse">
+                    {warehouseName}
+                  </p>
+                </div>
+              </section>
             </div>
+            <div className="inventory-list__items-bottom-container">
+              <figure className="inventory-list-items__icons">
+                <img
+                  src={deleteIcon}
+                  alt="icon of delete action"
+                  className="inventory-list__icons-delete"
+                />
+                <img
+                  src={editIcon}
+                  alt="icon of edit action"
+                  className="inventory-list__icons-edit"
+                />
+              </figure>
+            </div>
+          </article>
+        )
+      )} */}
+      <table className="inventory-list__table">
+        {inventoryItems.map(
+          ({
+            id,
+            itemName,
+            category,
+            status,
+            quantity,
+            warehouseID,
+            warehouseName,
+          }) => (
+            <>
+              {/* <thead>
+                <tr>
+                  <th className="inventory-list__table-heading">
+                    INVENTORY ITEM
+                  </th>
+                  <th className="inventory-list__table-heading">CATEGORY</th>
+                  <th className="inventory-list__table-heading">STATUS</th>
+                  <th className="inventory-list__table-heading">QTY</th>
+                  <th className="inventory-list__table-heading">WAREHOUSE</th>
+                  <th className="inventory-list__table-heading">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="inventory-list__table-row">
+                  <td className="inventory-list__table-data inventory-list__table-data-item">
+                    <Link
+                      to={`/inventories/${id}`}
+                      className="inventory-list__item-link"
+                      key={id}
+                    >
+                      {itemName}
+                    </Link>
+                  </td>
+                  <td className="inventory-list__table-data inventory-list__table-data-category">
+                    {category}
+                  </td>
 
-            <div className="inventory-list__items-item-wrap">
-              <h3 className="inventory-list__items-subheading">QTY</h3>
-              <p className="inventory-list__items-qty">500</p>
-            </div>
-            <div className="inventory-list__items-item-wrap">
-              <h3 className="inventory-list__items-subheading">WAREHOUSE</h3>
-              <p className="inventory-list__items-warehouse">Manhattan</p>
-            </div>
-          </section>
-        </div>
-        <div className="inventory-list__items-bottom-container">
-          <figure className="inventory-list-items__icons">
-            <img
-              src={deleteIcon}
-              alt="icon of delete action"
-              className="inventory-list__icons-delete"
-            />
-            <img
-              src={editIcon}
-              alt="icon of edit action"
-              className="inventory-list__icons-edit"
-            />
-          </figure>
-        </div>
-      </article>
+                  <td className="inventory-list__table-data ">{status}</td>
+                  <td className="inventory-list__table-data">{quantity}</td>
+                  <td className="inventory-list__table-data">
+                    {warehouseName}
+                  </td>
+                </tr>
+              </tbody> */}
+
+              <tbody className="inventory-list__table-body--mobile">
+                <tr className="inventory-list__table-row--mobile">
+                  <td className="inventory-list__table-data--mobile inventory-list__table-item--mobile">
+                    {itemName}
+                  </td>
+                  <td className="inventory-list__table-data--mobile inventory-list__table-status--mobile">
+                    {status}
+                  </td>
+                </tr>
+                <tr className="inventory-list__table-row--mobile">
+                  <td className="inventory-list__table-data--mobile inventory-list__table-category--mobile">
+                    {category}
+                  </td>
+                  <td className="inventory-list__table-data--mobile inventory-list__table-quantity--mobile">
+                    {quantity}
+                  </td>
+                </tr>
+                <tr className="inventory-list__table-row--mobile">
+                  <td className="inventory-list__table-data--mobile"> </td>
+                  <td className="inventory-list__table-data--mobile inventory-list__table-warehouse--mobile">
+                    {warehouseName}
+                  </td>
+                </tr>
+                <tr className="inventory-list__table-row--mobile-icons">
+                  {/* <div className="inventory-list__items-bottom-container"> */}
+                  {/* <figure className="inventory-list-items__icons"> */}
+                  {/* <img
+                    src={deleteIcon}
+                    alt="icon of delete action"
+                    className="inventory-list__icons-delete"
+                  />
+                  <img
+                    src={editIcon}
+                    alt="icon of edit action"
+                    className="inventory-list__icons-edit"
+                  /> */}
+                  {/* </figure> */}
+                  {/* </div> */}
+                </tr>
+              </tbody>
+            </>
+          )
+        )}
+      </table>
     </section>
   );
 }

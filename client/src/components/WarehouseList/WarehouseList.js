@@ -19,7 +19,7 @@ export default function WarehouseList({ warehouseList }) {
 				</form>
 			</div>
 			<div className="warehouse__container">
-				{warehouseList.warehouse.map((res) => (
+				{warehouseList.map((res) => (
 					<div key={res.id} className="warehouse__card">
 						<div className="warehouse--info">
 							<Link to={`/warehouse/${res.id}`}>
