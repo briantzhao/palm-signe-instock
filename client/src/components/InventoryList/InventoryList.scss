@@ -144,6 +144,8 @@
 
   &__table {
     height: auto;
+    width: auto;
+    border-spacing: 10px;
   }
 
   &__table-heading {
@@ -194,8 +196,16 @@
   //   }
   // }
 
+  &__table--large {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+  }
+
   &__table-body--mobile {
     @include tablet {
+      // display: flex;
       display: none;
     }
   }
@@ -206,16 +216,33 @@
   }
 
   &__table-item--mobile {
+    color: #2e66e5;
+    position: relative;
+    padding-right: 1rem;
+    &:after {
+      position: absolute;
+      left: 70px;
+      right: 0px;
+      top: 18px;
+      bottom: 0px;
+      content: url("../../assets/icons/chevron_right-24px.svg");
+    }
+
     &:before {
       display: flex;
       flex-direction: column;
       margin-bottom: 0.5rem;
       content: "INVENTORY ITEM";
+      @extend .inventory-list__table-heading;
+      @include tablet {
+        display: none;
+      }
     }
   }
 
-  &____table-row--mobile-icons {
-    
+  &____table-data--mobile-icons {
+    display: flex;
+    justify-content: flex-start;
   }
 
   &__table-status--mobile {
@@ -224,6 +251,10 @@
       flex-direction: column;
       margin-bottom: 0.5rem;
       content: "STATUS";
+      @extend .inventory-list__table-heading;
+      @include tablet {
+        display: none;
+      }
     }
   }
   &__table-category--mobile {
@@ -232,6 +263,10 @@
       flex-direction: column;
       margin-bottom: 0.5rem;
       content: "CATEGORY";
+      @extend .inventory-list__table-heading;
+      @include tablet {
+        display: none;
+      }
     }
   }
   &__table-quantity--mobile {
@@ -240,6 +275,10 @@
       flex-direction: column;
       margin-bottom: 0.5rem;
       content: "QTY";
+      @extend .inventory-list__table-heading;
+      @include tablet {
+        display: none;
+      }
     }
   }
   &__table-warehouse--mobile {
@@ -248,6 +287,10 @@
       flex-direction: column;
       margin-bottom: 0.5rem;
       content: "WAREHOUSE";
+      @extend .inventory-list__table-heading;
+      @include tablet {
+        display: none;
+      }
     }
   }
 }

@@ -80,31 +80,39 @@ export default function InventoryList({ inventoryItems }) {
           </article>
         )
       )} */}
+
       <table className="inventory-list__table">
         {inventoryItems.map(
-          ({
-            id,
-            itemName,
-            category,
-            status,
-            quantity,
-            warehouseID,
-            warehouseName,
-          }) => (
+          (
+            {
+              id,
+              itemName,
+              category,
+              status,
+              quantity,
+              warehouseID,
+              warehouseName,
+            },
+            i
+          ) => (
             <>
-              {/* <thead>
-                <tr>
-                  <th className="inventory-list__table-heading">
-                    INVENTORY ITEM
-                  </th>
-                  <th className="inventory-list__table-heading">CATEGORY</th>
-                  <th className="inventory-list__table-heading">STATUS</th>
-                  <th className="inventory-list__table-heading">QTY</th>
-                  <th className="inventory-list__table-heading">WAREHOUSE</th>
-                  <th className="inventory-list__table-heading">ACTIONS</th>
-                </tr>
+              <thead className="inventory-list__table--large">
+                {i === 0 ? (
+                  <tr className="inventory-list__table-row--mobile">
+                    <th className="inventory-list__table-heading">
+                      INVENTORY ITEM
+                    </th>
+                    <th className="inventory-list__table-heading">CATEGORY</th>
+                    <th className="inventory-list__table-heading">STATUS</th>
+                    <th className="inventory-list__table-heading">QTY</th>
+                    <th className="inventory-list__table-heading">WAREHOUSE</th>
+                    <th className="inventory-list__table-heading">ACTIONS</th>
+                  </tr>
+                ) : (
+                  false
+                )}
               </thead>
-              <tbody>
+              <tbody className="inventory-list__table--large">
                 <tr className="inventory-list__table-row">
                   <td className="inventory-list__table-data inventory-list__table-data-item">
                     <Link
@@ -125,7 +133,23 @@ export default function InventoryList({ inventoryItems }) {
                     {warehouseName}
                   </td>
                 </tr>
-              </tbody> */}
+                {/* <tr className="inventory-list__table-row">
+                  <td className="inventory-list__table-data">
+                    <img
+                      src={deleteIcon}
+                      alt="delete icon"
+                      className="inventory-list__table-data"
+                    />
+                  </td>
+                  <td className="inventory-list__table-data">
+                    <img
+                      src={editIcon}
+                      alt="delete icon"
+                      className="inventory-list__table-data"
+                    />
+                  </td>
+                </tr> */}
+              </tbody>
 
               <tbody className="inventory-list__table-body--mobile">
                 <tr className="inventory-list__table-row--mobile">
@@ -150,21 +174,21 @@ export default function InventoryList({ inventoryItems }) {
                     {warehouseName}
                   </td>
                 </tr>
-                <tr className="inventory-list__table-row--mobile-icons">
-                  {/* <div className="inventory-list__items-bottom-container"> */}
-                  {/* <figure className="inventory-list-items__icons"> */}
-                  {/* <img
-                    src={deleteIcon}
-                    alt="icon of delete action"
-                    className="inventory-list__icons-delete"
-                  />
-                  <img
-                    src={editIcon}
-                    alt="icon of edit action"
-                    className="inventory-list__icons-edit"
-                  /> */}
-                  {/* </figure> */}
-                  {/* </div> */}
+                <tr className="inventory-list__table-row--mobile">
+                  <td className="inventory-list__table-data--mobile-icons-wrap">
+                    <img
+                      src={deleteIcon}
+                      alt="delete icon"
+                      className="inventory-list__table-data--mobile-icons"
+                    />
+                  </td>
+                  <td className="inventory-list__table-data--mobile-icons-wrap">
+                    <img
+                      src={editIcon}
+                      alt="delete icon"
+                      className="inventory-list__table-data--mobile-icons"
+                    />
+                  </td>
                 </tr>
               </tbody>
             </>
