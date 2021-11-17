@@ -10,19 +10,8 @@ $mobile--breakpoint: 767px;
 
 //fonts
 @font-face {
-  font-family: "Titillium Web";
-<<<<<<< HEAD:client/src/styles/partials/_variables.scss
-  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Titillium Web";
-  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf");
-  font-weight: 700;
-=======
-  src: url("../assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
->>>>>>> main:client/src/styles/_variables.scss
+	font-family: "Titillium Web";
+	src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
 }
 
 //colors
@@ -36,7 +25,3 @@ $light-grey: #f7f8f9;
 $red: #c94515;
 $grey: #bdc5d5;
 $green: #158463;
-
-* {
-  font-family: "Titillium Web";
-}
