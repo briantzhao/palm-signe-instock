@@ -6,15 +6,6 @@ a {
   text-decoration: none;
 }
 .warehouse-inventory-list {
-  margin: 0 1rem;
-  border-radius: 0.1875rem;
-  box-shadow: 0 0.125rem 0.3125rem 0 $instock-black;
-  @include tablet {
-    margin: 0 2rem;
-  }
-  @include desktop {
-    margin: 0 8.125rem;
-  }
   &__header {
     display: flex;
     padding: 1.5rem;

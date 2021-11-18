@@ -3,10 +3,6 @@
 
 //styles form as a card with box shadow
 .add-warehouse-form {
-  margin: 0 1rem;
-  border-radius: 0.1875rem;
-  box-shadow: 0 0.125rem 0.3125rem 0 rgba(19, 24, 44, 0.1);
-  padding-top: 2rem;
   @include tablet {
     text-align: left;
   }
@@ -31,6 +27,7 @@
     }
     @include desktop {
       text-align: left;
+      margin: 0;
       padding-left: 2.75rem;
       border-bottom: 1px solid $grey;
       padding-bottom: 1.3125rem;
