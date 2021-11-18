@@ -42,9 +42,9 @@ export default class AddInventoryItemForm extends Component {
     });
   };
 
-  handleStatus = () => {};
+  handleStatus = (event) => {};
 
-  handleWarehouse = () => {};
+  handleWarehouse = (event) => {};
 
   validate = (name, value) => {
     if (value === null || value.length === 0) {
@@ -169,10 +169,12 @@ export default class AddInventoryItemForm extends Component {
                     ? "add-inventory-item-form__field"
                     : "add-inventory-item-form__field add-inventory-item-form__field--error"
                 }
-                placeholder="Please Select"
                 name="category"
                 onChange={this.handleChange}
               >
+                <option value="" selected disabled hidden>
+                  Please Select
+                </option>
                 <option value="Electronics">Electronics</option>
                 <option value="Gear">Gear</option>
                 <option value="Apparel">Apparel</option>
@@ -257,6 +259,9 @@ export default class AddInventoryItemForm extends Component {
                 name="warehouse"
                 onChange={this.handleWarehouse}
               >
+                <option value="" selected disabled hidden>
+                  Please Select
+                </option>
                 {this.state.warehouses.map((warehouse) => {
                   return (
                     <option value={warehouse}>{warehouse.split(",")[1]}</option>
@@ -281,7 +286,7 @@ export default class AddInventoryItemForm extends Component {
             <button className="add-inventory-item-form__cancel">Cancel</button>
           </Link>
           <button className="add-inventory-item-form__submit">
-            + Add Warehouse
+            + Add Item
           </button>
         </section>
       </form>
