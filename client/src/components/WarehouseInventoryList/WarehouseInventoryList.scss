@@ -118,7 +118,7 @@ a {
       }
     }
     &__data {
-      @include p1-body-medium($instock-black, left);
+      @include p2-body-medium($instock-black, left);
       margin: 0.25rem 0;
       @include tablet {
         margin-top: 0;
@@ -246,7 +246,7 @@ a {
     flex: 1;
     min-height: 13.3vw;
     max-height: 13.5vw;
-    @include p1-body-medium($instock-black, left);
+    @include p2-body-medium($instock-black, left);
     @include tablet {
       display: table-cell;
       width: auto;
