@@ -7,19 +7,12 @@ const apiURL = "http://localhost:8080";
 export default class InventoryPage extends Component {
   state = {
     inventoryItems: [],
+    currentInventory: [],
     modalOpen: false,
-    confirmDelete: null,
-    item: null,
+    confirmDelete: false,
   };
 
-  openWarning = (item) => {
-    this.setState({ item: item });
-    this.setState({ modalOpen: true });
-  };
-
-  componentDidMount() {
-    console.log(apiURL);
-
+  getAPI = () => {
     axios
       .get(`${apiURL}/inventories`)
       .then((res) => {
@@ -29,11 +22,32 @@ export default class InventoryPage extends Component {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  componentDidMount() {
+    this.getAPI();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // this.setState({ modalOpen: true });
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.confirmDelete) {
+  //     this.setState({ confirmDelete: false });
+  //     axios
+  //       .get(`${apiURL}/inventories`)
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         this.setState({ inventoryItems: res.data });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
+
+  deleteItem = (item, id) => {
+    const foundItem = this.state.inventoryItems.find((item) => item.id === id);
+    this.setState({ currentInventory: foundItem });
+    this.setState({ modalOpen: true });
+  };
 
   render() {
     if (!this.state.inventoryItems && !this.state.modalOpen) {
@@ -43,14 +57,14 @@ export default class InventoryPage extends Component {
       <>
         <InventoryList
           inventoryItems={this.state.inventoryItems}
-          openWarning={this.openWarning}
+          deleteItem={this.deleteItem}
         />
         <Modal isOpen={this.state.modalOpen} ariaHideApp={false}>
-          <h1>Delete {this.state.item} inventory item?</h1>
+          <h1>Delete {this.state.currentInventory.itemName} inventory item?</h1>
           <p>
-            Please confirm that you'd like to delete
-            {this.state.item} from the inventory list. You won't be able to undo
-            this action.
+            Please confirm that you'd like to delete{" "}
+            {this.state.currentInventory.itemName} from the inventory list. You
+            won't be able to undo this action.
           </p>
           <button
             onClick={() => {
@@ -59,10 +73,21 @@ export default class InventoryPage extends Component {
           >
             Cancel
           </button>
+
           <button
             onClick={() => {
-              console.log("deleted");
-              alert(`${this.state.item} is deleted.`);
+              alert(`${this.state.currentInventory.itemName} is deleted.`);
+
+              this.setState({ confirmDelete: true });
+              axios
+                .delete(
+                  `${apiURL}/inventories/${this.state.currentInventory.id}`
+                )
+                .then((res) => {
+                  this.getAPI();
+                })
+                .catch((err) => console.log(err));
+
               this.setState({ modalOpen: false });
             }}
           >
