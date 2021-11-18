@@ -102,8 +102,11 @@ export default class WarehouseInventoryList extends Component {
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--quantity">
               QUANTITY
             </th>
+            <th className="warehouse-inventory-list__label warehouse-inventory-list__label--quantity--desktop">
+              QTY
+            </th>
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--action">
-              ACTION
+              ACTIONS
             </th>
           </tr>
           {this.state.inventory.map(
@@ -112,19 +115,17 @@ export default class WarehouseInventoryList extends Component {
                 <>
                   <tr className="warehouse-inventory-list__single">
                     <td className="warehouse-inventory-list__item">
-                      <span className="warehouse-inventory-list__item__cell">
-                        {itemName}{" "}
-                        <Link
-                          className="warehouse-inventory-list__chevron__link"
-                          to=""
-                        >
-                          <img
-                            className="warehouse-inventory-list__chevron"
-                            src={chevron}
-                            alt="Item details button"
-                          />
-                        </Link>
-                      </span>
+                      <Link
+                        className="warehouse-inventory-list__item__cell"
+                        to=""
+                      >
+                        {itemName}
+                        <img
+                          className="warehouse-inventory-list__chevron"
+                          src={chevron}
+                          alt="Item details button"
+                        />
+                      </Link>
                     </td>
                     <td className="warehouse-inventory-list__category">
                       {category}

@@ -188,14 +188,28 @@ a {
   &__label {
     @include h4-header($slate, left);
     padding: 0.6875rem 0;
-    padding-left: 2rem;
+    padding-left: 7.3vw;
     width: 6.25rem;
     @include desktop {
-      padding-left: 7rem;
+      padding-left: 10vw;
     }
     &--item {
+      @include tablet {
+        padding-left: 2rem;
+      }
       @include desktop {
         padding-left: 2.5rem;
+      }
+    }
+    &--quantity {
+      @include desktop {
+        display: none;
+      }
+      &--desktop {
+        display: none;
+        @include desktop {
+          display: table-cell;
+        }
       }
     }
   }
@@ -236,12 +250,12 @@ a {
     @include tablet {
       display: table-cell;
       width: auto;
-      padding-left: 2rem;
+      padding-left: 7.3vw;
     }
     @include desktop {
       display: table-cell;
       width: auto;
-      padding-left: 7rem;
+      padding-left: 10vw;
     }
     &:before {
       @include h4-header($slate, left);
@@ -281,11 +295,11 @@ a {
       display: none;
       @include tablet {
         display: table-cell;
-        padding-left: 0.5rem;
+        padding-left: 5vw;
       }
       @include desktop {
         display: table-cell;
-        padding-left: 5.5rem;
+        padding-left: 8.5vw;
       }
     }
     &__btn {
@@ -297,6 +311,9 @@ a {
   }
   &__item {
     color: $instock-indigo;
+    @include tablet {
+      padding-left: 2rem;
+    }
     @include desktop {
       padding-left: 2.5rem;
     }
