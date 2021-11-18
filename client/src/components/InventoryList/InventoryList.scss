@@ -6,11 +6,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  // position: absolute;
-  // left: 4.27%;
-  // right: 4.27%;
-  // top: 23%;
-  // bottom: 4.13%;
   height: 100%;
   background: #ffffff;
   /* Card Shadow */
@@ -58,84 +53,6 @@
     border-color: transparent;
   }
 
-  // &__items {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: flex-start;
-  //   margin-top: 2rem;
-  //   height: auto;
-  //   width: 100%;
-  //   border-top: $cloud solid 1px;
-  // }
-
-  // &__items-card {
-  //   padding: 1rem;
-  // }
-
-  // &__items-subheading {
-  //   font-weight: 600;
-  //   font-size: 11px;
-  //   color: #5c667e;
-  //   @include tablet {
-  //     display: none;
-  //   }
-  // }
-
-  // &__items-top-container {
-  //   display: flex;
-  //   // padding-left: 2rem;
-  //   width: 100%;
-  //   justify-content: space-evenly;
-  //   @include tablet {
-  //     justify-content: center;
-  //   }
-  // }
-
-  // &__items-bottom-container {
-  //   display: flex;
-  //   width: 100%;
-  //   justify-content: space-between;
-  // }
-
-  // &__items-right-wrap,
-  // &__items-left-wrap {
-  //   display: flex;
-  //   flex-direction: column;
-  //   text-align: left;
-  //   margin: 1rem 2rem 1rem 0rem;
-  //   @include tablet {
-  //     flex-direction: row;
-  //     margin: 0;
-  //   }
-  // }
-
-  // &-items__icons {
-  // }
-
-  // &-list__icons-delete,
-  // &-list__icons-edit {
-  // }
-
-  // &__items-status {
-  //   position: relative;
-  //   text-align: center;
-  //   color: #158463;
-  //   font-weight: 600;
-  //   size: 0.6875rem;
-  //   &::before {
-  //     padding: 4px 8px;
-  //     background: rgba(21, 132, 99, 0.07);
-  //     border-radius: 20px;
-  //     position: absolute;
-  //     top: 0px;
-  //     left: 0px;
-  //     right: 0px;
-  //     bottom: 0px;
-  //     content: "";
-  //   }
-  // }
-
   &__item-link {
     text-decoration: none;
     &:visited {
@@ -143,34 +60,11 @@
     }
   }
 
-  // &__items-item {
-  //   text-decoration: none;
-  //   @include p2-body-medium($instock-indigo, left);
-  // }
-
-  // &__items-category,
-  // &__items-status,
-  // &__items-qty,
-  // &__items-subheading,
-  // &__items-warehouse {
-  //   @include p2-body-medium($instock-black, left);
-  //   @include tablet {
-  //     margin: 1rem 4rem;
-  //   }
-  // }
-
   &__table {
-    // display: flex;
-    // flex-direction: column;
     height: auto;
     width: 100%;
-    border-spacing: 10px;
+    border-spacing: 20px;
     table-layout: fixed;
-    // border-collapse: collapse;
-    // @include tablet {
-    //   flex-direction: row;
-    //   // display: none;
-    // }
   }
 
   &__table-heading {
@@ -187,48 +81,25 @@
     @include p2-body-medium($instock-black, left);
   }
 
-  &__table-data-item,
-  &__table-data-item--mobile {
-    color: #2e66e5;
+  &__table-data-item {
     display: flex;
     flex-direction: column;
   }
 
-  // &__table-data-category {
-  //   // display: flex;
-  //   // flex-direction: column;
-  // }
-
-  // // &__table-row {
-  // //   display: flex;
-  // //   flex-direction: column;
-  // //   text-align: left;
-  // //   @include tablet {
-  // //     flex-direction: row;
-  // //   }
-  // // }
-
-  // // &__table--large {
-  // //   display: none;
-  // //   @include tablet {
-  // //     display: block;
-  // //   }
-  // // }
-
-  &__table-body--mobile {
-    border-top: $cloud solid 1px;
-    @include tablet {
-      display: flex;
-      // display: none;
-    }
+  &__table-body {
   }
 
-  &__table-row--mobile {
+  &__table-row-top {
+    border-top: $cloud solid 1px;
+  }
+
+  &__table-row {
     margin: 0 1rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+
     & > * {
       width: calc(100% / 3);
     }
@@ -238,26 +109,28 @@
         width: 100%;
       }
     }
+    @include desktop {
+      flex-wrap: nowrap;
+      & > * {
+        width: 100%;
+      }
+    }
   }
 
-  &__table-data--mobile {
-    @extend .inventory-list__table-data;
-    // @extend .inventory-list__items-item;
-  }
-
-  &__table-data--mobile-empty {
+  &__table-data-empty {
     @include tablet {
+      display: none;
+    }
+    @include desktop {
       display: none;
     }
   }
 
-  &__table-row--mobile-wrap {
-    // width: 100%;
-    // background-color: blue;
-  }
-
-  &__table-data--mobile-icons-wrap {
+  &__table-data-icons-wrap {
     @include tablet {
+      display: none;
+    }
+    @include desktop {
       display: none;
     }
   }
@@ -268,33 +141,39 @@
       display: flex;
       order: 6;
     }
+    @include desktop {
+      display: flex;
+      order: 6;
+    }
   }
 
-  &__table-data--mobile-icons-delete {
+  &__table-data-icons--delete {
     margin-right: 5rem;
     @include tablet {
       margin: 0;
     }
+    @include desktop {
+      margin: 0;
+    }
   }
-  &__table-data--mobile-icons-edit {
+  &__table-data-icons--edit {
     margin-left: 5rem;
     @include tablet {
       margin: 0;
     }
+    @include desktop {
+      margin: 0;
+    }
   }
 
-  &__table-item--mobile {
-    // color: #2e66e5;
-    // padding-right: 1rem;
-    // &:after {
-    //   position: absolute;
-    //   left: 70px;
-    //   right: 0px;
-    //   top: 18px;
-    //   bottom: 0px;
-    //   content: url("../../assets/icons/chevron_right-24px.svg");
-    // }
+  &__table-item {
+    color: #2e66e5;
+
     @include tablet {
+      order: 1;
+    }
+
+    @include desktop {
       order: 1;
     }
 
@@ -306,13 +185,17 @@
       @include tablet {
         display: none;
       }
+      @include desktop {
+        display: none;
+      }
     }
   }
 
-  &__table-status--mobile {
-    // display: flex;
-    // flex-direction: column;
+  &__table-status {
     @include tablet {
+      order: 3;
+    }
+    @include desktop {
       order: 3;
     }
     &:before {
@@ -323,10 +206,16 @@
       @include tablet {
         display: none;
       }
+      @include desktop {
+        display: none;
+      }
     }
   }
-  &__table-category--mobile {
+  &__table-category {
     @include tablet {
+      order: 2;
+    }
+    @include desktop {
       order: 2;
     }
     &:before {
@@ -337,10 +226,17 @@
       @include tablet {
         display: none;
       }
+      @include desktop {
+        display: none;
+      }
     }
   }
-  &__table-quantity--mobile {
+  &__table-quantity {
     @include tablet {
+      order: 4;
+    }
+
+    @include desktop {
       order: 4;
     }
     &:before {
@@ -351,10 +247,16 @@
       @include tablet {
         display: none;
       }
+      @include desktop {
+        display: none;
+      }
     }
   }
-  &__table-warehouse--mobile {
+  &__table-warehouse {
     @include tablet {
+      order: 5;
+    }
+    @include desktop {
       order: 5;
     }
     &:before {
@@ -363,6 +265,9 @@
       content: "WAREHOUSE";
       @extend .inventory-list__table-heading;
       @include tablet {
+        display: none;
+      }
+      @include desktop {
         display: none;
       }
     }
