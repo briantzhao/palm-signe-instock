@@ -5,8 +5,6 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 
-const API_URL = "http://localhost:8080/";
-
 // make axios call to GET warehouse details data
 // (populate form values with GET warehouse details data)
 // update state with new data
@@ -33,25 +31,30 @@ export default class EditWarehouseForm extends Component {
   };
 
   componentDidMount() {
-    axios.get("/warehouses").then((response) => {
-      let foundId = response.data.find((warehouse) => {
-        return warehouse.id === this.props.match.params.id;
-      });
-      return axios.get(`/warehouses/${foundId.id}`).then((response) => {
-        const { name, address, city, country } = response.data;
-        const { position, phone, email } = response.data.contact;
-        this.setState({
-          name,
-          address,
-          city,
-          country,
-          contact: response.data.contact.name,
-          position,
-          phone,
-          email,
+    axios
+      .get("/warehouses")
+      .then((response) => {
+        let foundId = response.data.find((warehouse) => {
+          return warehouse.id === this.props.match.params.id;
         });
+        return axios.get(`/warehouses/${foundId.id}`).then((response) => {
+          const { name, address, city, country } = response.data;
+          const { position, phone, email } = response.data.contact;
+          this.setState({
+            name,
+            address,
+            city,
+            country,
+            contact: response.data.contact.name,
+            position,
+            phone,
+            email,
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }
 
   handleChange = (event) => {
@@ -109,24 +112,29 @@ export default class EditWarehouseForm extends Component {
       this.validate("email", email);
       return;
     }
-
-    axios
-      .patch(`${API_URL}warehouses`, {
-        name,
-        address,
-        city,
-        country,
-        contact,
-        position,
-        phone,
-        email,
-      })
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
+    axios.get("/warehouses").then((response) => {
+      console.log("hello");
+      let foundId = response.data.find((warehouse) => {
+        return warehouse.id === this.props.match.params.id;
       });
+      return axios
+        .patch(`/warehouses/${foundId.id}`, {
+          name,
+          address,
+          city,
+          country,
+          contact,
+          position,
+          phone,
+          email,
+        })
+        .then(() => {
+          this.props.history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   };
 
   render() {
