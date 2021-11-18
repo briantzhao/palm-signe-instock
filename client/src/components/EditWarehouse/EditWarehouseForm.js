@@ -7,7 +7,6 @@ import error from "../../assets/icons/error-24px.svg";
 
 const API_URL = "http://localhost:8080/";
 
-// if warehouse ID, then:
 // make axios call to GET warehouse details data
 // (populate form values with GET warehouse details data)
 // update state with new data
@@ -34,56 +33,25 @@ export default class EditWarehouseForm extends Component {
   };
 
   componentDidMount() {
-    let id;
-    axios
-      .get("/warehouses")
-      .then((response) => {
-        // response.data.find((warehouse) => {
-        //   return warehouse.id === id;
-        // });
-        return axios
-          .get(`/warehouses/${response.data[0].id}`)
-          .then((response) => {
-            const {
-              name,
-              address,
-              city,
-              country,
-              contact,
-              position,
-              phone,
-              email,
-            } = response.data;
-            //   console.log(this.state);
-            this.setState({
-              name,
-              address,
-              city,
-              country,
-              contact: contact.name,
-              position: contact.position,
-              phone: contact.phone,
-              email: contact.email,
-            });
-          });
-        // console.log(response.data[0].id);
-      })
-      .then((response) => {
-        axios.get(`/warehouses/${id}`).then((response) => {
-          //   const {
-          //     name,
-          //     address,
-          //     city,
-          //     country,
-          //     contact,
-          //     position,
-          //     phone,
-          //     email,
-          //   } = this.state;
-          //   console.log(this.state);
-          this.setState({ name: response.data.name });
+    axios.get("/warehouses").then((response) => {
+      let foundId = response.data.find((warehouse) => {
+        return warehouse.id === this.props.match.params.id;
+      });
+      return axios.get(`/warehouses/${foundId.id}`).then((response) => {
+        const { name, address, city, country } = response.data;
+        const { position, phone, email } = response.data.contact;
+        this.setState({
+          name,
+          address,
+          city,
+          country,
+          contact: response.data.contact.name,
+          position,
+          phone,
+          email,
         });
       });
+    });
   }
 
   handleChange = (event) => {
@@ -385,9 +353,7 @@ export default class EditWarehouseForm extends Component {
           <Link to="/">
             <button className="add-warehouse-form__cancel">Cancel</button>
           </Link>
-          <button className="add-warehouse-form__submit">
-            + Add Warehouse
-          </button>
+          <button className="add-warehouse-form__submit">Save</button>
         </section>
       </form>
     );
