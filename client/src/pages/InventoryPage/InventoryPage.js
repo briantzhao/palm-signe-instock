@@ -9,7 +9,6 @@ export default class InventoryPage extends Component {
     inventoryItems: [],
     currentInventory: [],
     modalOpen: false,
-    confirmDelete: false,
   };
 
   getAPI = () => {
