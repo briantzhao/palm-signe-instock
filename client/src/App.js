@@ -22,7 +22,7 @@ function App() {
             <Route path="/inventory/" exact component={InventoryPage} />
             <Route path="/add" component={AddWarehouseForm} />
             <Route
-              path="/warehouse/:warehouseId/inventory/:inventoryId/edit"
+              path="/inventory/:inventoryId/edit"
               component={EditInventoryForm}
             />
             <Route path="/:id/inventory" component={WarehouseInventoryList} />

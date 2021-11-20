@@ -31,6 +31,11 @@ const postInventoryData = (inventories) => {
 };
 getInventoryData();
 
+// get route to get all inventory items
+router.get("/inventories", (req, res) => {
+  getInventoryData();
+});
+
 //get route that grabs inventory items for a single warehouse
 router.get("/warehouses/:id", (req, res) => {
   const { id } = req.params;
@@ -85,7 +90,7 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  const inventory = inventory.find((inventory) => {
+  const inventory = inventoryData.find((inventory) => {
     return inventory.id === id;
   });
   if (inventory) {

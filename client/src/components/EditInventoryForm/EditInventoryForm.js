@@ -5,15 +5,79 @@ import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 import "./EditInventoryForm.scss";
 
-export default class EditWarehouseForm extends Component {
+export default class EditInventoryForm extends Component {
   state = {
-    name: "",
+    itemName: "",
     description: "",
     category: "",
-    inStock: null,
+    status: null,
     quantity: 0,
-    warehouse: "",
+    warehouseName: "",
   };
+
+  // get warehouses from warehouse ID
+  // /warehouse/:warehouseID/inventory/:inventoryID
+  // ^ endpoint that i created in App.js
+
+  // to GET all inventory from one warehouse:
+  // /inventories/warehouses/:warehouseID
+
+  // to GET individual inventory item data:
+  // /inventories/:inventoryID
+
+  // SO, what I need to do is:
+  // GET request to /inventories/:inventoryID
+  componentDidMount() {
+    let id;
+    axios
+      .get("/inventories")
+      .then((response) => {
+        // response.data.find((warehouse) => {
+        //   return warehouse.id === id;
+        // });
+        console.log(response.data[0].id);
+        return axios
+          .get(`/inventories/${response.data[0].id}`)
+          .then((response) => {
+            const {
+              warehouseID,
+              warehouseName,
+              itemName,
+              description,
+              category,
+              status,
+              quantity,
+            } = response.data;
+            //   console.log(this.state);
+            this.setState({
+              warehouseID,
+              warehouseName,
+              itemName,
+              description,
+              category,
+              status,
+              quantity,
+            });
+          });
+        // console.log(response.data[0].id);
+      })
+      .then((response) => {
+        axios.get(`/inventories/${id}`).then((response) => {
+          //   const {
+          //     name,
+          //     address,
+          //     city,
+          //     country,
+          //     contact,
+          //     position,
+          //     phone,
+          //     email,
+          //   } = this.state;
+          //   console.log(this.state);
+          this.setState({ name: response.data.name });
+        });
+      });
+  }
 
   render() {
     return (
