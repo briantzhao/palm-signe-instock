@@ -700,13 +700,13 @@
     "quantity": 0
   },
   {
-    "id": "pssf4pskw1fv9c7",
-    "warehouseID": "bb1491eb-30e6-4728-a5fa-72f89feaf622",
-    "warehouseName": "Montreal",
-    "itemName": "House Elf Socks",
-    "description": "Socks fit for a king! Great for setting your long-lived family servant free.",
-    "category": "Accessories",
-    "status": "In Stock",
-    "quantity": 298
+    "id": "pssfljkkw778t0n",
+    "warehouseID": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
+    "warehouseName": "San Fran",
+    "itemName": "asdf",
+    "description": "1231",
+    "category": "Apparel",
+    "status": "Out of Stock",
+    "quantity": 0
   }
 ]

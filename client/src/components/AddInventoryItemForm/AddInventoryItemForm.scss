@@ -9,11 +9,13 @@
   @include desktop {
     text-align: left;
   }
+
   &__arrow {
     margin-right: 0.75rem;
     max-width: 1rem;
     max-height: 1rem;
   }
+
   &__title {
     @include h1-page-header($instock-black, center);
     padding-bottom: 1.5rem;
@@ -33,6 +35,7 @@
       padding-bottom: 1.3125rem;
     }
   }
+
   &__main {
     text-align: left;
     @include tablet {
@@ -44,6 +47,7 @@
       padding: 1.5rem 0rem;
     }
   }
+
   &__details {
     border-top: 1px solid #bdc5d5;
     padding: 0 1.5rem;
@@ -67,6 +71,7 @@
       border-right: 1px solid #bdc5d5;
     }
   }
+
   &__subtitle {
     @include h2-subheader($instock-black, left);
     @include tablet {
@@ -78,11 +83,13 @@
       padding-bottom: 0.5rem;
     }
   }
+
   &__label {
     @include h3-labels-links-buttons($instock-black, left);
     display: flex;
     flex-direction: column;
   }
+
   &__field {
     height: 2.25rem;
     border-radius: 1.25rem;
@@ -95,15 +102,29 @@
     @include desktop {
       height: 2.375rem;
     }
+
     &::placeholder {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       @include h3-labels-links-buttons($slate, left);
     }
+
+    &--text {
+      @extend .add-inventory-item-form__field;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      @include p2-body-medium($instock-black, left);
+      &::placeholder {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
     &--error {
       border-color: $red;
     }
   }
+
   &__error {
     display: flex;
     gap: 0.333rem;
@@ -112,6 +133,7 @@
     margin-bottom: 0;
     align-items: center;
   }
+
   &__buttons {
     padding: 1rem 1.5rem;
     background-color: rgba(247, 248, 249, 0.7);
@@ -128,6 +150,7 @@
       padding: 1rem 2.5rem;
     }
   }
+
   &__cancel,
   &__submit {
     text-decoration: none;
@@ -144,6 +167,7 @@
       width: 4.5rem;
     }
   }
+
   &__submit {
     color: $white;
     background-color: $instock-indigo;
@@ -154,6 +178,7 @@
       width: 8.625rem;
     }
   }
+
   &__radio {
     &-section {
       display: flex;
@@ -165,6 +190,7 @@
         gap: 2.5rem;
       }
     }
+
     &-label {
       display: flex;
       gap: 0.25rem;

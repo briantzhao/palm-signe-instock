@@ -8,6 +8,7 @@ import error from "../../assets/icons/error-24px.svg";
 const API_URL = "http://localhost:8080/";
 
 export default class AddInventoryItemForm extends Component {
+  //states for each form field, as well as validity tracking
   state = {
     itemName: "",
     itemNameValid: true,
@@ -15,14 +16,17 @@ export default class AddInventoryItemForm extends Component {
     descriptionValid: true,
     category: "",
     categoryValid: true,
-    status: true,
+    status: null,
     statusValid: true,
     quantity: 0,
+    quantityValid: true,
     warehouseID: "",
     warehouseName: "",
     warehouseValid: true,
     warehouses: null,
   };
+
+  //gets information to populate warehouse select element
   componentDidMount() {
     axios
       .get(`${API_URL}warehouses`)
@@ -36,16 +40,39 @@ export default class AddInventoryItemForm extends Component {
         console.log(err);
       });
   }
+
+  //converts quantity values to Number format
   handleChange = (event) => {
+    if (event.target.name === "quantity") {
+      const val = Number(event.target.value);
+      this.setState({ [event.target.name]: val });
+      return;
+    }
+    //sets quantity back to 0 if out of stock is re-selected
+    if (
+      event.target.value === "Out of Stock" &&
+      event.target.name === "status"
+    ) {
+      this.setState({ quantity: 0 });
+    }
     this.setState({ [event.target.name]: event.target.value }, () => {
       this.validate(event.target.name, event.target.value);
     });
   };
 
-  handleStatus = (event) => {};
+  //handles changes for warehouse, since both ID and Name are in one string
+  handleDropdown = (event) => {
+    if (event.target.name === "warehouse") {
+      const whID = event.target.value.split(",")[0];
+      const whName = event.target.value.split(",")[1];
+      this.setState({ warehouseID: whID, warehouseName: whName }, () => {
+        this.validate("warehouse", whName);
+      });
+      return;
+    }
+  };
 
-  handleWarehouse = (event) => {};
-
+  //checks if fields are filled out in a valid manner
   validate = (name, value) => {
     if (value === null || value.length === 0) {
       this.setState({ [`${name}Valid`]: false });
@@ -54,6 +81,7 @@ export default class AddInventoryItemForm extends Component {
     this.setState({ [`${name}Valid`]: true });
   };
 
+  //creates axios post call
   handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -65,16 +93,52 @@ export default class AddInventoryItemForm extends Component {
       warehouseID,
       warehouseName,
     } = this.state;
-    if (!(itemName, description, category, status, quantity, warehouseName)) {
+
+    //checks that all states are filled out (besides quantity, since quantity can be 0)
+    if (!(itemName && description && category && status && warehouseName)) {
       alert("Please fill out all fields in the form");
       this.validate("itemName", itemName);
       this.validate("description", description);
       this.validate("category", category);
       this.validate("status", status);
       this.validate("quantity", quantity);
-      this.validate("warehouseName", warehouseName);
+      this.validate("warehouse", warehouseName);
+      if (quantity === "") {
+        alert("Please fill out all fields in the form");
+        this.setState({ quantityValid: false });
+        return;
+      }
+      if (quantity < 0) {
+        alert("Please provide a non-negative value for quantity");
+        this.setState({ quantityValid: false });
+        return;
+      }
+      if (quantity === 0 && status === "In Stock") {
+        alert("If this item is in stock, its quantity must be greater than 0");
+        this.setState({ quantityValid: false });
+        return;
+      }
       return;
     }
+
+    //checks special conditions of quantity separately
+    if (quantity === "") {
+      alert("Please fill out all fields in the form");
+      this.setState({ quantityValid: false });
+      return;
+    }
+    if (quantity < 0) {
+      alert("Please provide a non-negative value for quantity");
+      this.setState({ quantityValid: false });
+      return;
+    }
+    if (quantity === 0 && status === "In Stock") {
+      alert("If this item is in stock, its quantity must be greater than 0");
+      this.setState({ quantityValid: false });
+      return;
+    }
+
+    //creates axios post call
     axios
       .post(`${API_URL}inventories`, {
         itemName,
@@ -86,7 +150,9 @@ export default class AddInventoryItemForm extends Component {
         warehouseName,
       })
       .then(() => {
-        this.props.history.push("/");
+        alert("Item posted!");
+        //return to inventory page
+        this.props.history.push("/inventory");
       })
       .catch((err) => {
         console.log(err);
@@ -112,6 +178,7 @@ export default class AddInventoryItemForm extends Component {
         <section className="add-inventory-item-form__main">
           <article className="add-inventory-item-form__details add-inventory-item-form__details-1">
             <h2 className="add-inventory-item-form__subtitle">Item Details</h2>
+            {/* Fields receive a red border if invalid */}
             <label className="add-inventory-item-form__label">
               Item Name
               <input
@@ -137,19 +204,21 @@ export default class AddInventoryItemForm extends Component {
                 </p>
               )}
             </label>
+            {/* Fields receive a red border if invalid */}
             <label className="add-inventory-item-form__label">
               Description
               <textarea
                 className={
                   this.state.descriptionValid
-                    ? "add-inventory-item-form__field"
-                    : "add-inventory-item-form__field add-inventory-item-form__field--error"
+                    ? "add-inventory-item-form__field--text"
+                    : "add-inventory-item-form__field--text add-inventory-item-form__field--error"
                 }
                 placeholder="Please enter a brief item description..."
                 name="description"
                 onChange={this.handleChange}
                 value={this.state.description}
               ></textarea>
+              {/* renders message if field is invalid */}
               {!this.state.descriptionValid && (
                 <p className="add-inventory-item-form__error">
                   <img
@@ -161,6 +230,7 @@ export default class AddInventoryItemForm extends Component {
                 </p>
               )}
             </label>
+            {/* Fields receive a red border if invalid */}
             <label className="add-inventory-item-form__label">
               Category
               <select
@@ -181,6 +251,7 @@ export default class AddInventoryItemForm extends Component {
                 <option value="Accessories">Accessories</option>
                 <option value="Health">Health</option>
               </select>
+              {/* renders message if field is invalid */}
               {!this.state.categoryValid && (
                 <p className="add-inventory-item-form__error">
                   <img
@@ -206,8 +277,8 @@ export default class AddInventoryItemForm extends Component {
                     type="radio"
                     name="status"
                     id="inStock"
-                    onChange={this.handleStatus}
-                    value={true}
+                    onChange={this.handleChange}
+                    value="In Stock"
                   />
                   In stock
                 </label>
@@ -217,12 +288,13 @@ export default class AddInventoryItemForm extends Component {
                     type="radio"
                     name="status"
                     id="outOfStock"
-                    onChange={this.handleStatus}
-                    value={false}
+                    onChange={this.handleChange}
+                    value="Out of Stock"
                   />
                   Out of stock
                 </label>
               </div>
+              {/* renders message if field is invalid */}
               {!this.state.statusValid && (
                 <p className="add-inventory-item-form__error">
                   <img
@@ -234,19 +306,40 @@ export default class AddInventoryItemForm extends Component {
                 </p>
               )}
             </label>
-            {this.state.status && (
-              <label className="add-inventory-item-form__label">
-                Quantity
-                <input
-                  className="add-inventory-item-form__field"
-                  type="number"
-                  placeholder={0}
-                  name="quantity"
-                  onChange={this.handleChange}
-                  value={this.state.quantity}
-                ></input>
-              </label>
+            {/* only render if in stock is true */}
+            {this.state.status === "In Stock" ? (
+              <>
+                {/* Fields receive a red border if invalid */}
+                <label className="add-inventory-item-form__label">
+                  Quantity
+                  <input
+                    className={
+                      this.state.quantityValid
+                        ? "add-inventory-item-form__field"
+                        : "add-inventory-item-form__field add-inventory-item-form__field--error"
+                    }
+                    type="number"
+                    name="quantity"
+                    onChange={this.handleChange}
+                    value={this.state.quantity}
+                  ></input>
+                  {/* renders message if field is invalid */}
+                  {!this.state.quantityValid && (
+                    <p className="add-inventory-item-form__error">
+                      <img
+                        className="add-inventory-item-form__error__icon"
+                        src={error}
+                        alt="error icon"
+                      />
+                      Please correct this field
+                    </p>
+                  )}
+                </label>
+              </>
+            ) : (
+              <></>
             )}
+            {/* Fields receive a red border if invalid */}
             <label className="add-inventory-item-form__label">
               Warehouse
               <select
@@ -257,7 +350,7 @@ export default class AddInventoryItemForm extends Component {
                 }
                 placeholder="Please Select"
                 name="warehouse"
-                onChange={this.handleWarehouse}
+                onChange={this.handleDropdown}
               >
                 <option value="" selected disabled hidden>
                   Please Select
@@ -268,6 +361,7 @@ export default class AddInventoryItemForm extends Component {
                   );
                 })}
               </select>
+              {/* renders message if field is invalid */}
               {!this.state.warehouseValid && (
                 <p className="add-inventory-item-form__error">
                   <img
@@ -282,7 +376,7 @@ export default class AddInventoryItemForm extends Component {
           </article>
         </section>
         <section className="add-inventory-item-form__buttons">
-          <Link to="/">
+          <Link to="/inventory/">
             <button className="add-inventory-item-form__cancel">Cancel</button>
           </Link>
           <button className="add-inventory-item-form__submit">
