@@ -62,8 +62,7 @@ router.post("/", (req, res) => {
     itemName &&
     description &&
     category &&
-    status &&
-    quantity
+    status
   ) {
     //create new inventory object
     const newItem = {

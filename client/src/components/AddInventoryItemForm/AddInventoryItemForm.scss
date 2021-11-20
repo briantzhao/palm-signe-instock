@@ -2,7 +2,7 @@
 @use "../../styles/partials/variables" as *;
 
 //styles form as a card with box shadow
-.add-warehouse-form {
+.add-inventory-item-form {
   @include tablet {
     text-align: left;
   }
@@ -67,7 +67,6 @@
       gap: 1.5rem;
       padding: 0 2.5rem;
     }
-
     &-1 {
       border-right: 1px solid #bdc5d5;
     }
@@ -108,6 +107,17 @@
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       @include h3-labels-links-buttons($slate, left);
+    }
+
+    &--text {
+      @extend .add-inventory-item-form__field;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      @include p2-body-medium($instock-black, left);
+      &::placeholder {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
     }
 
     &--error {
@@ -166,6 +176,24 @@
     }
     @include desktop {
       width: 8.625rem;
+    }
+  }
+
+  &__radio {
+    &-section {
+      display: flex;
+      gap: 5.5625rem;
+      @include tablet {
+        gap: 2.5rem;
+      }
+      @include desktop {
+        gap: 2.5rem;
+      }
+    }
+
+    &-label {
+      display: flex;
+      gap: 0.25rem;
     }
   }
 }
