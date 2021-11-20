@@ -2,7 +2,7 @@
   {
     "id": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "name": "Manhattan",
-    "address": "503 Broadway",
+    "address": "503 Broadway 2",
     "city": "New York",
     "country": "USA",
     "contact": {
@@ -20,7 +20,7 @@
     "country": "CAN",
     "contact": {
       "name": "Greame Lyon",
-      "position": "Warehouse Manager",
+      "position": "Warehouse Manager2",
       "phone": "+1 (646) 123-1234",
       "email": "glyon@instock.com"
     }

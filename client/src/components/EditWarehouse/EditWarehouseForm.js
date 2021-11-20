@@ -89,6 +89,10 @@ export default class EditWarehouseForm extends Component {
     event.preventDefault();
     const { name, address, city, country, contact, position, phone, email } =
       this.state;
+    // const { name, address, city, country, contact, position, phone, email } =
+    //   event.target;
+
+    console.log(event.target.name.value);
     if (
       !(
         name &&
@@ -112,8 +116,8 @@ export default class EditWarehouseForm extends Component {
       this.validate("email", email);
       return;
     }
+
     axios.get("/warehouses").then((response) => {
-      console.log("hello");
       let foundId = response.data.find((warehouse) => {
         return warehouse.id === this.props.match.params.id;
       });
@@ -130,6 +134,7 @@ export default class EditWarehouseForm extends Component {
         })
         .then(() => {
           this.props.history.push("/");
+          console.log("patched");
         })
         .catch((err) => {
           console.log(err);
@@ -140,7 +145,6 @@ export default class EditWarehouseForm extends Component {
   render() {
     return (
       <form className="add-warehouse-form" onSubmit={this.handleSubmit}>
-        {/* Allows form to be used for add and edit pages */}
         <h1 className="add-warehouse-form__title">
           <Link to="/">
             <img
