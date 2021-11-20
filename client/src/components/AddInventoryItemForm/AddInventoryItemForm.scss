@@ -2,7 +2,7 @@
 @use "../../styles/partials/variables" as *;
 
 //styles form as a card with box shadow
-.add-warehouse-form {
+.add-inventory-item-form {
   @include tablet {
     text-align: left;
   }
@@ -67,7 +67,6 @@
       gap: 1.5rem;
       padding: 0 2.5rem;
     }
-
     &-1 {
       border-right: 1px solid #bdc5d5;
     }
@@ -92,7 +91,7 @@
   }
 
   &__field {
-    height: 20.25rem;
+    height: 2.25rem;
     border-radius: 1.25rem;
     border: 1px solid gray;
     margin-top: 0.25rem;
@@ -110,30 +109,22 @@
       @include h3-labels-links-buttons($slate, left);
     }
 
+    &--text {
+      @extend .add-inventory-item-form__field;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      @include p2-body-medium($instock-black, left);
+      &::placeholder {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
     &--error {
       border-color: $red;
     }
   }
-<<<<<<< HEAD
-  &__textarea {
-    height: 20.25rem;
-    border-radius: 1.25rem;
-    border: 1px solid gray;
-    margin-top: 0.25rem;
-    padding-left: 1rem;
-    @include tablet {
-      height: 2.375rem;
-    }
-    @include desktop {
-      height: 2.375rem;
-    }
-  }
-  &__status {
-    display: flex;
-  }
-=======
 
->>>>>>> develop
   &__error {
     display: flex;
     gap: 0.333rem;
@@ -185,6 +176,24 @@
     }
     @include desktop {
       width: 8.625rem;
+    }
+  }
+
+  &__radio {
+    &-section {
+      display: flex;
+      gap: 5.5625rem;
+      @include tablet {
+        gap: 2.5rem;
+      }
+      @include desktop {
+        gap: 2.5rem;
+      }
+    }
+
+    &-label {
+      display: flex;
+      gap: 0.25rem;
     }
   }
 }
