@@ -8,6 +8,7 @@ import error from "../../assets/icons/error-24px.svg";
 const API_URL = "http://localhost:8080/";
 
 export default class AddWarehouseForm extends Component {
+  //states for each form field, as well as validity tracking
   state = {
     name: "",
     nameValid: true,
@@ -33,6 +34,7 @@ export default class AddWarehouseForm extends Component {
     });
   };
 
+  //checks if fields are valid, special checks for phone and email
   validate = (name, value) => {
     const phoneRGEX = new RegExp(
       /^[\+]?[1]?[ ]?[(]?[0-9]{3}[)]?[ ]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
@@ -55,6 +57,7 @@ export default class AddWarehouseForm extends Component {
     this.setState({ [`${name}Valid`]: true });
   };
 
+  //checks that fields are all filled out
   handleSubmit = (event) => {
     event.preventDefault();
     const { name, address, city, country, contact, position, phone, email } =
@@ -83,6 +86,7 @@ export default class AddWarehouseForm extends Component {
       return;
     }
 
+    //creates new warehouse
     axios
       .post(`${API_URL}warehouses`, {
         name,
@@ -105,7 +109,6 @@ export default class AddWarehouseForm extends Component {
   render() {
     return (
       <form className="add-warehouse-form" onSubmit={this.handleSubmit}>
-        {/* Allows form to be used for add and edit pages */}
         <h1 className="add-warehouse-form__title">
           <Link to="/">
             <img
@@ -119,6 +122,7 @@ export default class AddWarehouseForm extends Component {
         <section className="add-warehouse-form__main">
           <article className="add-warehouse-form__details add-warehouse-form__details-1">
             <h2 className="add-warehouse-form__subtitle">Warehouse Details</h2>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Warehouse Name
               <input
@@ -133,6 +137,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.name}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.nameValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -144,6 +149,7 @@ export default class AddWarehouseForm extends Component {
                 </p>
               )}
             </label>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Street Address
               <input
@@ -158,6 +164,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.address}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.addressValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -169,6 +176,7 @@ export default class AddWarehouseForm extends Component {
                 </p>
               )}
             </label>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               City
               <input
@@ -183,6 +191,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.city}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.cityValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -194,6 +203,7 @@ export default class AddWarehouseForm extends Component {
                 </p>
               )}
             </label>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Country
               <input
@@ -208,6 +218,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.country}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.countryValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -222,6 +233,7 @@ export default class AddWarehouseForm extends Component {
           </article>
           <article className="add-warehouse-form__details">
             <h2 className="add-warehouse-form__subtitle">Contact Details</h2>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Contact Name
               <input
@@ -236,6 +248,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.contact}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.contactValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -247,6 +260,7 @@ export default class AddWarehouseForm extends Component {
                 </p>
               )}
             </label>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Position
               <input
@@ -261,6 +275,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.position}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.positionValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -272,6 +287,7 @@ export default class AddWarehouseForm extends Component {
                 </p>
               )}
             </label>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Phone Number
               <input
@@ -286,6 +302,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.phone}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.phoneValid && (
                 <p className="add-warehouse-form__error">
                   <img
@@ -297,6 +314,7 @@ export default class AddWarehouseForm extends Component {
                 </p>
               )}
             </label>
+            {/* fields receive red border if invalid */}
             <label className="add-warehouse-form__label">
               Email
               <input
@@ -311,6 +329,7 @@ export default class AddWarehouseForm extends Component {
                 onChange={this.handleChange}
                 value={this.state.email}
               ></input>
+              {/* renders if field is invalid */}
               {!this.state.emailValid && (
                 <p className="add-warehouse-form__error">
                   <img

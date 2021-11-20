@@ -14,6 +14,7 @@ export default class WarehouseInventoryList extends Component {
     warehouse: null,
     inventory: null,
   };
+  //grab warehouse and inventory information from server
   componentDidMount() {
     axios
       .get(`${API_URL}inventories/warehouses/${this.props.match.params.id}`)
@@ -164,6 +165,7 @@ export default class WarehouseInventoryList extends Component {
                       </Link>
                     </td>
                   </tr>
+                  {/* extra div outside of table that renders in mobile view for delete and edit buttons */}
                   <div>
                     <td className="warehouse-inventory-list__action">
                       <Link to="">
