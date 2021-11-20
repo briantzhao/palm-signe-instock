@@ -5,11 +5,7 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
 
-export default function InventoryList({
-  inventoryItems,
-  openWarning,
-  deleteItem,
-}) {
+export default function InventoryList({ inventoryItems, getItem }) {
   return (
     <section className="inventory-list">
       <form
@@ -84,7 +80,7 @@ export default function InventoryList({
                   >
                     {warehouseName}
                   </td>
-                  <td
+                  <td //TODO:
                     className="inventory-list__table-data--tablet-icons-wrap"
                     colSpan="2"
                     style={{ width: "100%" }}
@@ -94,7 +90,7 @@ export default function InventoryList({
                       alt="delete icon"
                       className="inventory-list__table-data-icons--delete"
                       onClick={() => {
-                        deleteItem(itemName, id);
+                        getItem(itemName, id);
                       }}
                     />
 
@@ -116,7 +112,7 @@ export default function InventoryList({
                       alt="delete icon"
                       className="inventory-list__table-data-icons--delete"
                       onClick={() => {
-                        deleteItem(itemName, id);
+                        getItem(itemName, id);
                       }}
                     />
 

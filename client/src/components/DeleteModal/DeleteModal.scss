@@ -1,0 +1,42 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.delete-modal {
+  background-color: $white;
+  padding: 0 0.9375rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  // height: 23.4375rem;
+  // width: 41.6875rem;
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-start;
+  // align-items: flex-start;
+
+  &__exit {
+    position: absolute;
+    left: 90%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    color: $instock-black;
+  }
+
+  &__heading {
+    @include h1-page-header($instock-black, left);
+    width: 21.4375rem;
+    height: 4.5rem;
+    padding-top: 3.75rem;
+    margin: 0;
+  }
+
+  &__text {
+    @include p1-body-large($instock-black, left);
+    width: 21.4375rem;
+  }
+
+  &__buttons-container {
+    display: flex;
+  }
+}
