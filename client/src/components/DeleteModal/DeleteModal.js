@@ -13,7 +13,7 @@ export default function DeleteModal(props) {
         props.hideModal();
       }}
     >
-      {console.log(props.currentItems.itemName)}
+      {console.log(props.currentItems)}
       <div className="delete-modal__top">
         <button className="delete-modal__exit">
           <span onClick={props.hideModal} className="delete-modal__exit-icon">
@@ -21,12 +21,12 @@ export default function DeleteModal(props) {
           </span>
         </button>
         <h1 className="delete-modal__heading">
-          Delete {props.currentItems.itemName} {props.page}?
+          Delete {props.currentItems} {props.page}?
         </h1>
       </div>
       <p className="delete-modal__text">
-        Please confirm that you'd like to delete {props.currentItems.itemName}{" "}
-        from the {props.pageList}. You won't be able to undo this action.
+        Please confirm that you'd like to delete {props.currentItems} from the{" "}
+        {props.pageList}. You won't be able to undo this action.
       </p>
 
       <div className="delete-modal__buttons-container">

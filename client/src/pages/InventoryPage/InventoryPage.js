@@ -61,7 +61,7 @@ export default class InventoryPage extends Component {
         <DeleteModal
           page="inventory item"
           pageList="inventory list"
-          currentItems={this.state.currentInventory}
+          currentItems={this.state.currentInventory.itemName}
           modalState={this.state.modalOpen}
           onRequestClose
           deleteItem={this.deleteItem}

@@ -6,7 +6,7 @@ import detailIcon from "../../assets/icons/chevron_right-24px.svg";
 
 import "../WarehouseList/WarehouseList.scss";
 
-export default function WarehouseList({ warehouseList }) {
+export default function WarehouseList({ warehouseList, getItem }) {
   console.log(warehouseList);
   return (
     <section className="warehouse">
@@ -56,7 +56,13 @@ export default function WarehouseList({ warehouseList }) {
             </div>
             <div className="warehouse__container--icons">
               <figure>
-                <img src={deleteIcon} alt="delete icon"></img>
+                <img
+                  src={deleteIcon}
+                  alt="delete icon"
+                  onClick={() => {
+                    getItem(id);
+                  }}
+                ></img>
               </figure>
               <figure>
                 <img src={editIcon} alt="edit icon"></img>
