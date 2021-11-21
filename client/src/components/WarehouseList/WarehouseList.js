@@ -6,7 +6,7 @@ import chevron from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import "../WarehouseList/WarehouseList.scss";
 
-export default function WarehouseList({ warehouseList }) {
+export default function WarehouseList({ warehouseList, getItem }) {
   return (
     <section className="warehouse">
       <div className="warehouse__header">
@@ -86,9 +86,15 @@ export default function WarehouseList({ warehouseList }) {
               </div>
               <div className="warehouse__data--icons">
                 <td className="warehouse__data--icons-tablet">
-                  <Link to={`/delete/${id}`}>
-                    <img src={deleteIcon} alt="delete icon"></img>
-                  </Link>
+                  {/* <Link to={`/delete/${id}`}> */}
+                  <img
+                    src={deleteIcon}
+                    alt="delete icon"
+                    onClick={() => {
+                      getItem(id);
+                    }}
+                  ></img>
+                  {/* </Link> */}
                   <Link to={`/edit/${id}`}>
                     <img src={editIcon} alt="edit icon"></img>
                   </Link>
@@ -96,9 +102,15 @@ export default function WarehouseList({ warehouseList }) {
               </div>
             </tr>
             <div className="warehouse__data--icons-mobile">
-              <Link to={`/delete/${id}`}>
-                <img src={deleteIcon} alt="delete icon"></img>
-              </Link>
+              {/* <Link to={`/delete/${id}`}> */}
+              <img
+                src={deleteIcon}
+                alt="delete icon"
+                onClick={() => {
+                  getItem(id);
+                }}
+              ></img>
+              {/* </Link> */}
               <Link to={`/edit/${id}`}>
                 <img src={editIcon} alt="edit icon"></img>
               </Link>

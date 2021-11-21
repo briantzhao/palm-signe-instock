@@ -23,7 +23,9 @@ export default function InventoryList({ inventoryItems, getItem }) {
           className="inventory-list__search"
           name="inventorySearch"
         />
-        <button className="inventory-list__button">+ Add New Item</button>
+        <Link to="/inventory/add">
+          <button className="inventory-list__button">+ Add New Item</button>
+        </Link>
       </form>
 
       <table className="inventory-list__table">
@@ -31,13 +33,11 @@ export default function InventoryList({ inventoryItems, getItem }) {
           <tr className="inventory-list__table-row inventory-list__table-row-head">
             <th className="inventory-list__table-heading">
               INVENTORY ITEM
-              {/* <span> */}
               <img
                 src={sortIcon}
                 alt="sort icon"
                 className="inventory-list__table-sort-icon"
               />
-              {/* </span> */}
             </th>
             <th className="inventory-list__table-heading inventory-list__table-heading-category">
               CATEGORY{" "}
