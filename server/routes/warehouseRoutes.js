@@ -88,27 +88,6 @@ router.get("/:id", (req, res) => {
   } else {
     res.status(404).send("Page not found.");
   }
-
-  /*  let inventoryData = [];
-
-  fs.readFile("./data/inventories.json", (err, data) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    inventoryData = JSON.parse(data);
-
-    const matchingID =
-      inventoryData[
-        inventoryData.findIndex((data) => data.warehouseID === warehouse.id)
-      ].warehouseID;
-
-    inventoryData.forEach((data) => {
-      if (data.warehouseID === matchingID) {
-        console.log(inventoryData.indexOf(data));
-      }
-    });
-  }); */
 });
 
 // patch to make edits to single warehouse
@@ -144,7 +123,7 @@ router.patch("/:id", (req, res, next) => {
   }
 });
 
-//delete a warehouse:
+//delete a warehouse and delete all inventory items in the given warehouse:
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   console.log(id);
@@ -184,16 +163,10 @@ router.delete("/:id", (req, res) => {
           )
         ].warehouseID;
 
-      //   inventoryData.forEach((data) => {
-      //     if (data.warehouseID === matchingID) {
-      //       console.log(data);
-      //     }
-
       let newInventory = inventoryData.filter(
         (data) => data.warehouseID !== matchingID
       );
 
-      //   });
       fs.writeFile(
         "./data/inventories.json",
         JSON.stringify(newInventory),

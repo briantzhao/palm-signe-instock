@@ -102,31 +102,5 @@
       "phone": "+1 (646) 123-1234",
       "email": "vmendoza@instock.com"
     }
-  },
-  {
-    "id": "696a1gjwkw8mgm5e",
-    "name": "Manilaaaa",
-    "address": "1125 Stanley",
-    "city": "Manilaaaaa",
-    "country": "CAN",
-    "contact": {
-      "name": "hello",
-      "position": "Warehouse Manager",
-      "phone": "+1 (646) 123-1234",
-      "email": "athomas@instock.com"
-    }
-  },
-  {
-    "id": "696a1trgkw8pihdt",
-    "name": "Toroinoooo",
-    "address": "1125 Stanley",
-    "city": "Manilaaaaa",
-    "country": "CAN",
-    "contact": {
-      "name": "hello",
-      "position": "Warehouse Manager",
-      "phone": "+1 (646) 123-1234",
-      "email": "athomas@instock.com"
-    }
   }
 ]
