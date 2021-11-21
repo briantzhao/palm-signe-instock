@@ -3,145 +3,145 @@
 //Style guide specs
 //different device specs
 @mixin mobile {
-	@media (max-width: $mobile--breakpoint) {
-		@content;
-	}
+  @media (max-width: $mobile--breakpoint) {
+    @content;
+  }
 }
 @mixin tablet {
-	@media (min-width: $tablet--breakpoint-min) and (max-width: $tablet--breakpoint-max) {
-		@content;
-	}
+  @media (min-width: $tablet--breakpoint-min) and (max-width: $tablet--breakpoint-max) {
+    @content;
+  }
 }
 @mixin desktop {
-	@media (min-width: $desktop--breakpoint) {
-		@content;
-	}
+  @media (min-width: $desktop--breakpoint) {
+    @content;
+  }
 }
 
 //text
 @mixin h1-page-header($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 600;
-	@include desktop {
-		font-size: 2rem;
-		line-height: 2.5rem;
-	}
-	@include tablet {
-		font-size: 2rem;
-		line-height: 2.5rem;
-	}
-	@include mobile {
-		font-size: 1.75rem;
-		line-height: 2rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  @include desktop {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  @include mobile {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
 }
 @mixin h2-subheader($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 700;
-	@include desktop {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
-	@include tablet {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
-	@include mobile {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 700;
+  @include desktop {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  @include tablet {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  @include mobile {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
 @mixin h3-labels-links-buttons($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 600;
-	@include desktop {
-		font-size: 0.875rem;
-		line-height: 1.375rem;
-	}
-	@include tablet {
-		font-size: 0.875rem;
-		line-height: 1.375rem;
-	}
-	@include mobile {
-		font-size: 0.8125rem;
-		line-height: 1.25rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  @include desktop {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  @include mobile {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+  }
 }
 @mixin h4-header($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 600;
-	@include desktop {
-		font-size: 0.75rem;
-		line-height: 1.125rem;
-	}
-	@include tablet {
-		font-size: 0.75rem;
-		line-height: 1.125rem;
-	}
-	@include mobile {
-		font-size: 0.6875rem;
-		line-height: 1rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  @include desktop {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+  @include mobile {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
 }
 @mixin p1-body-large($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 400;
-	@include desktop {
-		font-size: 1rem;
-		line-height: 1.75rem;
-	}
-	@include tablet {
-		font-size: 1rem;
-		line-height: 1.75rem;
-	}
-	@include mobile {
-		font-size: 0.9375rem;
-		line-height: 1.625rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 400;
+  @include desktop {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+  @include tablet {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+  @include mobile {
+    font-size: 0.9375rem;
+    line-height: 1.625rem;
+  }
 }
 @mixin p2-body-medium($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 400;
-	@include desktop {
-		font-size: 0.875rem;
-		line-height: 1.375rem;
-	}
-	@include tablet {
-		font-size: 0.875rem;
-		line-height: 1.375rem;
-	}
-	@include mobile {
-		font-size: 0.8125rem;
-		line-height: 1.25rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 400;
+  @include desktop {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  @include mobile {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+  }
 }
 @mixin p3-body-small($font-color, $text-align) {
-	color: $font-color;
-	text-align: $text-align;
-	font-family: "Titillium Web";
-	font-weight: 400;
-	@include desktop {
-		font-size: 0.75rem;
-		line-height: 1.125rem;
-	}
-	@include tablet {
-		font-size: 0.75rem;
-		line-height: 1.125rem;
-	}
-	@include mobile {
-		font-size: 0.6875rem;
-		line-height: 1rem;
-	}
+  color: $font-color;
+  text-align: $text-align;
+  font-family: "Titillium Web";
+  font-weight: 400;
+  @include desktop {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+  @include mobile {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
 }
