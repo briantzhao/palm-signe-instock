@@ -63,6 +63,7 @@ export default class InventoryPage extends Component {
           pageList="inventory list"
           currentItems={this.state.currentInventory}
           modalState={this.state.modalOpen}
+          onRequestClose
           deleteItem={this.deleteItem}
           hideModal={this.hideModal}
         />
