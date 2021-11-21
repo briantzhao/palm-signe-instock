@@ -700,12 +700,12 @@
     "quantity": 0
   },
   {
-    "id": "pssfljkkw778t0n",
-    "warehouseID": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-    "warehouseName": "San Fran",
-    "itemName": "asdf",
-    "description": "1231",
-    "category": "Apparel",
+    "id": "696a1pv8kw8q97mu",
+    "warehouseID": "bb1491eb-30e6-4728-a5fa-72f89feaf622",
+    "warehouseName": "Montreal",
+    "itemName": "Shampooo",
+    "description": "Organic and hypoallergenic, this soap is safe to use for all skin types.",
+    "category": "Health",
     "status": "Out of Stock",
     "quantity": 0
   }

@@ -28,13 +28,21 @@ export default class WarehousePage extends Component {
   };
 
   deleteItem = () => {
-    console.log("deleted");
-    // axios
-    //   .delete(`${apiURL}/inventories/${this.state.currentInventory.id}`)
-    //   .then((res) => {
-    //     this.getAPI();
-    //   })
-    //   .catch((err) => console.log(err));
+    console.log(this.state.currentWarehouse.id);
+    axios
+      .delete(`${apiURL}/warehouses/${this.state.currentWarehouse.id}`)
+      .then((res) => {
+        axios
+          .get(`${apiURL}/warehouses`)
+          .then(({ data }) => {
+            const apiData = data;
+            console.log(apiData[0]);
+            this.setState({ warehouseList: apiData });
+            return apiData;
+          })
+          .catch((err) => console.log("componentDidMount for warehouses", err));
+      })
+      .catch((err) => console.log(err));
   };
 
   getItem = (id) => {

@@ -39,7 +39,7 @@ export default function DeleteModal(props) {
 
         <button
           onClick={() => {
-            alert(`${props.currentItems.itemName} is deleted.`);
+            alert(`${props.currentItems} is deleted.`);
             props.deleteItem();
             props.hideModal();
           }}
