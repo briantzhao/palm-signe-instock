@@ -14,12 +14,33 @@
 
   &__heading {
     align-self: flex-start;
+    display: flex;
     @include h1-page-header($instock-black, left);
+    @include tablet {
+      flex-grow: 1;
+      padding-left: 2rem;
+    }
+    @include desktop {
+      flex-grow: 1;
+      padding-left: 2rem;
+    }
   }
 
   &__form {
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+    }
+    @include desktop {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
   }
 
   &__search {
@@ -35,6 +56,18 @@
     background-position: center right 0.5rem;
     box-sizing: border-box;
     border-radius: 20px;
+    @include tablet {
+      width: 11.5625rem;
+      height: 2.375rem;
+      padding-right: 1rem;
+      margin-bottom: 0;
+    }
+    @include desktop {
+      width: 11.5625rem;
+      height: 2.375rem;
+      padding-right: 1rem;
+      margin-bottom: 0;
+    }
   }
 
   &::placeholder {
@@ -52,6 +85,21 @@
     border-radius: 20px;
     color: #ffffff;
     border-color: transparent;
+    @include mobile {
+      margin-bottom: 1rem;
+    }
+    @include tablet {
+      width: 8rem;
+      height: 2.375rem;
+      margin-left: 1rem;
+      margin-right: 2rem;
+    }
+    @include desktop {
+      width: 8rem;
+      height: 2.375rem;
+      margin-left: 1rem;
+      margin-right: 2rem;
+    }
   }
 
   &__item-link {
@@ -67,7 +115,6 @@
   &__item-span {
     @include h3-labels-links-buttons($instock-indigo, left);
     white-space: nowrap;
-    position: relative;
   }
 
   &__item-chevron {
@@ -81,14 +128,24 @@
     width: 100%;
     border-spacing: 20px;
     table-layout: fixed;
+    border-collapse: collapse;
+  }
+  &__table-sort-icon {
+    vertical-align: bottom;
   }
 
   &__table-head {
-    margin: 0;
-    padding: 0;
+    width: 44rem;
+    height: 2.5rem;
+    background-color: $light-grey;
+
     @include mobile {
       display: none;
     }
+  }
+
+  &__table-row-head {
+    margin-left: 2rem;
   }
 
   &__table-heading {
@@ -96,6 +153,12 @@
     font-size: 11px;
     color: #5c667e;
     text-align: left;
+    @include tablet {
+      padding-bottom: 1rem;
+    }
+    @include desktop {
+      padding-bottom: 1rem;
+    }
   }
 
   &__table-data {
@@ -107,16 +170,26 @@
     flex-direction: column;
   }
 
-  &__table-wrap {
+  &__table-body {
     border-top: 2px solid $cloud;
-    padding: 0;
-    margin: 0;
+    @include tablet {
+      border-bottom: 2px solid $cloud;
+      border-top: none;
+    }
+    @include desktop {
+      border-bottom: 2px solid $cloud;
+      border-top: none;
+    }
+  }
 
-    width: 100%;
+  &__table-wrap {
+    margin-left: 2rem;
+    @include mobile {
+      margin: 0 1rem;
+    }
   }
 
   &__table-row-top {
-    border-top: $cloud solid 1px;
   }
 
   &__table-row {
@@ -133,12 +206,34 @@
       & > * {
         width: 100%;
       }
+
+      align-items: center;
     }
     @include desktop {
       flex-wrap: nowrap;
       & > * {
         width: 100%;
       }
+
+      align-items: center;
+    }
+  }
+
+  &__table-heading-quantity {
+    @include tablet {
+      width: 50%;
+    }
+    @include desktop {
+      width: 50%;
+    }
+  }
+
+  &__table-quantity {
+    @include tablet {
+      width: 50%;
+    }
+    @include desktop {
+      width: 50%;
     }
   }
 
@@ -154,6 +249,7 @@
   &__table-data-icons-wrap {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 1rem;
     @include tablet {
       display: none;
     }
@@ -172,6 +268,15 @@
       display: flex;
       order: 6;
     }
+  }
+
+  &__table-data-icons--delete-tablet {
+    padding-right: 1.5rem;
+  }
+
+  &__table-data-icons--delete,
+  &__table-data-icons--edit {
+    cursor: pointer;
   }
 
   &__table-data-icons--delete {
@@ -265,12 +370,23 @@
       font-weight: 600;
     }
   }
+
+  &__table-heading-category {
+    @include tablet {
+      width: 70%;
+    }
+    @include desktop {
+      width: 70%;
+    }
+  }
   &__table-category {
     @include tablet {
       order: 2;
+      width: 70%;
     }
     @include desktop {
       order: 2;
+      width: 70%;
     }
     &:before {
       display: flex;

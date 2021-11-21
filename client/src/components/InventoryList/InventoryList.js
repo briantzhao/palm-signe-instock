@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
+import sortIcon from "../../assets/icons/sort-24px.svg";
 
 export default function InventoryList({ inventoryItems, getItem }) {
   return (
@@ -27,13 +28,58 @@ export default function InventoryList({ inventoryItems, getItem }) {
 
       <table className="inventory-list__table">
         <thead className="inventory-list__table-head">
-          <tr className="inventory-list__table-row">
-            <th className="inventory-list__table-heading">INVENTORY ITEM</th>
-            <th className="inventory-list__table-heading">CATEGORY</th>
-            <th className="inventory-list__table-heading">STATUS</th>
-            <th className="inventory-list__table-heading">QTY</th>
-            <th className="inventory-list__table-heading">WAREHOUSE</th>
-            <th className="inventory-list__table-heading">ACTIONS</th>
+          <tr className="inventory-list__table-row inventory-list__table-row-head">
+            <th className="inventory-list__table-heading">
+              INVENTORY ITEM
+              {/* <span> */}
+              <img
+                src={sortIcon}
+                alt="sort icon"
+                className="inventory-list__table-sort-icon"
+              />
+              {/* </span> */}
+            </th>
+            <th className="inventory-list__table-heading inventory-list__table-heading-category">
+              CATEGORY{" "}
+              <img
+                src={sortIcon}
+                alt="sort icon"
+                className="inventory-list__table-sort-icon"
+              />
+            </th>
+            <th className="inventory-list__table-heading">
+              STATUS{" "}
+              <img
+                src={sortIcon}
+                alt="sort icon"
+                className="inventory-list__table-sort-icon"
+              />
+            </th>
+            <th className="inventory-list__table-heading inventory-list__table-heading-quantity">
+              QTY{" "}
+              <img
+                src={sortIcon}
+                alt="sort icon"
+                className="inventory-list__table-sort-icon"
+              />
+            </th>
+            <th className="inventory-list__table-heading">
+              WAREHOUSE{" "}
+              <img
+                src={sortIcon}
+                alt="sort icon"
+                className="inventory-list__table-sort-icon"
+              />
+            </th>
+            <th className="inventory-list__table-heading">
+              ACTIONS{" "}
+              <img
+                src={sortIcon}
+                alt="sort icon"
+                className="inventory-list__table-sort-icon"
+                style={{ visibility: "hidden" }}
+              />
+            </th>
           </tr>
         </thead>
         {inventoryItems.map(
@@ -103,7 +149,8 @@ export default function InventoryList({ inventoryItems, getItem }) {
                       <img
                         src={deleteIcon}
                         alt="delete icon"
-                        className="inventory-list__table-data-icons--delete"
+                        className="inventory-list__table-data-icons--delete
+                        inventory-list__table-data-icons--delete-tablet"
                         onClick={() => {
                           getItem(itemName, id);
                         }}
@@ -116,7 +163,8 @@ export default function InventoryList({ inventoryItems, getItem }) {
                       />
                     </td>
                   </tr>
-                  <tr className="inventory-list__table-row">
+
+                  <tr className="inventory-list__table-row inventory-list__table-row--large">
                     <td
                       className="inventory-list__table-data-icons-wrap"
                       colSpan="2"

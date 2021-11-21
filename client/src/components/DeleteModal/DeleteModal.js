@@ -5,7 +5,6 @@ export default function DeleteModal(props) {
   return (
     <Modal
       isOpen={props.modalState}
-      // isOpen={true}
       ariaHideApp={false}
       className="delete-modal"
       overlayClassName="delete-modal__overlay"
