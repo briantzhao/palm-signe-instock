@@ -80,7 +80,7 @@ export default function InventoryList({ inventoryItems, getItem }) {
                   >
                     {warehouseName}
                   </td>
-                  <td //TODO:
+                  <td
                     className="inventory-list__table-data--tablet-icons-wrap"
                     colSpan="2"
                     style={{ width: "100%" }}

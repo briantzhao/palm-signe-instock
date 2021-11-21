@@ -52,7 +52,7 @@ export default class WarehousePage extends Component {
   };
 
   render() {
-    if (!this.state.warehouseList && !this.state.modalOpen) {
+    if (!this.state.warehouseList) {
       return <h1>Loading...</h1>;
     }
     return (

@@ -127,6 +127,8 @@
   }
 
   &__table-data-icons-wrap {
+    display: flex;
+    justify-content: space-between;
     @include tablet {
       display: none;
     }
