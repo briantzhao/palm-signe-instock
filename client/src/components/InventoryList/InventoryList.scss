@@ -14,6 +14,7 @@
 
   &__heading {
     align-self: flex-start;
+    @include h1-page-header($instock-black, left);
   }
 
   &__form {
@@ -47,7 +48,7 @@
     justify-content: center;
     width: 18.4375rem;
     height: 2.25rem;
-    background: #2e66e6;
+    background: $instock-indigo;
     border-radius: 20px;
     color: #ffffff;
     border-color: transparent;
@@ -55,8 +56,23 @@
 
   &__item-link {
     text-decoration: none;
+    display: flex;
+    flex-wrap: nowrap;
+
     &:visited {
       color: inherit;
+    }
+  }
+
+  &__item-span {
+    @include h3-labels-links-buttons($instock-indigo, left);
+    white-space: nowrap;
+    position: relative;
+  }
+
+  &__item-chevron {
+    &:hover {
+      animation: animate-link 0.6s ease-out infinite;
     }
   }
 
@@ -67,14 +83,19 @@
     table-layout: fixed;
   }
 
+  &__table-head {
+    margin: 0;
+    padding: 0;
+    @include mobile {
+      display: none;
+    }
+  }
+
   &__table-heading {
     font-weight: 600;
     font-size: 11px;
     color: #5c667e;
     text-align: left;
-    @include mobile {
-      display: none;
-    }
   }
 
   &__table-data {
@@ -86,7 +107,12 @@
     flex-direction: column;
   }
 
-  &__table-body {
+  &__table-wrap {
+    border-top: 2px solid $cloud;
+    padding: 0;
+    margin: 0;
+
+    width: 100%;
   }
 
   &__table-row-top {
@@ -94,12 +120,11 @@
   }
 
   &__table-row {
-    margin: 0 1rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-
+    padding-top: 1rem;
     & > * {
       width: calc(100% / 3);
     }
@@ -170,13 +195,15 @@
 
   &__table-item {
     color: #2e66e5;
-
+    padding-bottom: 1.25rem;
     @include tablet {
       order: 1;
+      padding-bottom: 0;
     }
 
     @include desktop {
       order: 1;
+      padding-bottom: 0;
     }
 
     &:before {
@@ -213,6 +240,31 @@
       }
     }
   }
+
+  &__status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    &--instock {
+      background: rgba(21, 132, 99, 0.07);
+      @include p3-body-small($green, center);
+      width: 3.8125rem;
+      font-weight: 600;
+    }
+    &--nostock {
+      background: rgba(201, 69, 21, 0.07);
+      @include p3-body-small($green, center);
+      width: 5.375rem;
+      color: $red;
+      font-weight: 600;
+    }
+  }
   &__table-category {
     @include tablet {
       order: 2;
@@ -234,12 +286,14 @@
     }
   }
   &__table-quantity {
+    padding-bottom: 1rem;
     @include tablet {
       order: 4;
+      padding-bottom: 0rem;
     }
-
     @include desktop {
       order: 4;
+      padding-bottom: 0rem;
     }
     &:before {
       display: flex;
@@ -273,5 +327,17 @@
         display: none;
       }
     }
+  }
+}
+
+@keyframes animate-link {
+  0% {
+    transform: translateX(0rem);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateX(0.25rem);
+    opacity: 0.5;
   }
 }

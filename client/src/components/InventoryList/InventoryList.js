@@ -26,7 +26,7 @@ export default function InventoryList({ inventoryItems, getItem }) {
       </form>
 
       <table className="inventory-list__table">
-        <thead>
+        <thead className="inventory-list__table-head">
           <tr className="inventory-list__table-row">
             <th className="inventory-list__table-heading">INVENTORY ITEM</th>
             <th className="inventory-list__table-heading">CATEGORY</th>
@@ -51,78 +51,94 @@ export default function InventoryList({ inventoryItems, getItem }) {
           ) => (
             <>
               <tbody className="inventory-list__table-body">
-                <tr className="inventory-list__table-row inventory-list__table-row">
-                  <td className="inventory-list__table-data inventory-list__table-item">
-                    <Link
-                      to={`/inventories/${id}`}
-                      className="inventory-list__item-link"
-                      key={id}
-                    >
-                      <span>{itemName}</span>
-                      {/* <img src={chevron} alt="right icon link" /> */}
-                    </Link>
-                  </td>
-                  <td className="inventory-list__table-data inventory-list__table-status">
-                    {status}
-                  </td>
+                <div key={id} className="inventory-list__table-wrap">
+                  <tr className="inventory-list__table-row">
+                    <td className="inventory-list__table-data inventory-list__table-item">
+                      <Link
+                        to={`/inventories/${id}`}
+                        className="inventory-list__item-link"
+                        key={id}
+                      >
+                        <span className="inventory-list__item-span">
+                          {itemName}
+                        </span>
+                        <img
+                          src={chevron}
+                          alt="right icon link"
+                          className="inventory-list__item-chevron"
+                        />
+                      </Link>
+                    </td>
+                    <td className="inventory-list__table-data inventory-list__table-status">
+                      <div
+                        className={
+                          status.toLowerCase() === "in stock"
+                            ? "inventory-list__status inventory-list__status--instock"
+                            : "inventory-list__status inventory-list__status--nostock"
+                        }
+                      >
+                        {status}
+                      </div>
+                    </td>
 
-                  <td className="inventory-list__table-data inventory-list__table-category">
-                    {category}
-                  </td>
-                  <td className="inventory-list__table-data inventory-list__table-quantity">
-                    {quantity}
-                  </td>
+                    <td className="inventory-list__table-data inventory-list__table-category">
+                      {category}
+                    </td>
+                    <td className="inventory-list__table-data inventory-list__table-quantity">
+                      {quantity}
+                    </td>
 
-                  <td className="inventory-list__table-data-empty"> </td>
-                  <td
-                    className="inventory-list__table-data 
+                    <td className="inventory-list__table-data-empty"> </td>
+                    <td
+                      className="inventory-list__table-data 
                   inventory-list__table-warehouse"
-                  >
-                    {warehouseName}
-                  </td>
-                  <td
-                    className="inventory-list__table-data--tablet-icons-wrap"
-                    colSpan="2"
-                    style={{ width: "100%" }}
-                  >
-                    <img
-                      src={deleteIcon}
-                      alt="delete icon"
-                      className="inventory-list__table-data-icons--delete"
-                      onClick={() => {
-                        getItem(itemName, id);
-                      }}
-                    />
+                    >
+                      {warehouseName}
+                    </td>
+                    <td
+                      className="inventory-list__table-data--tablet-icons-wrap"
+                      colSpan="2"
+                      style={{ width: "100%" }}
+                    >
+                      <img
+                        src={deleteIcon}
+                        alt="delete icon"
+                        className="inventory-list__table-data-icons--delete"
+                        onClick={() => {
+                          getItem(itemName, id);
+                        }}
+                      />
 
-                    <img
-                      src={editIcon}
-                      alt="edit icon"
-                      className="inventory-list__table-data-icons--edit"
-                    />
-                  </td>
-                </tr>
-                <tr className="inventory-list__table-row">
-                  <td
-                    className="inventory-list__table-data-icons-wrap"
-                    colSpan="2"
-                    style={{ width: "100%" }}
-                  >
-                    <img
-                      src={deleteIcon}
-                      alt="delete icon"
-                      className="inventory-list__table-data-icons--delete"
-                      onClick={() => {
-                        getItem(itemName, id);
-                      }}
-                    />
+                      <img
+                        src={editIcon}
+                        alt="edit icon"
+                        className="inventory-list__table-data-icons--edit"
+                      />
+                    </td>
+                  </tr>
+                  <tr className="inventory-list__table-row">
+                    <td
+                      className="inventory-list__table-data-icons-wrap"
+                      colSpan="2"
+                      style={{ width: "100%" }}
+                    >
+                      <img
+                        src={deleteIcon}
+                        alt="delete icon"
+                        className="inventory-list__table-data-icons--delete"
+                        onClick={() => {
+                          getItem(itemName, id);
+                        }}
+                      />
 
-                    <img
-                      src={editIcon}
-                      alt="edit icon"
-                      className="inventory-list__table-data-icons-edit"
-                    />
-                  </td>
-                </tr>
+                      <img
+                        src={editIcon}
+                        alt="edit icon"
+                        className="inventory-list__table-data-icons-edit"
+                      />
+                    </td>
+                  </tr>
+                </div>
               </tbody>
             </>
           )
