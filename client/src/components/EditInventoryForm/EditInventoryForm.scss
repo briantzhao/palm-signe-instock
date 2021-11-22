@@ -163,3 +163,10 @@
     }
   }
 }
+
+.outofstock {
+  display: none;
+  &-not {
+    color: black;
+  }
+}

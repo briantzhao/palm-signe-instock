@@ -11,7 +11,7 @@ export default class EditInventoryForm extends Component {
     description: "",
     category: "",
     status: null,
-    quantity: 0,
+    quantity: NaN,
     warehouseName: "",
   };
 
@@ -28,19 +28,19 @@ export default class EditInventoryForm extends Component {
   // SO, what I need to do is:
   // GET request to /inventories/:inventoryID
   componentDidMount() {
-    let id;
     axios
-      .get("/inventories")
+      .get("http://localhost:8080/inventories")
       .then((response) => {
-        // response.data.find((warehouse) => {
-        //   return warehouse.id === id;
-        // });
-        console.log(response.data[0].id);
+        let foundId = response.data.find((inventory) => {
+          return inventory.id === this.props.match.params.id;
+        });
+        console.log(this.props.match.params.id);
+        console.log(foundId.id);
         return axios
-          .get(`/inventories/${response.data[0].id}`)
+          .get(`http://localhost:8080/inventories/${foundId.id}`)
           .then((response) => {
+            console.log(response.data);
             const {
-              warehouseID,
               warehouseName,
               itemName,
               description,
@@ -48,9 +48,8 @@ export default class EditInventoryForm extends Component {
               status,
               quantity,
             } = response.data;
-            //   console.log(this.state);
+            // console.log(response.data.itemName);
             this.setState({
-              warehouseID,
               warehouseName,
               itemName,
               description,
@@ -59,27 +58,60 @@ export default class EditInventoryForm extends Component {
               quantity,
             });
           });
-        // console.log(response.data[0].id);
       })
-      .then((response) => {
-        axios.get(`/inventories/${id}`).then((response) => {
-          //   const {
-          //     name,
-          //     address,
-          //     city,
-          //     country,
-          //     contact,
-          //     position,
-          //     phone,
-          //     email,
-          //   } = this.state;
-          //   console.log(this.state);
-          this.setState({ name: response.data.name });
-        });
+      .catch((err) => {
+        console.log(err);
       });
   }
 
+  handleStatus = (event) => {
+    // if in stock, return this.state status === true
+    // if out of stock, state of status === false
+
+    // if state of status === "out of stock"
+    // do not display quantity bar
+    // true = in stock; false = out of stock
+    let enteredQuantity = Number(event.target.value);
+    this.setState({ quantity: this.enteredQuantity });
+
+    if (enteredQuantity > 0) {
+      this.setState({ status: "In Stock" });
+    } else if (enteredQuantity === 0) {
+      this.setState({ status: "Out of Stock" });
+    }
+
+    if (this.state.status === "In Stock") {
+      console.log("In Stock");
+    } else {
+      console.log("Out of Stock");
+    }
+
+    console.log(this.state.status);
+    console.log(event.target.value);
+    return;
+  };
+
+  // if status = false
+  // do not display quantity bar
+
+  // foundWarehouse = (event) => {
+  //   axios.get("/inventories").then((response) => {
+  //     let warehouses = response.data.find((warehouse) => {
+  //       return warehouse.id === this.props.match.params.id;
+  // console.log(warehouse.id);
+  // console.log(this.props.match.params.id);
+  // });
+  // console.log(warehouses.warehouseName);
+
+  // infinite loop
+
+  //     // return warehouses.warehouseName;
+  // this.setState({ warehouseName: warehouses.warehouseName });
+  //   });
+  // };
+
   render() {
+    // console.log(this.foundWarehouse());
     return (
       <>
         <form className="edit-inventory-form" onSubmit={this.handleSubmit}>
@@ -105,6 +137,7 @@ export default class EditInventoryForm extends Component {
                   type="text"
                   placeholder="Item Name"
                   name="name"
+                  value={this.state.itemName}
                 ></input>
               </label>
 
@@ -114,6 +147,7 @@ export default class EditInventoryForm extends Component {
                   className="edit-inventory-form__textarea"
                   placeholder="Description"
                   name="description"
+                  value={this.state.description}
                 />
               </label>
 
@@ -123,7 +157,12 @@ export default class EditInventoryForm extends Component {
                   id="category"
                   name="category"
                   className="edit-inventory-form__field"
+                  value={this.state.category}
                 >
+                  <option value="" selected disabled hidden>
+                    Please Select
+                  </option>
+                  <option value="">{this.state.category}</option>
                   <option value="electronics">Electronics</option>
                   <option value="gear">Gear</option>
                   <option value="apparel">Apparel</option>
@@ -148,6 +187,9 @@ export default class EditInventoryForm extends Component {
                     id="in-stock"
                     name="stock"
                     value="in-stock"
+                    checked={
+                      this.state.status === "In Stock" ? "true" : "false"
+                    }
                   />
                   <label for="in-stock">In Stock</label>
                 </div>
@@ -157,6 +199,14 @@ export default class EditInventoryForm extends Component {
                     id="out-of-stock"
                     name="stock"
                     value="out-of-stock"
+                    // checked={
+                    //   this.state.status === "In Stock" ? "false" : "true"
+                    // }
+                    className={
+                      this.state.status === "Out of Stock"
+                        ? "outofstock"
+                        : "outofstock-not"
+                    }
                   />
                   <label for="out-of-stock">Out of Stock</label>
                 </div>
@@ -168,6 +218,8 @@ export default class EditInventoryForm extends Component {
                   type="text"
                   placeholder="0"
                   name="quantity"
+                  value={this.state.quantity}
+                  onChange={this.handleStatus}
                 ></input>
               </label>
               <label className="edit-inventory-form__label" for="category">
@@ -177,6 +229,8 @@ export default class EditInventoryForm extends Component {
                   name="category"
                   className="edit-inventory-form__field"
                 >
+                  {/* <option value={this.foundWarehouse()}></option> */}
+
                   <option value="manhattan">Manhattan</option>
                   <option value="gear">Gear</option>
                   {/* hardcoded for now - use .map  */}

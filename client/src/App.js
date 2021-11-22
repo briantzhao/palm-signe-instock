@@ -21,10 +21,7 @@ function App() {
             <Route path="/" exact component={WarehousePage} />
             <Route path="/inventory/" exact component={InventoryPage} />
             <Route path="/add" component={AddWarehouseForm} />
-            <Route
-              path="/inventory/:inventoryId/edit"
-              component={EditInventoryForm}
-            />
+            <Route path="/inventory/:id/edit" component={EditInventoryForm} />
             <Route path="/:id/inventory" component={WarehouseInventoryList} />
             <Route path="/inventory/add" component={AddInventoryItemForm} />
             {/* <Route path="/notfound/" component={NotFoundPage} /> */}
