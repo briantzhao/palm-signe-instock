@@ -107,6 +107,10 @@
       padding-bottom: 0.5rem;
       @include h3-labels-links-buttons($slate, left);
     }
+
+    &--error {
+      border-color: $red;
+    }
   }
   &__status-container {
     display: flex;

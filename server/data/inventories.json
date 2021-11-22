@@ -221,10 +221,10 @@
   },
   {
     "id": "3b042051-f18c-4a16-a393-68ceba87277a",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
+    "warehouseID": "",
     "warehouseName": "Granville",
     "itemName": "Hoodie",
-    "description": "A simple 100% cotton hoodie, this is an essential piece for any wardrobe.",
+    "description": "A simple 100% cotton hoodie, this is an essential piece for any wardrobe.123",
     "category": "Apparel",
     "status": "In Stock",
     "quantity": 245
@@ -271,10 +271,10 @@
   },
   {
     "id": "70ca48a6-93e2-4ff0-b3a2-f5a38f1a043e",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
+    "warehouseID": "",
     "warehouseName": "Granville",
     "itemName": "Winter Jacket",
-    "description": "Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ",
+    "description": "Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. 123",
     "category": "Apparel",
     "status": "In Stock",
     "quantity": 125
