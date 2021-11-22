@@ -173,7 +173,7 @@ export default class WarehouseInventoryList extends Component {
                     <td className="warehouse-inventory-list__item">
                       <Link
                         className="warehouse-inventory-list__item__cell"
-                        to=""
+                        to={`/inventories/${id}`}
                       >
                         {itemName}
                         <img
