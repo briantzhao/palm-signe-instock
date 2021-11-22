@@ -1,21 +1,16 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-//styles form as a card with box shadow
-.add-warehouse-form {
-  @include tablet {
-    text-align: left;
-  }
-  @include desktop {
-    text-align: left;
-  }
+* {
+  font-family: "Titillium Web";
+}
 
+.edit-inventory-form {
   &__arrow {
     margin-right: 0.75rem;
     max-width: 1rem;
     max-height: 1rem;
   }
-
   &__title {
     @include h1-page-header($instock-black, center);
     padding-bottom: 1.5rem;
@@ -29,13 +24,11 @@
     }
     @include desktop {
       text-align: left;
-      margin: 0;
       padding-left: 2.75rem;
       border-bottom: 1px solid $grey;
       padding-bottom: 1.3125rem;
     }
   }
-
   &__main {
     text-align: left;
     @include tablet {
@@ -47,7 +40,6 @@
       padding: 1.5rem 0rem;
     }
   }
-
   &__details {
     border-top: 1px solid #bdc5d5;
     padding: 0 1.5rem;
@@ -67,12 +59,10 @@
       gap: 1.5rem;
       padding: 0 2.5rem;
     }
-
     &-1 {
       border-right: 1px solid #bdc5d5;
     }
   }
-
   &__subtitle {
     @include h2-subheader($instock-black, left);
     @include tablet {
@@ -84,15 +74,13 @@
       padding-bottom: 0.5rem;
     }
   }
-
   &__label {
     @include h3-labels-links-buttons($instock-black, left);
     display: flex;
     flex-direction: column;
   }
-
   &__field {
-    height: 20.25rem;
+    height: 2.25rem;
     border-radius: 1.25rem;
     border: 1px solid gray;
     margin-top: 0.25rem;
@@ -103,10 +91,23 @@
     @include desktop {
       height: 2.375rem;
     }
-
     &::placeholder {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
+      @include h3-labels-links-buttons($slate, left);
+    }
+    &--error {
+      border-color: $red;
+    }
+  }
+  &__textarea {
+    height: 7.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid gray;
+    margin-top: 0.25rem;
+    padding: 0.8rem;
+    &::placeholder {
+      padding: 0.8rem;
       @include h3-labels-links-buttons($slate, left);
     }
 
@@ -114,7 +115,13 @@
       border-color: $red;
     }
   }
-
+  &__status-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+  &__status-instock {
+    padding-right: 30px;
+  }
   &__error {
     display: flex;
     gap: 0.333rem;
@@ -123,7 +130,6 @@
     margin-bottom: 0;
     align-items: center;
   }
-
   &__buttons {
     padding: 1rem 1.5rem;
     background-color: rgba(247, 248, 249, 0.7);
@@ -140,7 +146,6 @@
       padding: 1rem 2.5rem;
     }
   }
-
   &__cancel,
   &__submit {
     text-decoration: none;
@@ -157,7 +162,6 @@
       width: 4.5rem;
     }
   }
-
   &__submit {
     color: $white;
     background-color: $instock-indigo;
@@ -167,5 +171,12 @@
     @include desktop {
       width: 8.625rem;
     }
+  }
+}
+
+.outofstock {
+  display: none;
+  &-not {
+    color: black;
   }
 }
