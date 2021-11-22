@@ -39,7 +39,11 @@ export default class InventoryDetail extends Component {
             </Link>
             <h1 className="inventory-detail__title">{itemName}</h1>
           </article>
-          <Link className="inventory-detail__edit-button" to="">
+          <Link
+            className="inventory-detail__edit-button"
+            to={`/inventory/${this.props.match.params.id}/edit`}
+            key={this.props.match.params.id}
+          >
             <svg
               className="inventory-detail__edit-icon"
               xlms="http://www.w3.org/2000/svg"
