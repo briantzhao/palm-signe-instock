@@ -1,6 +1,10 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
+* {
+  font-family: "Titillium Web";
+}
+
 .edit-inventory-form {
   &__arrow {
     margin-right: 0.75rem;
@@ -101,10 +105,9 @@
     border-radius: 1.25rem;
     border: 1px solid gray;
     margin-top: 0.25rem;
-    padding-left: 1rem;
+    padding: 0.8rem;
     &::placeholder {
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding: 0.8rem;
       @include h3-labels-links-buttons($slate, left);
     }
 
@@ -114,7 +117,10 @@
   }
   &__status-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+  }
+  &__status-instock {
+    padding-right: 30px;
   }
   &__error {
     display: flex;

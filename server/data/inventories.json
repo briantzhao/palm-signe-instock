@@ -1,9 +1,9 @@
 [
   {
     "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "warehouseName": "Manhattan",
-    "itemName": "Television",
+    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
+    "warehouseName": "Granville",
+    "itemName": "Television123",
     "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
     "category": "Electronics",
     "status": "In Stock",
@@ -122,7 +122,7 @@
   {
     "id": "72c826ba-fde0-4aae-9aaf-95c6072946cd",
     "warehouseID": "5bf7bd6c-2b16-4129-bddc-9d37ff8539e9",
-    "warehouseName": "King West",
+    "warehouseName": "King West2",
     "itemName": "T-Shirt",
     "description": "Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe",
     "category": "Apparel",

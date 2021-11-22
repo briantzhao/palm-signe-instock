@@ -25,36 +25,28 @@ export default class EditInventoryForm extends Component {
     warehouses: [],
   };
 
-  // to GET all inventory from one warehouse:
-  // /inventories/warehouses/:warehouseID
-
-  // to GET individual inventory item data:
-  // /inventories/:inventoryID
-
-  // need to:
-  // GET request to /inventories/:inventoryID
   componentDidMount() {
+    axios.get(`${API_URL}warehouses`).then((response) => {
+      // console.log(response.data);
+      const warehouseList = response.data.map((warehouse) => {
+        return warehouse.id + "," + warehouse.name;
+      });
+      this.setState({ warehouses: warehouseList });
+    });
+
     axios
-      .get("http://localhost:8080/inventories")
+      .get(`${API_URL}inventories`)
       .then((response) => {
         let foundId = response.data.find((inventory) => {
           return inventory.id === this.props.match.params.id;
         });
 
-        console.log(response.data);
-        const warehouseList = response.data.map((warehouse) => {
-          return warehouse.warehouseID + "," + warehouse.warehouseName;
-        });
-        this.setState({ warehouses: warehouseList });
-
-        console.log(this.props.match.params.id);
-        console.log(foundId.id);
         return axios
-          .get(`http://localhost:8080/inventories/${foundId.id}`)
+          .get(`${API_URL}inventories/${foundId.id}`)
           .then((response) => {
             const {
               warehouseName,
-              warehouseId,
+              warehouseID,
               itemName,
               description,
               category,
@@ -62,10 +54,9 @@ export default class EditInventoryForm extends Component {
               quantity,
             } = response.data;
 
-            // console.log(response.data.itemName);
             this.setState({
               warehouseName,
-              warehouseId,
+              warehouseID,
               itemName,
               description,
               category,
@@ -80,55 +71,18 @@ export default class EditInventoryForm extends Component {
   }
 
   handleStatus = (event) => {
-    // if state of status === "out of stock"
-    // do not display quantity bar
-    // true = in stock; false = out of stock
-    // console.log(event.target.name);
-    // let enteredQuantity = Number(event.target.value);
-    // this.setState({ quantity: this.enteredQuantity });
-
-    // if (enteredQuantity > 0) {
-    //   this.setState({ status: "In Stock" });
-    // } else if (enteredQuantity === 0) {
-    //   this.setState({ status: "Out of Stock" });
-    // }
-
-    // if (this.state.status === "Out of Stock") {
-    //   this.setState({ status: "Out of Stock", quantity: 0 });
-    // } else if (this.state.status === "In Stock") {
-    //   this.setState({ status: "In Stock", quantity: 1 });
-
     if (event.target.name === "quantity") {
       const val = Number(event.target.value);
       this.setState({ [event.target.name]: val });
       return;
     }
-    //sets quantity back to 0 if out of stock is re-selected
-    if (
-      event.target.value === "Out of Stock" &&
-      event.target.name === "status"
-    ) {
-      this.setState({ quantity: 0 });
-    }
+
     this.setState({ [event.target.name]: event.target.value }, () => {
       this.validate(event.target.name, event.target.value);
     });
   };
 
   handleEditWarehouse = (event) => {
-    // axios.get("http://localhost:8080/inventories").then((response) => {
-    //   console.log(event.target.value);
-    //   let foundId = response.data.find((inventory) => {
-    // console.log(inventory.warehouseName);
-    // console.log(event.target.value);
-    //   return inventory.warehouseName === event.target.value;
-    // });
-    // console.log(foundId.warehouseID);
-
-    // if (this.state.warehouseName) {
-    //   return foundId.warehouseID;
-    // }
-    // });
     if (event.target.name === "warehouse") {
       const whID = event.target.value.split(",")[0];
       const whName = event.target.value.split(",")[1];
@@ -221,6 +175,7 @@ export default class EditInventoryForm extends Component {
         })
         .then(() => {
           alert("You have successfully edited this item.");
+          console.log(warehouseName, warehouseID);
           this.props.history.push("/inventory");
         })
         .catch((err) => {
@@ -231,29 +186,12 @@ export default class EditInventoryForm extends Component {
 
   // if you click out of stock, set quantity to zero
   handleClickOOS = () => {
-    this.setState({ status: "Out of Stock" });
+    this.setState({ status: "Out of Stock", quantity: 0 });
   };
 
   handleClickIS = () => {
     this.setState({ status: "In Stock" });
   };
-
-  // if status = false
-  // do not display quantity bar
-
-  // foundWarehouse = (event) => {
-  //   axios.get("/inventories").then((response) => {
-  //     let warehouses = response.data.find((warehouse) => {
-  //       return warehouse.id === this.props.match.params.id;
-  // console.log(warehouse.id);
-  // console.log(this.props.match.params.id);
-  // });
-  // console.log(warehouses.warehouseName);
-
-  //     // return warehouses.warehouseName;
-  // this.setState({ warehouseName: warehouses.warehouseName });
-  //   });
-  // };
 
   render() {
     return (
@@ -369,16 +307,13 @@ export default class EditInventoryForm extends Component {
                 Status
               </label>
               <div className="edit-inventory-form__status-container">
-                <div>
+                <div className="edit-inventory-form__status-instock">
                   <input
                     type="radio"
                     id="in-stock"
                     name="stock"
                     value="in-stock"
                     onChange={this.handleStatus}
-                    checked={
-                      this.state.status === "In Stock" ? "true" : "false"
-                    }
                     onClick={this.handleClickIS}
                   />
                   <label for="in-stock">In Stock</label>
@@ -391,14 +326,6 @@ export default class EditInventoryForm extends Component {
                     value="out-of-stock"
                     onChange={this.handleStatus}
                     onClick={this.handleClickOOS}
-                    // checked={
-                    //   this.state.status === "In Stock" ? "false" : "true"
-                    // }
-                    // className={
-                    //   this.state.status === "Out of Stock"
-                    //     ? "outofstock"
-                    //     : "outofstock-not"
-                    // }
                   />
                   <label for="out-of-stock">Out of Stock</label>
                 </div>
@@ -430,21 +357,15 @@ export default class EditInventoryForm extends Component {
               ) : (
                 <> </>
               )}
-              <label className="edit-inventory-form__label" for="category">
+              <label className="edit-inventory-form__label" for="warehouse">
                 Warehouse
                 <select
                   id="category"
-                  name="category"
+                  name="warehouse"
                   className="edit-inventory-form__field"
-                  onClick={this.handleEditWarehouse}
+                  onChange={this.handleEditWarehouse}
                   placeholder="Please Select"
                 >
-                  <option value="" selected disabled hidden>
-                    Please Select
-                  </option>
-                  {/* {this.state.warehouses.map((warehouse) => {
-                    return <option value={warehouse}>{warehouse}</option>;
-                  })} */}
                   {this.state.warehouses.map((warehouse) => {
                     return (
                       <option value={warehouse}>
@@ -452,10 +373,6 @@ export default class EditInventoryForm extends Component {
                       </option>
                     );
                   })}
-                  {/* <option value={this.state.warehouseName}>
-                    {this.state.warehouseName}
-                  </option> */}
-                  {/* hardcoded for now - use .map  */}
                 </select>
               </label>
             </article>
