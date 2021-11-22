@@ -63,7 +63,11 @@ export default function WarehouseList({ warehouseList, getItem }) {
 									<h4>WAREHOUSE</h4>
 									<Link to={`/${id}/inventory`}>
 										<span className="warehouse--name">{name}</span>
-										<img src={chevron} alt="detail" />
+										<img
+											src={chevron}
+											alt="detail"
+											className="warehouse--chevron"
+										/>
 									</Link>
 								</td>
 								<td className="warehouse__data">
