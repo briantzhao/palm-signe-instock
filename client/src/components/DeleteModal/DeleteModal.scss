@@ -1,0 +1,163 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.delete-modal {
+  background-color: $white;
+  height: 100%;
+  width: 100%;
+  animation-name: openModal;
+  animation-duration: 0.8s;
+  @include tablet {
+    position: absolute;
+    left: 6.25%;
+    right: 6.25%;
+    top: 18.07%;
+    bottom: 56.35%;
+    height: 16.375rem;
+    width: 42rem;
+    border-radius: 3px;
+  }
+
+  @include desktop {
+    position: absolute;
+    left: 23.75%;
+    right: 23.75%;
+    top: 20%;
+    bottom: 51.68%;
+    height: 16.375rem;
+    width: 42rem;
+    border-radius: 3px;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(19, 24, 44, 0.7);
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.3125rem;
+  }
+
+  &__exit,
+  &__button {
+    cursor: pointer;
+  }
+
+  &__exit {
+    order: 1;
+    align-self: flex-end;
+    color: $instock-black;
+    width: 0.875rem;
+    padding-right: 3.125rem;
+    border: none;
+    background-color: transparent;
+    &-icon {
+      font-size: 2rem;
+    }
+  }
+
+  &__heading {
+    order: 2;
+    @include h1-page-header($instock-black, left);
+    width: 21.4375rem;
+    height: 4.5rem;
+    padding: 0 1rem;
+    @include tablet {
+      margin-top: 0;
+      width: 28.1875rem;
+      margin: 0 4rem;
+      height: 2.5rem;
+      white-space: nowrap;
+      padding: 0;
+    }
+    @include desktop {
+      margin-top: 0;
+      width: 28.1875rem;
+      margin: 0 4rem;
+      height: 2.5rem;
+      white-space: nowrap;
+      padding: 0;
+    }
+  }
+
+  &__text {
+    @include p1-body-large($instock-black, left);
+    width: 21.4375rem;
+    padding: 0 1rem;
+    @include tablet {
+      width: 34rem;
+      height: 3.5rem;
+      margin: 0 4rem;
+      padding: 1rem 0 0rem 0;
+    }
+    @include desktop {
+      width: 34rem;
+      height: 3.5rem;
+      margin: 0 4rem;
+      padding: 1rem 0 0rem 0;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 23.8125rem;
+    @include tablet {
+      padding-top: 1rem;
+      justify-content: flex-end;
+      margin-right: 4rem;
+    }
+    @include desktop {
+      padding-top: 1rem;
+      justify-content: flex-end;
+      margin-right: 4rem;
+    }
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 3.9375rem;
+    border: none;
+    border-radius: 20px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0 0.625rem;
+    @include tablet {
+      width: 4.5rem;
+      height: 2.375rem;
+      padding: 0.5rem 1rem;
+    }
+    @include desktop {
+      width: 4.5rem;
+      height: 2.375rem;
+      padding: 0.5rem 1rem;
+    }
+    &--cancel {
+      @include h3-labels-links-buttons($instock-black, center);
+    }
+    &--delete {
+      background-color: $red;
+
+      @include h3-labels-links-buttons($white, center);
+    }
+  }
+}
+
+@keyframes openModal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

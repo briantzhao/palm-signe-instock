@@ -1,17 +1,11 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import "../AddWarehouseForm/AddWarehouseForm.scss";
+import "./EditWarehouseForm.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 
 const API_URL = "http://localhost:8080/";
-
-// if warehouse ID, then:
-// make axios call to GET warehouse details data
-// (populate form values with GET warehouse details data)
-// update state with new data
-// make axios PATCH request to edit data, which will writeFile
 
 export default class EditWarehouseForm extends Component {
   state = {
@@ -34,55 +28,29 @@ export default class EditWarehouseForm extends Component {
   };
 
   componentDidMount() {
-    let id;
     axios
       .get("/warehouses")
       .then((response) => {
-        // response.data.find((warehouse) => {
-        //   return warehouse.id === id;
-        // });
-        return axios
-          .get(`/warehouses/${response.data[0].id}`)
-          .then((response) => {
-            const {
-              name,
-              address,
-              city,
-              country,
-              contact,
-              position,
-              phone,
-              email,
-            } = response.data;
-            //   console.log(this.state);
-            this.setState({
-              name,
-              address,
-              city,
-              country,
-              contact: contact.name,
-              position: contact.position,
-              phone: contact.phone,
-              email: contact.email,
-            });
-          });
-        // console.log(response.data[0].id);
-      })
-      .then((response) => {
-        axios.get(`/warehouses/${id}`).then((response) => {
-          //   const {
-          //     name,
-          //     address,
-          //     city,
-          //     country,
-          //     contact,
-          //     position,
-          //     phone,
-          //     email,
-          //   } = this.state;
-          //   console.log(this.state);
-          this.setState({ name: response.data.name });
+        let foundId = response.data.find((warehouse) => {
+          return warehouse.id === this.props.match.params.id;
         });
+        return axios.get(`/warehouses/${foundId.id}`).then((response) => {
+          const { name, address, city, country } = response.data;
+          const { position, phone, email } = response.data.contact;
+          this.setState({
+            name,
+            address,
+            city,
+            country,
+            contact: response.data.contact.name,
+            position,
+            phone,
+            email,
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -118,6 +86,7 @@ export default class EditWarehouseForm extends Component {
     event.preventDefault();
     const { name, address, city, country, contact, position, phone, email } =
       this.state;
+
     if (
       !(
         name &&
@@ -141,50 +110,54 @@ export default class EditWarehouseForm extends Component {
       this.validate("email", email);
       return;
     }
-    // ID?????????
-    axios
-      .patch(`${API_URL}warehouses/${id}`, {
-        name,
-        address,
-        city,
-        country,
-        contact,
-        position,
-        phone,
-        email,
-      })
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
+
+    axios.get("/warehouses").then((response) => {
+      let foundId = response.data.find((warehouse) => {
+        return warehouse.id === this.props.match.params.id;
       });
+      return axios
+        .patch(`/warehouses/${foundId.id}`, {
+          name,
+          address,
+          city,
+          country,
+          contact,
+          position,
+          phone,
+          email,
+        })
+        .then(() => {
+          this.props.history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   };
 
   render() {
     return (
-      <form className="add-warehouse-form" onSubmit={this.handleSubmit}>
-        {/* Allows form to be used for add and edit pages */}
-        <h1 className="add-warehouse-form__title">
+      <form className="edit-warehouse-form" onSubmit={this.handleSubmit}>
+        <h1 className="edit-warehouse-form__title">
           <Link to="/">
             <img
-              className="add-warehouse-form__arrow"
+              className="edit-warehouse-form__arrow"
               src={arrow}
               alt="Back arrow"
             />
           </Link>
           Edit Warehouse
         </h1>
-        <section className="add-warehouse-form__main">
-          <article className="add-warehouse-form__details add-warehouse-form__details-1">
-            <h2 className="add-warehouse-form__subtitle">Warehouse Details</h2>
-            <label className="add-warehouse-form__label">
+        <section className="edit-warehouse-form__main">
+          <article className="edit-warehouse-form__details edit-warehouse-form__details-1">
+            <h2 className="edit-warehouse-form__subtitle">Warehouse Details</h2>
+            <label className="edit-warehouse-form__label">
               Warehouse Name
               <input
                 className={
                   this.state.nameValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="text"
                 name="name"
@@ -192,9 +165,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.name}
               ></input>
               {!this.state.nameValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -202,13 +175,13 @@ export default class EditWarehouseForm extends Component {
                 </p>
               )}
             </label>
-            <label className="add-warehouse-form__label">
+            <label className="edit-warehouse-form__label">
               Street Address
               <input
                 className={
                   this.state.addressValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="text"
                 name="address"
@@ -216,9 +189,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.address}
               ></input>
               {!this.state.addressValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -226,13 +199,13 @@ export default class EditWarehouseForm extends Component {
                 </p>
               )}
             </label>
-            <label className="add-warehouse-form__label">
+            <label className="edit-warehouse-form__label">
               City
               <input
                 className={
                   this.state.cityValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="text"
                 placeholder="City"
@@ -241,9 +214,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.city}
               ></input>
               {!this.state.cityValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -251,13 +224,13 @@ export default class EditWarehouseForm extends Component {
                 </p>
               )}
             </label>
-            <label className="add-warehouse-form__label">
+            <label className="edit-warehouse-form__label">
               Country
               <input
                 className={
                   this.state.countryValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="text"
                 placeholder="Country"
@@ -266,9 +239,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.country}
               ></input>
               {!this.state.countryValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -277,15 +250,15 @@ export default class EditWarehouseForm extends Component {
               )}
             </label>
           </article>
-          <article className="add-warehouse-form__details">
-            <h2 className="add-warehouse-form__subtitle">Contact Details</h2>
-            <label className="add-warehouse-form__label">
+          <article className="edit-warehouse-form__details">
+            <h2 className="edit-warehouse-form__subtitle">Contact Details</h2>
+            <label className="edit-warehouse-form__label">
               Contact Name
               <input
                 className={
                   this.state.contactValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="text"
                 placeholder="Contact Name"
@@ -294,9 +267,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.contact}
               ></input>
               {!this.state.contactValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -304,13 +277,13 @@ export default class EditWarehouseForm extends Component {
                 </p>
               )}
             </label>
-            <label className="add-warehouse-form__label">
+            <label className="edit-warehouse-form__label">
               Position
               <input
                 className={
                   this.state.positionValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="text"
                 placeholder="Position"
@@ -319,9 +292,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.position}
               ></input>
               {!this.state.positionValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -329,13 +302,13 @@ export default class EditWarehouseForm extends Component {
                 </p>
               )}
             </label>
-            <label className="add-warehouse-form__label">
+            <label className="edit-warehouse-form__label">
               Phone Number
               <input
                 className={
                   this.state.phoneValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="tel"
                 placeholder="Phone Number"
@@ -344,9 +317,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.phone}
               ></input>
               {!this.state.phoneValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -354,13 +327,13 @@ export default class EditWarehouseForm extends Component {
                 </p>
               )}
             </label>
-            <label className="add-warehouse-form__label">
+            <label className="edit-warehouse-form__label">
               Email
               <input
                 className={
                   this.state.emailValid
-                    ? "add-warehouse-form__field"
-                    : "add-warehouse-form__field add-warehouse-form__field--error"
+                    ? "edit-warehouse-form__field"
+                    : "edit-warehouse-form__field edit-warehouse-form__field--error"
                 }
                 type="email"
                 placeholder="Email"
@@ -369,9 +342,9 @@ export default class EditWarehouseForm extends Component {
                 value={this.state.email}
               ></input>
               {!this.state.emailValid && (
-                <p className="add-warehouse-form__error">
+                <p className="edit-warehouse-form__error">
                   <img
-                    className="add-warehouse-form__error__icon"
+                    className="edit-warehouse-form__error__icon"
                     src={error}
                     alt="error icon"
                   />
@@ -381,13 +354,11 @@ export default class EditWarehouseForm extends Component {
             </label>
           </article>
         </section>
-        <section className="add-warehouse-form__buttons">
+        <section className="edit-warehouse-form__buttons">
           <Link to="/">
-            <button className="add-warehouse-form__cancel">Cancel</button>
+            <button className="edit-warehouse-form__cancel">Cancel</button>
           </Link>
-          <button className="add-warehouse-form__submit">
-            + Add Warehouse
-          </button>
+          <button className="edit-warehouse-form__submit">Save</button>
         </section>
       </form>
     );
