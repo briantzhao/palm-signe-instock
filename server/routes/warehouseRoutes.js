@@ -91,15 +91,31 @@ router.get("/:id", (req, res) => {
 });
 
 // patch to make edits to single warehouse
-router.patch("/:id", (req, res, next) => {
+router.patch("/:id", (req, res) => {
   let warehouses = warehouseData;
 
   let individualWarehouse = warehouses.find((warehouse) => {
     return warehouse.id === req.params.id;
   });
 
+  const { name, address, city, country, contact, position, phone, email } =
+    req.body;
+  console.log(name);
+  console.log(req.body);
   if (individualWarehouse) {
-    individualWarehouse = { ...individualWarehouse, ...req.body };
+    // individualWarehouse = { ...individualWarehouse, ...req.body };
+    individualWarehouse = {
+      name,
+      address,
+      city,
+      country,
+      contact: {
+        name: contact,
+        position,
+        phone,
+        email,
+      },
+    };
 
     let index = warehouses.findIndex(
       (warehouse) => warehouse.id === individualWarehouse.id
