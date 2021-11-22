@@ -6,6 +6,8 @@ import chevron from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import axios from "axios";
 import "./WarehouseInventoryList.scss";
+import DeleteModal from "../DeleteModal/DeleteModal";
+import sortIcon from "../../assets/icons/sort-24px.svg";
 
 const API_URL = "http://localhost:8080/";
 
@@ -13,6 +15,8 @@ export default class WarehouseInventoryList extends Component {
   state = {
     warehouse: null,
     inventory: null,
+    modalOpen: false,
+    currentItem: "",
   };
   //grab warehouse and inventory information from server
   componentDidMount() {
@@ -27,6 +31,23 @@ export default class WarehouseInventoryList extends Component {
         this.setState({ warehouse: data });
       });
   }
+
+  hideModal = () => {
+    return this.setState({ modalOpen: false });
+  };
+
+  deleteItem = () => {
+    axios
+      .delete(`${API_URL}/inventories/${this.state.currentItem.id}`)
+      .then()
+      .catch((err) => console.log(err));
+  };
+
+  getItem = (id) => {
+    const foundItem = this.state.inventory.find((item) => item.id === id);
+    this.setState({ modalOpen: true, currentItem: foundItem });
+  };
+
   render() {
     if (!(this.state.warehouse && this.state.inventory)) {
       return <h1>Loading...</h1>;
@@ -35,8 +56,12 @@ export default class WarehouseInventoryList extends Component {
       <div className="warehouse-inventory-list">
         <section className="warehouse-inventory-list__header">
           <article className="warehouse-inventory-list__return">
-            <Link to="">
-              <img src={arrow} alt="Back arrow" />
+            <Link to="/">
+              <img
+                className="warehouse-inventory-list__label__pic"
+                src={arrow}
+                alt="Back arrow"
+              />
             </Link>
             <h1 className="warehouse-inventory-list__title">
               {this.state.warehouse.name}
@@ -92,33 +117,63 @@ export default class WarehouseInventoryList extends Component {
         <table className="warehouse-inventory-list__table">
           <tr className="warehouse-inventory-list__headers">
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--item">
-              INVENTORY ITEM
+              INVENTORY ITEM{" "}
+              <img
+                className="warehouse-inventory-list__label__pic"
+                src={sortIcon}
+              />
             </th>
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--category">
-              CATEGORY
+              CATEGORY{" "}
+              <img
+                className="warehouse-inventory-list__label__pic"
+                src={sortIcon}
+              />
             </th>
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--status">
-              STATUS
+              STATUS{" "}
+              <img
+                className="warehouse-inventory-list__label__pic"
+                src={sortIcon}
+              />
             </th>
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--quantity">
-              QUANTITY
+              QUANTITY{" "}
+              <img
+                className="warehouse-inventory-list__label__pic"
+                src={sortIcon}
+              />
             </th>
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--quantity--desktop">
-              QTY
+              QTY{" "}
+              <img
+                className="warehouse-inventory-list__label__pic"
+                src={sortIcon}
+              />
             </th>
             <th className="warehouse-inventory-list__label warehouse-inventory-list__label--action">
               ACTIONS
             </th>
           </tr>
           {this.state.inventory.map(
-            ({ itemName, category, status, quantity }) => {
+            ({ id, itemName, category, status, quantity }) => {
               return (
                 <>
+                  <DeleteModal
+                    page="Inventory item"
+                    pageList="inventory list"
+                    currentItems={this.state.currentItem.itemName}
+                    modalState={this.state.modalOpen}
+                    onRequest
+                    Close
+                    deleteItem={this.deleteItem}
+                    hideModal={this.hideModal}
+                  />
                   <tr className="warehouse-inventory-list__single">
                     <td className="warehouse-inventory-list__item">
                       <Link
                         className="warehouse-inventory-list__item__cell"
-                        to=""
+                        to={`/inventories/${id}`}
                       >
                         {itemName}
                         <img
@@ -146,16 +201,17 @@ export default class WarehouseInventoryList extends Component {
                       {quantity}
                     </td>
                     <td className="warehouse-inventory-list__action--tablet">
-                      <Link to="">
-                        <img
-                          src={deleteIcon}
-                          alt="Delete item button"
-                          className="warehouse-inventory-list__action__btn"
-                        />
-                      </Link>
+                      <img
+                        src={deleteIcon}
+                        alt="Delete item button"
+                        className="warehouse-inventory-list__action__btn"
+                        onClick={() => {
+                          this.getItem(id);
+                        }}
+                      />
                       <Link
                         className="warehouse-inventory-list__action__edit-link"
-                        to=""
+                        to={`/inventory/${id}/edit`}
                       >
                         <img
                           src={edit}
@@ -168,14 +224,15 @@ export default class WarehouseInventoryList extends Component {
                   {/* extra div outside of table that renders in mobile view for delete and edit buttons */}
                   <div>
                     <td className="warehouse-inventory-list__action">
-                      <Link to="">
-                        <img
-                          src={deleteIcon}
-                          alt="Delete item button"
-                          className="warehouse-inventory-list__action__btn"
-                        />
-                      </Link>
-                      <Link to="">
+                      <img
+                        src={deleteIcon}
+                        alt="Delete item button"
+                        className="warehouse-inventory-list__action__btn"
+                        onClick={() => {
+                          this.getItem(id);
+                        }}
+                      />
+                      <Link to={`/inventory/${id}/edit`}>
                         <img
                           src={edit}
                           alt="Edit item button"
