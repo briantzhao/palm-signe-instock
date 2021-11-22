@@ -9,21 +9,24 @@ import "./InventoryDetail.scss";
 
 const API_URL = "http://localhost:8080/";
 
-export class InventoryDetail extends React {
+export default class InventoryDetail extends Component {
 	state = {
-		inventoryItem: [],
+		inventoryItem: null,
 	};
 	componentDidMount() {
-		console.log(this.props);
-		console.log(this.state);
 		axios
-			.get(`${API_URL}`)
-			.then((res) => this.setState({ inventoryItem: res.data }))
-			.catch((err) => console.log(err, "Check componentDidMount."));
+			.get(`${API_URL}inventories/${this.props.match.params.id}`)
+			.then((res) => {
+				console.log(res.data);
+				this.setState({ inventoryItem: res.data });
+			})
+			.catch((err) => {
+				console.log(err, "Check componentDidMount.");
+			});
 	}
 	render() {
 		if (!this.state.inventoryItem) {
-			return <h1>Loading...</h1>;
+			return <h1 className="loading">Loading...</h1>;
 		}
 		const { itemName, description, category, status, quantity, warehouseName } =
 			this.state.inventoryItem;
@@ -31,7 +34,7 @@ export class InventoryDetail extends React {
 			<section className="inventory-detail">
 				<div className="inventory-detail__header">
 					<article className="inventory-detail__return">
-						<Link to="">
+						<Link to="/inventory">
 							<img src={arrow} alt="Back arrow" />
 						</Link>
 						<h1 className="inventory-detail__title">{itemName}</h1>
@@ -55,38 +58,42 @@ export class InventoryDetail extends React {
 						<h2 className="inventory-detail__details__heading">
 							ITEM DESCRIPTION:
 						</h2>
-						<p className="inventory-detail__details__description">
+						<p className="inventory-detail__details--description">
 							{description}
 						</p>
 						<h2 className="inventory-detail__details__heading">CATEGORY:</h2>
-						<p className="inventory-detail__details__description">{category}</p>
+						<p className="inventory-detail__details--description">{category}</p>
 					</div>
-					<div className="inventory-detail__details--info">
-						<div className="inventory-detail__details--status">
-							<h2 className="inventory-detail__details__heading">STATUS:</h2>
-							//apply conditional in/out stock logic
-							<p
-								className={
-									status === "In Stock"
-										? "warehouse-inventory-list__status--green"
-										: "warehouse-inventory-list__status--red"
-								}
-							>
-								{status}
-							</p>
+					<div className="inventory-detail__details__wrapper">
+						<div className="inventory-detail__details--info">
+							<div className="inventory-detail__details--status">
+								<h2 className="inventory-detail__details__heading">STATUS:</h2>
+								{/* //apply conditional in/out stock logic */}
+								<p
+									className={
+										status === "In Stock"
+											? "inventory-detail__status--green"
+											: "inventory-detail__status--red"
+									}
+								>
+									{status}
+								</p>
+							</div>
+							<div className="inventory-detail__details--quantity">
+								<h2 className="inventory-detail__details__heading">
+									QUANTITY:
+								</h2>
+								<p className="inventory-detail__details--description">
+									{quantity}
+								</p>
+							</div>
 						</div>
-						<div className="inventory-detail__details--quantity">
-							<h2 className="inventory-detail__details__heading">QUANTITY:</h2>
+						<div className="inventory-detail__details--warehouse">
+							<h2 className="inventory-detail__details__heading">WAREHOUSE:</h2>
 							<p className="inventory-detail__details--description">
-								{quantity}
+								{warehouseName}
 							</p>
 						</div>
-					</div>
-					<div className="inventory-detail__details--warehouse">
-						<h2 className="inventory-detail__details__heading"></h2>
-						<p className="inventory-detail__details--description">
-							{warehouseName}
-						</p>
 					</div>
 				</article>
 			</section>

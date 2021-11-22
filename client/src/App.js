@@ -1,22 +1,36 @@
 import "./App.scss";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFountPage";
+import AddWarehouseForm from "./components/AddWarehouseForm/AddWarehouseForm";
+// import NotFoundPage from "./pages/NotFoundPage/NotFountPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import WarehouseInventoryList from "./components/WarehouseInventoryList/WarehouseInventoryList";
+import AddInventoryItemForm from "./components/AddInventoryItemForm/AddInventoryItemForm";
+import InventoryDetail from "./components/InventoryDetail/InventoryDetail";
 
 function App() {
-  return (
-    <div className="App">
-      <Router>
-        <header className="App-header"></header>
-        <Switch>
-          <Route path="/" exact component={WarehousePage} />
-          <Route path="/inventory/" component={InventoryPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Router>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Router>
+				<Header />
+				<main className="App__main">
+					<Switch>
+						<Route path="/" exact component={WarehousePage} />
+						<Route path="/inventory/" exact component={InventoryPage} />
+						<Route path="/add" component={AddWarehouseForm} />
+						<Route path="/:id/inventory" component={WarehouseInventoryList} />
+						<Route path="/inventory/add" component={AddInventoryItemForm} />
+						<Route path="/inventories/:id" component={InventoryDetail} />
+						{/* <Route path="/notfound/" component={NotFoundPage} /> */}
+					</Switch>
+				</main>
+				<Footer />
+			</Router>
+		</div>
+	);
 }
 
 export default App;

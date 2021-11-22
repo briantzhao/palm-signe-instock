@@ -1,0 +1,75 @@
+@use "../../styles/partials/mixins" as *;
+
+.header {
+	background-color: #232940;
+	@include mobile {
+		padding: 2rem 0;
+		height: 12.5rem;
+	}
+	@include tablet {
+		display: flex;
+		justify-content: space-between;
+		height: 11.625rem;
+	}
+	@include desktop {
+		display: flex;
+		justify-content: space-between;
+		height: 11.625rem;
+	}
+}
+
+.header__section-container {
+	display: flex;
+	justify-content: center;
+	@include tablet {
+		margin-right: 2rem;
+	}
+	@include desktop {
+		margin-right: 8.125rem;
+	}
+}
+
+.header__section-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@include tablet {
+		align-items: flex-start;
+		margin: 2.5rem;
+	}
+	@include desktop {
+		align-items: flex-start;
+		margin: 2.5rem 8.125rem;
+	}
+}
+
+.header__link-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.5rem 1rem 0 1rem;
+	width: 100%;
+	@include tablet {
+		align-items: flex-start;
+		margin: 1.5rem 0;
+	}
+	@include desktop {
+		align-items: flex-start;
+		margin: 1.5rem 0;
+	}
+}
+
+.header__link a {
+	color: white;
+	font-size: 0.8125rem;
+	padding: 0.6rem 2rem;
+	text-decoration: none;
+}
+
+.true {
+	color: white;
+	font-size: 0.8125rem;
+	padding: 0.6rem 2rem;
+	border-radius: 20px;
+	background-color: #13182c;
+}
