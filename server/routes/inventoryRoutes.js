@@ -83,13 +83,26 @@ router.post("/", (req, res) => {
   res.status(500).send("Inventory item not created");
 });
 
+// router.get("/:id", (req, res) => {
+//   const { id } = req.params;
+//   const inventory = inventory.find((inventory) => {
+//     return inventory.id === id;
+//   });
+//   if (inventory) {
+//     res.json(inventory);
+//   } else {
+//     res.status(404).send("Page not found.");
+//   }
+// });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  const inventory = inventory.find((inventory) => {
+  let inventory = inventoryData;
+  const individualInventory = inventory.find((inventory) => {
     return inventory.id === id;
   });
-  if (inventory) {
-    res.json(inventory);
+  if (individualInventory) {
+    res.json(individualInventory);
   } else {
     res.status(404).send("Page not found.");
   }
