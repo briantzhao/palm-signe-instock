@@ -127,7 +127,7 @@ export default class EditWarehouseForm extends Component {
           email,
         })
         .then(() => {
-          this.props.history.push("/");
+          this.props.history.push("/warehouses/");
         })
         .catch((err) => {
           console.log(err);
@@ -139,7 +139,7 @@ export default class EditWarehouseForm extends Component {
     return (
       <form className="edit-warehouse-form" onSubmit={this.handleSubmit}>
         <h1 className="edit-warehouse-form__title">
-          <Link to="/">
+          <Link to="/warehouses/">
             <img
               className="edit-warehouse-form__arrow"
               src={arrow}
@@ -355,7 +355,7 @@ export default class EditWarehouseForm extends Component {
           </article>
         </section>
         <section className="edit-warehouse-form__buttons">
-          <Link to="/">
+          <Link to="/warehouses/">
             <button className="edit-warehouse-form__cancel">Cancel</button>
           </Link>
           <button className="edit-warehouse-form__submit">Save</button>
