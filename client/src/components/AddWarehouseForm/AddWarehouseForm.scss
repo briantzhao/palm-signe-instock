@@ -114,22 +114,6 @@
       border-color: $red;
     }
   }
-  &__textarea {
-    height: 20.25rem;
-    border-radius: 1.25rem;
-    border: 1px solid gray;
-    margin-top: 0.25rem;
-    padding-left: 1rem;
-    @include tablet {
-      height: 2.375rem;
-    }
-    @include desktop {
-      height: 2.375rem;
-    }
-  }
-  &__status {
-    display: flex;
-  }
 
   &__error {
     display: flex;
