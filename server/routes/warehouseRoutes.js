@@ -103,31 +103,19 @@ router.patch("/:id", (req, res) => {
   console.log(name);
   console.log(req.body);
   if (individualWarehouse) {
-    individualWarehouse = { ...individualWarehouse, ...req.body };
-    // individualWarehouse = {
-    //   name,
-    //   address,
-    //   city,
-    //   country,
-    //   contact: {
-    //     name: contact,
-    //     position,
-    //     phone,
-    //     email,
-    //   },
-    // contact: {
-    //   name: req.body.contact.name,
-    //   position: req.body.contact.position,
-    //   phone: req.body.contact.phone,
-    //   email: req.body.contact.email,
-    // },
-
-    // contact: {
-    //   name: contact,
-    //   position,
-    //   phone,
-    //   email,
-    // },
+    // individualWarehouse = { ...individualWarehouse, ...req.body };
+    individualWarehouse = {
+      name,
+      address,
+      city,
+      country,
+      contact: {
+        name: contact,
+        position,
+        phone,
+        email,
+      },
+    };
 
     let index = warehouses.findIndex(
       (warehouse) => warehouse.id === individualWarehouse.id
