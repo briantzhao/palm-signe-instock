@@ -97,8 +97,7 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  let inventory = inventoryData;
-  const individualInventory = inventory.find((inventory) => {
+  const inventory = inventoryData.find((inventory) => {
     return inventory.id === id;
   });
   if (individualInventory) {
@@ -115,7 +114,7 @@ router.patch("/:id", (req, res, next) => {
   let individualInventory = inventories.find((inventory) => {
     return inventory.id === req.params.id;
   });
-
+  console.log("inventory patched");
   if (individualInventory) {
     individualInventory = { ...individualInventory, ...req.body };
 
