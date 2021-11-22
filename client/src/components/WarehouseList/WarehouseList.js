@@ -61,9 +61,13 @@ export default function WarehouseList({ warehouseList }) {
 							<div className="warehouse__wrapper">
 								<td className="warehouse__data">
 									<h4>WAREHOUSE</h4>
-									<Link to={``}>
+									<Link to={`/${id}/inventory`}>
 										<span className="warehouse--name">{name}</span>
-										<img src={chevron} alt="detail" />
+										<img
+											src={chevron}
+											alt="detail"
+											className="warehouse--chevron"
+										/>
 									</Link>
 								</td>
 								<td className="warehouse__data">
@@ -89,7 +93,7 @@ export default function WarehouseList({ warehouseList }) {
 									<Link to={`/delete/${id}`}>
 										<img src={deleteIcon} alt="delete icon"></img>
 									</Link>
-									<Link to={`/edit/${id}`}>
+									<Link to={`/warehouses/${id}/edit`}>
 										<img src={editIcon} alt="edit icon"></img>
 									</Link>
 								</td>
@@ -99,7 +103,7 @@ export default function WarehouseList({ warehouseList }) {
 							<Link to={`/delete/${id}`}>
 								<img src={deleteIcon} alt="delete icon"></img>
 							</Link>
-							<Link to={`/edit/${id}`}>
+							<Link to={`/warehouses/${id}/edit`}>
 								<img src={editIcon} alt="edit icon"></img>
 							</Link>
 						</div>
