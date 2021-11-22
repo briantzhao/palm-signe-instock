@@ -56,7 +56,7 @@ export default class WarehouseInventoryList extends Component {
       <div className="warehouse-inventory-list">
         <section className="warehouse-inventory-list__header">
           <article className="warehouse-inventory-list__return">
-            <Link to="">
+            <Link to="/">
               <img
                 className="warehouse-inventory-list__label__pic"
                 src={arrow}
@@ -211,7 +211,7 @@ export default class WarehouseInventoryList extends Component {
                       />
                       <Link
                         className="warehouse-inventory-list__action__edit-link"
-                        to=""
+                        to={`/inventory/${id}/edit`}
                       >
                         <img
                           src={edit}
@@ -228,8 +228,11 @@ export default class WarehouseInventoryList extends Component {
                         src={deleteIcon}
                         alt="Delete item button"
                         className="warehouse-inventory-list__action__btn"
+                        onClick={() => {
+                          this.getItem(id);
+                        }}
                       />
-                      <Link to="">
+                      <Link to={`/inventory/${id}/edit`}>
                         <img
                           src={edit}
                           alt="Edit item button"
