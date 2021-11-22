@@ -5,6 +5,8 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 
+const API_URL = "http://localhost:8080/";
+
 export default class EditWarehouseForm extends Component {
   state = {
     name: "",
@@ -126,7 +128,6 @@ export default class EditWarehouseForm extends Component {
         })
         .then(() => {
           this.props.history.push("/");
-          console.log("patched");
         })
         .catch((err) => {
           console.log(err);
