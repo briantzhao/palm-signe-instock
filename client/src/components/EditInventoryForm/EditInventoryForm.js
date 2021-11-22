@@ -379,7 +379,7 @@ export default class EditInventoryForm extends Component {
           </section>
 
           <section className="edit-inventory-form__buttons">
-            <Link to="/">
+            <Link to="/inventory">
               <button className="edit-inventory-form__cancel">Cancel</button>
             </Link>
             <button className="edit-inventory-form__submit">Save</button>

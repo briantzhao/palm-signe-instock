@@ -23,11 +23,11 @@ export default class WarehouseInventoryList extends Component {
     axios
       .get(`${API_URL}inventories/warehouses/${this.props.match.params.id}`)
       .then(({ data }) => {
+        console.log(data);
         this.setState({ inventory: data });
         return axios.get(`${API_URL}warehouses/${this.props.match.params.id}`);
       })
       .then(({ data }) => {
-        console.log(data);
         this.setState({ warehouse: data });
       });
   }
@@ -38,7 +38,7 @@ export default class WarehouseInventoryList extends Component {
 
   deleteItem = () => {
     axios
-      .delete(`${API_URL}/inventories/${this.state.currentItem.id}`)
+      .delete(`${API_URL}inventories/${this.state.currentItem.id}`)
       .then()
       .catch((err) => console.log(err));
   };
@@ -56,7 +56,7 @@ export default class WarehouseInventoryList extends Component {
       <div className="warehouse-inventory-list">
         <section className="warehouse-inventory-list__header">
           <article className="warehouse-inventory-list__return">
-            <Link to="/">
+            <Link to="/warehouses/">
               <img
                 className="warehouse-inventory-list__label__pic"
                 src={arrow}
@@ -67,7 +67,10 @@ export default class WarehouseInventoryList extends Component {
               {this.state.warehouse.name}
             </h1>
           </article>
-          <Link className="warehouse-inventory-list__edit-button" to="">
+          <Link
+            className="warehouse-inventory-list__edit-button"
+            to={`/warehouses/${this.props.match.params.id}/edit`}
+          >
             <svg
               className="warehouse-inventory-list__edit-icon"
               xlms="http://www.w3.org/2000/svg"
@@ -173,7 +176,7 @@ export default class WarehouseInventoryList extends Component {
                     <td className="warehouse-inventory-list__item">
                       <Link
                         className="warehouse-inventory-list__item__cell"
-                        to={`/inventories/${id}`}
+                        to={`/inventory/${id}`}
                       >
                         {itemName}
                         <img

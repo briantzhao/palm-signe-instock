@@ -101,7 +101,7 @@ export default function InventoryList({ inventoryItems, getItem }) {
                   <tr className="inventory-list__table-row">
                     <td className="inventory-list__table-data inventory-list__table-item">
                       <Link
-                        to={`/inventories/${id}`}
+                        to={`/inventory/${id}`}
                         className="inventory-list__item-link"
                         key={id}
                       >

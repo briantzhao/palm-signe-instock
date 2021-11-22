@@ -17,7 +17,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
             type="search"
             placeholder="Search..."
           ></input>
-          <Link to={`/add`}>
+          <Link to={`/warehouses/add`}>
             <button className="warehouse__button--add">
               + Add New Warehouse
             </button>
@@ -61,9 +61,13 @@ export default function WarehouseList({ warehouseList, getItem }) {
               <div className="warehouse__wrapper">
                 <td className="warehouse__data">
                   <h4>WAREHOUSE</h4>
-                  <Link to={`/${id}/inventory`}>
+                  <Link to={`/warehouses/${id}/inventory`}>
                     <span className="warehouse--name">{name}</span>
-                    <img src={chevron} alt="detail" />
+                    <img
+                      src={chevron}
+                      alt="detail"
+                      className="warehouse--chevron"
+                    />
                   </Link>
                 </td>
                 <td className="warehouse__data">
