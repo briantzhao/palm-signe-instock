@@ -151,7 +151,7 @@ router.patch("/:id", (req, res) => {
   }
 });
 
-//delete a warehouse:
+//delete a warehouse and delete all inventory items in the given warehouse:
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   console.log(id);
@@ -174,6 +174,38 @@ router.delete("/:id", (req, res) => {
         res.status(200).json(warehouses);
       }
     );
+
+    let inventoryData = [];
+
+    fs.readFile("./data/inventories.json", (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      inventoryData = JSON.parse(data);
+
+      const matchingID =
+        inventoryData[
+          inventoryData.findIndex(
+            (data) => data.warehouseID === individualWarehouse.id
+          )
+        ].warehouseID;
+
+      let newInventory = inventoryData.filter(
+        (data) => data.warehouseID !== matchingID
+      );
+
+      fs.writeFile(
+        "./data/inventories.json",
+        JSON.stringify(newInventory),
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+        }
+      );
+    });
   } else {
     res.status(404).send("Cannot find that warehouse");
   }
