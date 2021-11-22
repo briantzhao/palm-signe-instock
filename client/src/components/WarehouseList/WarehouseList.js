@@ -92,6 +92,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
 								<td className="warehouse__data--icons-tablet">
 									{/* <Link to={`/delete/${id}`}> */}
 									<img
+										className="icons"
 										src={deleteIcon}
 										alt="delete icon"
 										onClick={() => {
@@ -100,7 +101,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
 									></img>
 									{/* </Link> */}
 									<Link to={`/edit/${id}`}>
-										<img src={editIcon} alt="edit icon"></img>
+										<img src={editIcon} alt="edit icon" className="icons"></img>
 									</Link>
 								</td>
 							</div>
@@ -108,6 +109,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
 						<div className="warehouse__data--icons-mobile">
 							{/* <Link to={`/delete/${id}`}> */}
 							<img
+								className="icons"
 								src={deleteIcon}
 								alt="delete icon"
 								onClick={() => {
@@ -116,7 +118,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
 							></img>
 							{/* </Link> */}
 							<Link to={`/edit/${id}`}>
-								<img src={editIcon} alt="edit icon"></img>
+								<img src={editIcon} alt="edit icon" className="icons"></img>
 							</Link>
 						</div>
 					</tbody>
