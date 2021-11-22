@@ -203,15 +203,21 @@ a {
     padding: 0.6875rem 0;
     padding-left: 7.3vw;
     width: 6.25rem;
+    vertical-align: middle;
     @include desktop {
       padding-left: 10vw;
     }
-
+    &__pic {
+      height: 1rem;
+      vertical-align: middle;
+    }
     &--item {
       @include tablet {
+        min-width: 8rem;
         padding-left: 2rem;
       }
       @include desktop {
+        min-width: 8rem;
         padding-left: 2.5rem;
       }
     }
