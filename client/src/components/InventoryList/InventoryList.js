@@ -155,12 +155,17 @@ export default function InventoryList({ inventoryItems, getItem }) {
                           getItem(itemName, id);
                         }}
                       />
-
-                      <img
-                        src={editIcon}
-                        alt="edit icon"
-                        className="inventory-list__table-data-icons--edit"
-                      />
+                      <Link
+                        to={`/inventory/${id}/edit`}
+                        className="inventory-list__item-link"
+                        key={id}
+                      >
+                        <img
+                          src={editIcon}
+                          alt="edit icon"
+                          className="inventory-list__table-data-icons--edit"
+                        />
+                      </Link>
                     </td>
                   </tr>
 
@@ -179,11 +184,17 @@ export default function InventoryList({ inventoryItems, getItem }) {
                         }}
                       />
 
-                      <img
-                        src={editIcon}
-                        alt="edit icon"
-                        className="inventory-list__table-data-icons-edit"
-                      />
+                      <Link
+                        to={`/inventory/${id}/edit`}
+                        className="inventory-list__item-link"
+                        key={id}
+                      >
+                        <img
+                          src={editIcon}
+                          alt="edit icon"
+                          className="inventory-list__table-data-icons-edit"
+                        />
+                      </Link>
                     </td>
                   </tr>
                 </div>
