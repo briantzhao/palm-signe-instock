@@ -172,15 +172,8 @@ router.delete("/:id", (req, res) => {
       }
       inventoryData = JSON.parse(data);
 
-      const matchingID =
-        inventoryData[
-          inventoryData.findIndex(
-            (data) => data.warehouseID === individualWarehouse.id
-          )
-        ].warehouseID;
-
       let newInventory = inventoryData.filter(
-        (data) => data.warehouseID !== matchingID
+        (data) => data.warehouseID !== id
       );
 
       fs.writeFile(
