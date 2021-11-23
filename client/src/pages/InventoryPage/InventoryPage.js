@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import Modal from "react-modal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import axios from "axios";
 import InventoryList from "../../components/InventoryList/InventoryList";

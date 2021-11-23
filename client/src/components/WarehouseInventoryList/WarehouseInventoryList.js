@@ -23,7 +23,6 @@ export default class WarehouseInventoryList extends Component {
     axios
       .get(`${API_URL}inventories/warehouses/${this.props.match.params.id}`)
       .then(({ data }) => {
-        console.log(data);
         this.setState({ inventory: data });
         return axios.get(`${API_URL}warehouses/${this.props.match.params.id}`);
       })

@@ -1,7 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-//styles form as a card with box shadow
 .add-warehouse-form {
   @include tablet {
     text-align: left;
