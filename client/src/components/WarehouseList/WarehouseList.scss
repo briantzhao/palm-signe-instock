@@ -240,6 +240,7 @@ a {
 				display: flex;
 			}
 			@include desktop {
+				margin: 0 1.5rem;
 				display: flex;
 			}
 			&-tablet {
