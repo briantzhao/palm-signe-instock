@@ -38,9 +38,6 @@ router.get("/warehouses/:id", (req, res) => {
   const warehouseInventory = inventoryData.filter((item) => {
     return item.warehouseID === id;
   });
-  if (warehouseInventory.length === 0) {
-    res.status(404).send("Warehouse not found");
-  }
   res.json(warehouseInventory);
 });
 
@@ -62,8 +59,7 @@ router.post("/", (req, res) => {
     itemName &&
     description &&
     category &&
-    status &&
-    quantity
+    status
   ) {
     //create new inventory object
     const newItem = {
@@ -83,15 +79,81 @@ router.post("/", (req, res) => {
   }
   res.status(500).send("Inventory item not created");
 });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  const inventory = inventory.find((inventory) => {
+  const inventory = inventoryData.find((inventory) => {
     return inventory.id === id;
   });
   if (inventory) {
     res.json(inventory);
   } else {
     res.status(404).send("Page not found.");
+  }
+});
+
+// patch to make edits to single item
+router.patch("/:id", (req, res, next) => {
+  let inventories = inventoryData;
+
+  let individualInventory = inventories.find((inventory) => {
+    return inventory.id === req.params.id;
+  });
+  console.log("inventory patched");
+  if (individualInventory) {
+    individualInventory = { ...individualInventory, ...req.body };
+
+    let index = inventories.findIndex(
+      (inventory) => inventory.id === individualInventory.id
+    );
+
+    inventories[index] = individualInventory;
+
+    fs.writeFile(
+      "./data/inventories.json",
+      JSON.stringify(inventories),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        console.log("File updated successfully");
+        res.status(201).json(individualInventory);
+      }
+    );
+  } else {
+    res.status(404).send("Sorry, couldn’t find that item.");
+  }
+});
+
+//get all inventory items
+router.get("/", (_req, res) => {
+  res.json(inventoryData);
+});
+
+// delete an inventory item:
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  let inventory = inventoryData;
+
+  const inventoryItem = inventory.find((item) => {
+    return item.id === id;
+  });
+
+  if (inventoryItem) {
+    inventory.splice(inventory.indexOf(inventoryItem), 1);
+
+    fs.writeFile(
+      "./data/inventories.json",
+      JSON.stringify(inventory),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        res.status(200).json(inventory);
+      }
+    );
+  } else {
+    res.status(404).send("Cannot find that item");
   }
 });
 

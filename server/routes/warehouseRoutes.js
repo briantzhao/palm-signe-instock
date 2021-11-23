@@ -91,15 +91,31 @@ router.get("/:id", (req, res) => {
 });
 
 // patch to make edits to single warehouse
-router.patch("/:id", (req, res, next) => {
+router.patch("/:id", (req, res) => {
   let warehouses = warehouseData;
 
   let individualWarehouse = warehouses.find((warehouse) => {
     return warehouse.id === req.params.id;
   });
 
+  const { name, address, city, country, contact } = req.body;
+  console.log(name);
+  console.log(req.body);
+  console.log(individualWarehouse.id);
   if (individualWarehouse) {
-    individualWarehouse = { ...individualWarehouse, ...req.body };
+    individualWarehouse = {
+      id: individualWarehouse.id,
+      name,
+      address,
+      city,
+      country,
+      contact: {
+        name: req.body.contact,
+        position: req.body.position,
+        phone: req.body.phone,
+        email: req.body.email,
+      },
+    };
 
     let index = warehouses.findIndex(
       (warehouse) => warehouse.id === individualWarehouse.id
@@ -120,6 +136,59 @@ router.patch("/:id", (req, res, next) => {
     );
   } else {
     res.status(404).send("Sorry, couldn't find that warehouse.");
+  }
+});
+
+//delete a warehouse and delete all inventory items in the given warehouse:
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  let warehouses = warehouseData;
+
+  const individualWarehouse = warehouses.find((warehouse) => {
+    return warehouse.id === id;
+  });
+
+  if (individualWarehouse) {
+    warehouses.splice(warehouses.indexOf(individualWarehouse), 1);
+
+    fs.writeFile(
+      "./data/warehouses.json",
+      JSON.stringify(warehouses),
+      (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        res.status(200).json(warehouses);
+      }
+    );
+
+    let inventoryData = [];
+
+    fs.readFile("./data/inventories.json", (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      inventoryData = JSON.parse(data);
+
+      let newInventory = inventoryData.filter(
+        (data) => data.warehouseID !== id
+      );
+
+      fs.writeFile(
+        "./data/inventories.json",
+        JSON.stringify(newInventory),
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+        }
+      );
+    });
+  } else {
+    res.status(404).send("Cannot find that warehouse");
   }
 });
 

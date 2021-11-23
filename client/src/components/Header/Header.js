@@ -8,7 +8,7 @@ export default function Header() {
     <>
       <main className="header">
         <div className="header__section-logo">
-          <NavLink to="/">
+          <NavLink to="/warehouses/">
             <img className="header__logo" src={Logo} alt="instock logo" />
           </NavLink>
         </div>
@@ -17,7 +17,7 @@ export default function Header() {
           <div className="header__link-container">
             {" "}
             <h3 className="header__link">
-              <NavLink exact to="/" activeClassName="true">
+              <NavLink to="/warehouses/" activeClassName="true">
                 Warehouses
               </NavLink>
             </h3>

@@ -1,31 +1,72 @@
 import React, { Component } from "react";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
-// import axios from "axios";
+import axios from "axios";
+const apiURL = "http://localhost:8080";
 
 export default class WarehousePage extends Component {
   state = {
-    // hardcoded to avoid axios call for now, change back to empty array
-    warehouseList: [
-      {
-        id: "2922c286-16cd-4d43-ab98-c79f698aeab0",
-        name: "Manhattan",
-        address: "503 Broadway",
-        city: "New York",
-        country: "USA",
-        contact: {
-          name: "Parmin Aujla",
-          position: "Warehouse Manager",
-          phone: "+1 (646) 123-1234",
-          email: "paujla@instock.com",
-        },
-      },
-    ],
+    modalOpen: false,
+    warehouseList: [],
+    currentWarehouse: [],
+  };
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    axios
+      .get(`${apiURL}/warehouses`)
+      .then(({ data }) => {
+        const apiData = data;
+        this.setState({ warehouseList: apiData });
+        return apiData;
+      })
+      .catch((err) => console.log("componentDidMount for warehouses", err));
+  }
+
+  hideModal = () => {
+    return this.setState({ modalOpen: false });
+  };
+
+  deleteItem = () => {
+    axios
+      .delete(`${apiURL}/warehouses/${this.state.currentWarehouse.id}`)
+      .then((res) => {
+        axios
+          .get(`${apiURL}/warehouses`)
+          .then(({ data }) => {
+            const apiData = data;
+            this.setState({ warehouseList: apiData });
+            return apiData;
+          })
+          .catch((err) => console.log("componentDidMount for warehouses", err));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  getItem = (id) => {
+    const foundItem = this.state.warehouseList.find((item) => item.id === id);
+    this.setState({ currentWarehouse: foundItem });
+    this.setState({ modalOpen: true });
   };
 
   render() {
+    if (!this.state.warehouseList) {
+      return <h1>Loading...</h1>;
+    }
     return (
       <>
-        <WarehouseList warehouseList={this.state.warehouseList} />
+        <WarehouseList
+          warehouseList={this.state.warehouseList}
+          getItem={this.getItem}
+        />
+        <DeleteModal
+          page="warehouse"
+          pageList="list of warehouses"
+          currentItems={this.state.currentWarehouse.name}
+          modalState={this.state.modalOpen}
+          onRequestClose
+          deleteItem={this.deleteItem}
+          hideModal={this.hideModal}
+        />
       </>
     );
   }
