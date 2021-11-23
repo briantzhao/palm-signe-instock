@@ -169,6 +169,7 @@ export default class WarehouseInventoryList extends Component {
                     modalState={this.state.modalOpen}
                     deleteItem={this.deleteItem}
                     hideModal={this.hideModal}
+                    
                   />
                   <tr className="warehouse-inventory-list__single">
                     <td className="warehouse-inventory-list__item">
