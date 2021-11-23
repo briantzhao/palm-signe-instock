@@ -90,7 +90,6 @@ export default function WarehouseList({ warehouseList, getItem }) {
               </div>
               <div className="warehouse__data--icons">
                 <td className="warehouse__data--icons-tablet">
-                  {/* <Link to={`/delete/${id}`}> */}
                   <img
                     src={deleteIcon}
                     alt="delete icon"
@@ -98,7 +97,6 @@ export default function WarehouseList({ warehouseList, getItem }) {
                       getItem(id);
                     }}
                   ></img>
-                  {/* </Link> */}
                   <Link to={`/warehouses/${id}/edit`}>
                     <img src={editIcon} alt="edit icon"></img>
                   </Link>
@@ -106,7 +104,6 @@ export default function WarehouseList({ warehouseList, getItem }) {
               </div>
             </tr>
             <div className="warehouse__data--icons-mobile">
-              {/* <Link to={`/delete/${id}`}> */}
               <img
                 src={deleteIcon}
                 alt="delete icon"
@@ -114,7 +111,6 @@ export default function WarehouseList({ warehouseList, getItem }) {
                   getItem(id);
                 }}
               ></img>
-              {/* </Link> */}
               <Link to={`/warehouses/${id}/edit`}>
                 <img src={editIcon} alt="edit icon"></img>
               </Link>

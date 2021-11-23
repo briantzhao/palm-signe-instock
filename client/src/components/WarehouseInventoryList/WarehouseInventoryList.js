@@ -55,7 +55,7 @@ export default class WarehouseInventoryList extends Component {
   };
 
   render() {
-    if (!(this.state.warehouse && this.state.inventory)) {
+    if (!this.state.warehouse) {
       return <h1>Loading...</h1>;
     }
     return (
