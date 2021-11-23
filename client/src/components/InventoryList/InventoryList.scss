@@ -118,9 +118,11 @@
 	&__item-span {
 		@include h3-labels-links-buttons($instock-indigo, left);
 		white-space: nowrap;
+		font-weight: 400;
 	}
 
 	&__item-chevron {
+		height: 1rem;
 		&:hover {
 			animation: animate-link 0.6s ease-out infinite;
 		}
