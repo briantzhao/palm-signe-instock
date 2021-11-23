@@ -98,9 +98,10 @@ router.patch("/:id", (req, res) => {
     return warehouse.id === req.params.id;
   });
 
-  const { name, address, city, country } = req.body;
+  const { name, address, city, country, contact } = req.body;
   console.log(name);
   console.log(req.body);
+  console.log(individualWarehouse.id);
   if (individualWarehouse) {
     individualWarehouse = {
       id: individualWarehouse.id,
@@ -109,10 +110,10 @@ router.patch("/:id", (req, res) => {
       city,
       country,
       contact: {
-        name: req.body.contact.name,
-        position: req.body.contact.position,
-        phone: req.body.contact.phone,
-        email: req.body.contact.email,
+        name: req.body.contact,
+        position: req.body.position,
+        phone: req.body.phone,
+        email: req.body.email,
       },
     };
 
