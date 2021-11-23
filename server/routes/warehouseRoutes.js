@@ -102,7 +102,6 @@ router.patch("/:id", (req, res) => {
   console.log(name);
   console.log(req.body);
   if (individualWarehouse) {
-    // individualWarehouse = { ...individualWarehouse, ...req.body };
     individualWarehouse = {
       id: individualWarehouse.id,
       name,
