@@ -6,7 +6,7 @@ import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import AddWarehouseForm from "./components/AddWarehouseForm/AddWarehouseForm";
 import EditInventoryForm from "./components/EditInventoryForm/EditInventoryForm";
 import EditWarehouseForm from "./components/EditWarehouse/EditWarehouseForm";
-import NotFoundPage from "./pages/NotFoundPage/NotFountPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import {
   BrowserRouter as Router,
   Switch,
