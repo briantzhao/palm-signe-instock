@@ -38,9 +38,6 @@ router.get("/warehouses/:id", (req, res) => {
   const warehouseInventory = inventoryData.filter((item) => {
     return item.warehouseID === id;
   });
-  if (warehouseInventory.length === 0) {
-    res.status(404).send("Warehouse not found");
-  }
   res.json(warehouseInventory);
 });
 
