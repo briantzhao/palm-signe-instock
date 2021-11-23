@@ -98,22 +98,22 @@ router.patch("/:id", (req, res) => {
     return warehouse.id === req.params.id;
   });
 
-  const { name, address, city, country, contact, position, phone, email } =
-    req.body;
+  const { name, address, city, country, contact } = req.body;
   console.log(name);
   console.log(req.body);
+  console.log(individualWarehouse.id);
   if (individualWarehouse) {
-    // individualWarehouse = { ...individualWarehouse, ...req.body };
     individualWarehouse = {
+      id: individualWarehouse.id,
       name,
       address,
       city,
       country,
       contact: {
-        name: contact,
-        position,
-        phone,
-        email,
+        name: req.body.contact,
+        position: req.body.position,
+        phone: req.body.phone,
+        email: req.body.email,
       },
     };
 

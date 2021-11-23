@@ -16,7 +16,6 @@ export default class WarehousePage extends Component {
       .get(`${apiURL}/warehouses`)
       .then(({ data }) => {
         const apiData = data;
-        console.log(apiData[0]);
         this.setState({ warehouseList: apiData });
         return apiData;
       })
@@ -28,7 +27,6 @@ export default class WarehousePage extends Component {
   };
 
   deleteItem = () => {
-    console.log(this.state.currentWarehouse.id);
     axios
       .delete(`${apiURL}/warehouses/${this.state.currentWarehouse.id}`)
       .then((res) => {
@@ -36,7 +34,6 @@ export default class WarehousePage extends Component {
           .get(`${apiURL}/warehouses`)
           .then(({ data }) => {
             const apiData = data;
-            console.log(apiData[0]);
             this.setState({ warehouseList: apiData });
             return apiData;
           })
@@ -57,7 +54,6 @@ export default class WarehousePage extends Component {
     }
     return (
       <>
-        {console.log(this.state.currentWarehouse)}
         <WarehouseList
           warehouseList={this.state.warehouseList}
           getItem={this.getItem}

@@ -23,7 +23,6 @@ export default class WarehouseInventoryList extends Component {
     axios
       .get(`${API_URL}inventories/warehouses/${this.props.match.params.id}`)
       .then(({ data }) => {
-        console.log(data);
         this.setState({ inventory: data });
         return axios.get(`${API_URL}warehouses/${this.props.match.params.id}`);
       })
@@ -39,7 +38,14 @@ export default class WarehouseInventoryList extends Component {
   deleteItem = () => {
     axios
       .delete(`${API_URL}inventories/${this.state.currentItem.id}`)
-      .then()
+      .then(() => {
+        return axios.get(
+          `${API_URL}inventories/warehouses/${this.props.match.params.id}`
+        );
+      })
+      .then(({ data }) => {
+        this.setState({ inventory: data });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -49,11 +55,19 @@ export default class WarehouseInventoryList extends Component {
   };
 
   render() {
-    if (!(this.state.warehouse && this.state.inventory)) {
+    if (!this.state.warehouse) {
       return <h1>Loading...</h1>;
     }
     return (
       <div className="warehouse-inventory-list">
+        <DeleteModal
+          page="Inventory item"
+          pageList="inventory list"
+          currentItems={this.state.currentItem.itemName}
+          modalState={this.state.modalOpen}
+          deleteItem={this.deleteItem}
+          hideModal={this.hideModal}
+        />
         <section className="warehouse-inventory-list__header">
           <article className="warehouse-inventory-list__return">
             <Link to="/warehouses/">
@@ -162,15 +176,6 @@ export default class WarehouseInventoryList extends Component {
             ({ id, itemName, category, status, quantity }) => {
               return (
                 <>
-                  <DeleteModal
-                    page="Inventory item"
-                    pageList="inventory list"
-                    currentItems={this.state.currentItem.itemName}
-                    modalState={this.state.modalOpen}
-                    deleteItem={this.deleteItem}
-                    hideModal={this.hideModal}
-                    
-                  />
                   <tr className="warehouse-inventory-list__single">
                     <td className="warehouse-inventory-list__item">
                       <Link

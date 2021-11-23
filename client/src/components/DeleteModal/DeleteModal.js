@@ -12,7 +12,6 @@ export default function DeleteModal(props) {
         props.hideModal();
       }}
     >
-      {console.log(props.currentItems)}
       <div className="delete-modal__top">
         <button className="delete-modal__exit">
           <span onClick={props.hideModal} className="delete-modal__exit-icon">
