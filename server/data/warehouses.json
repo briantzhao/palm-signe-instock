@@ -102,5 +102,31 @@
       "phone": "+1 (646) 123-1234",
       "email": "vmendoza@instock.com"
     }
+  },
+  {
+    "id": "696a18gwkwbehrwb",
+    "name": "Kevin Bridges",
+    "address": "Fugit et sunt quia ",
+    "city": "Soluta vel facilis d",
+    "country": "Fuga In autem venia",
+    "contact": {
+      "name": "Molestiae animi mol",
+      "position": "Ad omnis enim omnis ",
+      "phone": "+1 (982) 718-4687",
+      "email": "sipyhy@mailinator.com"
+    }
+  },
+  {
+    "id": "696a1wdckwbehuwm",
+    "name": "Candice Newton",
+    "address": "Totam mollitia dolor",
+    "city": "Architecto eiusmod f",
+    "country": "Non at quo tempore ",
+    "contact": {
+      "name": "Aut sint voluptas o",
+      "position": "Adipisicing harum es",
+      "phone": "+1 (807) 466-8104",
+      "email": "puluxovyjo@mailinator.com"
+    }
   }
 ]
