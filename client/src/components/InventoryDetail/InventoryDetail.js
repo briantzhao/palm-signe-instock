@@ -1,9 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
-import edit from "../../assets/icons/edit-24px.svg";
-import chevron from "../../assets/icons/chevron_right-24px.svg";
-import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import axios from "axios";
 import "./InventoryDetail.scss";
 
@@ -17,7 +14,6 @@ export default class InventoryDetail extends Component {
     axios
       .get(`${API_URL}inventories/${this.props.match.params.id}`)
       .then((res) => {
-        console.log(res.data);
         this.setState({ inventoryItem: res.data });
       })
       .catch((err) => {
