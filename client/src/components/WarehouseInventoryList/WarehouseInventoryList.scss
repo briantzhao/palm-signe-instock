@@ -207,12 +207,17 @@ a {
 			padding-left: 10vw;
 		}
 
+		&__pic {
+			vertical-align: middle;
+		}
 		&--item {
 			@include tablet {
 				padding-left: 2rem;
+				min-width: 8rem;
 			}
 			@include desktop {
 				padding-left: 2.5rem;
+				min-width: 8rem;
 			}
 		}
 

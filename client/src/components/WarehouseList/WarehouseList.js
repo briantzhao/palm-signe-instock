@@ -17,7 +17,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
 						type="search"
 						placeholder="Search..."
 					></input>
-					<Link to={`/add`}>
+					<Link to={`/warehouses/add`}>
 						<button className="warehouse__button--add">
 							+ Add New Warehouse
 						</button>
@@ -61,7 +61,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
 							<div className="warehouse__wrapper">
 								<td className="warehouse__data">
 									<h4>WAREHOUSE</h4>
-									<Link to={`/${id}/inventory`}>
+									<Link to={`/warehouses/${id}/inventory`}>
 										<span className="warehouse--name">{name}</span>
 										<img
 											src={chevron}
@@ -92,7 +92,6 @@ export default function WarehouseList({ warehouseList, getItem }) {
 								<td className="warehouse__data--icons-tablet">
 									{/* <Link to={`/delete/${id}`}> */}
 									<img
-										className="icons"
 										src={deleteIcon}
 										alt="delete icon"
 										onClick={() => {
@@ -100,8 +99,8 @@ export default function WarehouseList({ warehouseList, getItem }) {
 										}}
 									></img>
 									{/* </Link> */}
-									<Link to={`/edit/${id}`}>
-										<img src={editIcon} alt="edit icon" className="icons"></img>
+									<Link to={`/warehouses/${id}/edit`}>
+										<img src={editIcon} alt="edit icon"></img>
 									</Link>
 								</td>
 							</div>
@@ -109,7 +108,6 @@ export default function WarehouseList({ warehouseList, getItem }) {
 						<div className="warehouse__data--icons-mobile">
 							{/* <Link to={`/delete/${id}`}> */}
 							<img
-								className="icons"
 								src={deleteIcon}
 								alt="delete icon"
 								onClick={() => {
@@ -117,8 +115,8 @@ export default function WarehouseList({ warehouseList, getItem }) {
 								}}
 							></img>
 							{/* </Link> */}
-							<Link to={`/edit/${id}`}>
-								<img src={editIcon} alt="edit icon" className="icons"></img>
+							<Link to={`/warehouses/${id}/edit`}>
+								<img src={editIcon} alt="edit icon"></img>
 							</Link>
 						</div>
 					</tbody>
