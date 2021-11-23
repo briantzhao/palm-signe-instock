@@ -27,7 +27,6 @@ export default class EditInventoryForm extends Component {
 
   componentDidMount() {
     axios.get(`${API_URL}warehouses`).then((response) => {
-      // console.log(response.data);
       const warehouseList = response.data.map((warehouse) => {
         return warehouse.id + "," + warehouse.name;
       });
@@ -175,7 +174,6 @@ export default class EditInventoryForm extends Component {
         })
         .then(() => {
           alert("You have successfully edited this item.");
-          console.log(warehouseName, warehouseID);
           this.props.history.push("/inventory");
         })
         .catch((err) => {

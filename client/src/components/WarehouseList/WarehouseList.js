@@ -94,6 +94,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
                   <img
                     src={deleteIcon}
                     alt="delete icon"
+                    className="warehouse__data--icons--delete"
                     onClick={() => {
                       getItem(id);
                     }}
@@ -110,6 +111,7 @@ export default function WarehouseList({ warehouseList, getItem }) {
               <img
                 src={deleteIcon}
                 alt="delete icon"
+                className="warehouse__data--icons--delete"
                 onClick={() => {
                   getItem(id);
                 }}
