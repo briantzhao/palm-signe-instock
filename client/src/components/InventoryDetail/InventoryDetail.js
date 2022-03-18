@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryDetail.scss";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 
 export default class InventoryDetail extends Component {
   state = {
@@ -11,7 +11,7 @@ export default class InventoryDetail extends Component {
   };
   componentDidMount() {
     axios
-      .get(`${API_URL}inventories/${this.props.match.params.id}`)
+      .get(`${API_URL}/inventories/${this.props.match.params.id}`)
       .then((res) => {
         this.setState({ inventoryItem: res.data });
       })

@@ -4,7 +4,7 @@ import "./AddWarehouseForm.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 
 export default class AddWarehouseForm extends Component {
   //states for each form field, as well as validity tracking

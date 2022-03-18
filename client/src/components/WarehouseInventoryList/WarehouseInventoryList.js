@@ -8,7 +8,7 @@ import axios from "axios";
 import "./WarehouseInventoryList.scss";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import sortIcon from "../../assets/icons/sort-24px.svg";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 
 export default class WarehouseInventoryList extends Component {
   state = {
@@ -20,10 +20,10 @@ export default class WarehouseInventoryList extends Component {
   //grab warehouse and inventory information from server
   componentDidMount() {
     axios
-      .get(`${API_URL}inventories/warehouses/${this.props.match.params.id}`)
+      .get(`${API_URL}/inventories/warehouses/${this.props.match.params.id}`)
       .then(({ data }) => {
         this.setState({ inventory: data });
-        return axios.get(`${API_URL}warehouses/${this.props.match.params.id}`);
+        return axios.get(`${API_URL}/warehouses/${this.props.match.params.id}`);
       })
       .then(({ data }) => {
         this.setState({ warehouse: data });
@@ -36,10 +36,10 @@ export default class WarehouseInventoryList extends Component {
 
   deleteItem = () => {
     axios
-      .delete(`${API_URL}inventories/${this.state.currentItem.id}`)
+      .delete(`${API_URL}/inventories/${this.state.currentItem.id}`)
       .then(() => {
         return axios.get(
-          `${API_URL}inventories/warehouses/${this.props.match.params.id}`
+          `${API_URL}/inventories/warehouses/${this.props.match.params.id}`
         );
       })
       .then(({ data }) => {

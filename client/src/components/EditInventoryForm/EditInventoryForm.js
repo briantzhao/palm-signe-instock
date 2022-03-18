@@ -4,7 +4,7 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 import "./EditInventoryForm.scss";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 
 export default class EditInventoryForm extends Component {
   state = {
