@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import axios from "axios";
-const API_URL = "https://palm-instock-api.herokuapp.com/";
+const API_URL = "https://palm-instock-api.herokuapp.com";
 
 export default class WarehousePage extends Component {
   state = {
