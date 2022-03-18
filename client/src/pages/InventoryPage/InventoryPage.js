@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import axios from "axios";
 import InventoryList from "../../components/InventoryList/InventoryList";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 
 export default class InventoryPage extends Component {
   state = {

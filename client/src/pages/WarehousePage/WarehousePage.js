@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import axios from "axios";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 
 export default class WarehousePage extends Component {
   state = {
