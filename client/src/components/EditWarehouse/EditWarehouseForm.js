@@ -5,7 +5,7 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://palm-instock-api.herokuapp.com/";
 
 export default class EditWarehouseForm extends Component {
   state = {

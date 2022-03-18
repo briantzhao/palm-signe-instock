@@ -9,7 +9,7 @@ import "./WarehouseInventoryList.scss";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://palm-instock-api.herokuapp.com/";
 
 export default class WarehouseInventoryList extends Component {
   state = {

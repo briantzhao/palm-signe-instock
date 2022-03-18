@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import axios from "axios";
 import InventoryList from "../../components/InventoryList/InventoryList";
-const API_URL = "http://localhost:8080";
+
+const API_URL = "https://palm-instock-api.herokuapp.com/";
 
 export default class InventoryPage extends Component {
   state = {
