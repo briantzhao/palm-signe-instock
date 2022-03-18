@@ -4,8 +4,7 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 import "./EditInventoryForm.scss";
-
-const API_URL = "http://localhost:8080";
+import { API_URL } from "../config";
 
 export default class EditInventoryForm extends Component {
   state = {
@@ -26,7 +25,7 @@ export default class EditInventoryForm extends Component {
   };
 
   componentDidMount() {
-    axios.get(`${API_URL}warehouses`).then((response) => {
+    axios.get(`${API_URL}/warehouses`).then((response) => {
       const warehouseList = response.data.map((warehouse) => {
         return warehouse.id + "," + warehouse.name;
       });
@@ -34,14 +33,14 @@ export default class EditInventoryForm extends Component {
     });
 
     axios
-      .get(`${API_URL}inventories`)
+      .get(`${API_URL}/inventories`)
       .then((response) => {
         let foundId = response.data.find((inventory) => {
           return inventory.id === this.props.match.params.id;
         });
 
         return axios
-          .get(`${API_URL}inventories/${foundId.id}`)
+          .get(`${API_URL}/inventories/${foundId.id}`)
           .then((response) => {
             const {
               warehouseName,
@@ -158,12 +157,12 @@ export default class EditInventoryForm extends Component {
     }
 
     //creates axios get n patch
-    axios.get(`${API_URL}inventories`).then((response) => {
+    axios.get(`${API_URL}/inventories`).then((response) => {
       let foundId = response.data.find((inventory) => {
         return inventory.id === this.props.match.params.id;
       });
       axios
-        .patch(`${API_URL}inventories/${foundId.id}`, {
+        .patch(`${API_URL}/inventories/${foundId.id}`, {
           itemName,
           description,
           category,

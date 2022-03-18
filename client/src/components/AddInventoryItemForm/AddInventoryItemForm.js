@@ -4,8 +4,7 @@ import "./AddInventoryItemForm.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
-
-const API_URL = "http://localhost:8080";
+import { API_URL } from "../config";
 
 export default class AddInventoryItemForm extends Component {
   //states for each form field, as well as validity tracking
@@ -29,7 +28,7 @@ export default class AddInventoryItemForm extends Component {
   //gets information to populate warehouse select element
   componentDidMount() {
     axios
-      .get(`${API_URL}warehouses`)
+      .get(`${API_URL}/warehouses`)
       .then(({ data }) => {
         const warehouseNames = data.map((warehouse) => {
           return warehouse.id + "," + warehouse.name;
@@ -140,7 +139,7 @@ export default class AddInventoryItemForm extends Component {
 
     //creates axios post call
     axios
-      .post(`${API_URL}inventories`, {
+      .post(`${API_URL}/inventories`, {
         itemName,
         description,
         category,

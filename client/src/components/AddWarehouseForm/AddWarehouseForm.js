@@ -4,8 +4,7 @@ import "./AddWarehouseForm.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
-
-const API_URL = "https://palm-instock-api.herokuapp.com/";
+import { API_URL } from "../config";
 
 export default class AddWarehouseForm extends Component {
   //states for each form field, as well as validity tracking
@@ -88,7 +87,7 @@ export default class AddWarehouseForm extends Component {
 
     //creates new warehouse
     axios
-      .post(`${API_URL}warehouses`, {
+      .post(`${API_URL}/warehouses`, {
         name,
         address,
         city,

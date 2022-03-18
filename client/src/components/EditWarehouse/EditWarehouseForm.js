@@ -4,8 +4,7 @@ import "./EditWarehouseForm.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
-
-const API_URL = "https://palm-instock-api.herokuapp.com/";
+import { API_URL } from "../config";
 
 export default class EditWarehouseForm extends Component {
   state = {
@@ -29,25 +28,27 @@ export default class EditWarehouseForm extends Component {
 
   componentDidMount() {
     axios
-      .get("/warehouses")
+      .get(`${API_URL}/warehouses`)
       .then((response) => {
         let foundId = response.data.find((warehouse) => {
           return warehouse.id === this.props.match.params.id;
         });
-        return axios.get(`/warehouses/${foundId.id}`).then((response) => {
-          const { name, address, city, country } = response.data;
-          const { position, phone, email } = response.data.contact;
-          this.setState({
-            name,
-            address,
-            city,
-            country,
-            contact: response.data.contact.name,
-            position,
-            phone,
-            email,
+        return axios
+          .get(`${API_URL}/warehouses/${foundId.id}`)
+          .then((response) => {
+            const { name, address, city, country } = response.data;
+            const { position, phone, email } = response.data.contact;
+            this.setState({
+              name,
+              address,
+              city,
+              country,
+              contact: response.data.contact.name,
+              position,
+              phone,
+              email,
+            });
           });
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -111,12 +112,12 @@ export default class EditWarehouseForm extends Component {
       return;
     }
 
-    axios.get("/warehouses").then((response) => {
+    axios.get(`${API_URL}/warehouses`).then((response) => {
       let foundId = response.data.find((warehouse) => {
         return warehouse.id === this.props.match.params.id;
       });
       return axios
-        .patch(`/warehouses/${foundId.id}`, {
+        .patch(`${API_URL}/warehouses/${foundId.id}`, {
           name,
           address,
           city,

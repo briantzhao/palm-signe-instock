@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryDetail.scss";
-
-const API_URL = "http://localhost:8080";
+import { API_URL } from "../config";
 
 export default class InventoryDetail extends Component {
   state = {
