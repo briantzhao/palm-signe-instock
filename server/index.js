@@ -5,7 +5,7 @@ const cors = require("cors");
 const warehouseRoutes = require("./routes/warehouseRoutes.js");
 const inventoryRoutes = require("./routes/inventoryRoutes");
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 //middleware functions
 app.use(cors());
