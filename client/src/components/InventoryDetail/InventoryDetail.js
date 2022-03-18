@@ -4,7 +4,10 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryDetail.scss";
 
-const API_URL = "http://localhost:8080/";
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://palm-instock-api.herokuapp.com"
+    : "http://localhost:8080";
 
 export default class InventoryDetail extends Component {
   state = {
