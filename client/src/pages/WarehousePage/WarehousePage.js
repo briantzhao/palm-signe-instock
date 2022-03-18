@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import axios from "axios";
-const apiURL =
-  process.env.NODE_ENV === "production"
-    ? "https://palm-instock-api.herokuapp.com"
-    : "http://localhost:8080";
+const API_URL = "http://localhost:8080";
 
 export default class WarehousePage extends Component {
   state = {
@@ -16,7 +13,7 @@ export default class WarehousePage extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get(`${apiURL}/warehouses`)
+      .get(`${API_URL}/warehouses`)
       .then(({ data }) => {
         const apiData = data;
         this.setState({ warehouseList: apiData });
@@ -31,10 +28,10 @@ export default class WarehousePage extends Component {
 
   deleteItem = () => {
     axios
-      .delete(`${apiURL}/warehouses/${this.state.currentWarehouse.id}`)
+      .delete(`${API_URL}/warehouses/${this.state.currentWarehouse.id}`)
       .then((res) => {
         axios
-          .get(`${apiURL}/warehouses`)
+          .get(`${API_URL}/warehouses`)
           .then(({ data }) => {
             const apiData = data;
             this.setState({ warehouseList: apiData });

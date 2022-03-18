@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import axios from "axios";
 import InventoryList from "../../components/InventoryList/InventoryList";
-const apiURL =
-  process.env.NODE_ENV === "production"
-    ? "https://palm-instock-api.herokuapp.com"
-    : "http://localhost:8080";
+const API_URL = "http://localhost:8080";
 
 export default class InventoryPage extends Component {
   state = {
@@ -16,7 +13,7 @@ export default class InventoryPage extends Component {
 
   getAPI = () => {
     axios
-      .get(`${apiURL}/inventories`)
+      .get(`${API_URL}/inventories`)
       .then((res) => {
         console.log(res.data);
         this.setState({ inventoryItems: res.data });
@@ -36,7 +33,7 @@ export default class InventoryPage extends Component {
 
   deleteItem = () => {
     axios
-      .delete(`${apiURL}/inventories/${this.state.currentInventory.id}`)
+      .delete(`${API_URL}/inventories/${this.state.currentInventory.id}`)
       .then((res) => {
         this.getAPI();
       })

@@ -5,10 +5,7 @@ import axios from "axios";
 import error from "../../assets/icons/error-24px.svg";
 import "./EditInventoryForm.scss";
 
-const API_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://palm-instock-api.herokuapp.com"
-    : "http://localhost:8080";
+const API_URL = "http://localhost:8080";
 
 export default class EditInventoryForm extends Component {
   state = {
